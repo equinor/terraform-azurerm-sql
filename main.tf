@@ -47,10 +47,6 @@ resource "azurerm_mssql_server" "this" {
     login_username = var.sql_server_azuread_admin.login_username
     object_id      = var.sql_server_azuread_admin.object_id
   }
-
-  identity {
-    type = "SystemAssigned"
-  }
 }
 
 resource "azurerm_mssql_firewall_rule" "this" {
@@ -61,19 +57,11 @@ resource "azurerm_mssql_firewall_rule" "this" {
 }
 
 resource "azurerm_mssql_server_extended_auditing_policy" "this" {
-  server_id         = azurerm_mssql_server.this.id
-  storage_endpoint  = azurerm_storage_account.this.primary_blob_endpoint
-  retention_in_days = 7
-
-  depends_on = [
-    azurerm_role_assignment.audit_contributor
-  ]
-}
-
-resource "azurerm_role_assignment" "audit_contributor" {
-  scope                = azurerm_storage_account.this.id
-  role_definition_name = "Storage Blob Data Contributor"
-  principal_id         = azurerm_mssql_server.this.identity[0].principal_id
+  server_id                               = azurerm_mssql_server.this.id
+  storage_endpoint                        = azurerm_storage_account.this.primary_blob_endpoint
+  storage_account_access_key              = azurerm_storage_account.this.primary_access_key
+  storage_account_access_key_is_secondary = false
+  retention_in_days                       = 7
 }
 
 resource "azurerm_mssql_server_security_alert_policy" "this" {
