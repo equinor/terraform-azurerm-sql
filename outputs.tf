@@ -11,3 +11,7 @@ output "sql_server_admin_login_password" {
   value     = azurerm_mssql_server.this.administrator_login_password
   sensitive = true
 }
+
+output "storage_account_id" {
+  value = azurerm_storage_account.this.id
+}
