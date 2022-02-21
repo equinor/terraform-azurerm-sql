@@ -27,9 +27,8 @@ module "sql" {
 }
 
 resource "azurerm_mssql_database" "this" {
-  name        = "sqldb-${local.app_name}-${local.environment_name}"
-  server_id   = module.sql.sql_server_id
-  collation   = "SQL_Latin1_General_CP1_CI_AS"
-  max_size_gb = 2
-  sku_name    = "Basic"
+  name      = "sqldb-${local.app_name}-${local.environment_name}"
+  server_id = module.sql.sql_server_id
+  sku_name  = "Basic"
+  collation = "SQL_Latin1_General_CP1_CI_AS"
 }
