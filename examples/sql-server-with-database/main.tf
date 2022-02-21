@@ -26,20 +26,6 @@ module "sql" {
   }
 }
 
-resource "azurerm_mssql_firewall_rule" "allow_ip1" {
-  name             = "FirewallRule1"
-  server_id        = module.sql.sql_server_id
-  start_ip_address = "1.1.1.1"
-  end_ip_address   = "1.1.1.1"
-}
-
-resource "azurerm_mssql_firewall_rule" "allow_ip2" {
-  name             = "FirewallRule2"
-  server_id        = module.sql.sql_server_id
-  start_ip_address = "2.2.2.2"
-  end_ip_address   = "2.2.2.2"
-}
-
 resource "azurerm_mssql_database" "this" {
   name        = "sqldb-${local.app_name}-${local.environment_name}"
   server_id   = module.sql.sql_server_id
