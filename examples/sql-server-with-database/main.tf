@@ -3,7 +3,7 @@ provider "azurerm" {
 }
 
 locals {
-  app_name         = "ops"
+  app_name         = "ops-sql"
   environment_name = "example"
 }
 
