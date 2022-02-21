@@ -9,7 +9,7 @@ locals {
 
 resource "azurerm_resource_group" "this" {
   name     = "rg-${local.app_name}-${local.environment_name}"
-  location = "norwayeast"
+  location = "northeurope"
 }
 
 module "sql" {
