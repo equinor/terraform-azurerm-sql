@@ -1,5 +1,9 @@
+locals {
+  app_name_alnum = join("", regexall("[a-z0-9]", lower(var.app_name)))
+}
+
 resource "azurerm_storage_account" "this" {
-  name                      = "st${var.app_name}sql${var.environment_name}"
+  name                      = "stsql${local.app_name_alnum}${var.environment_name}"
   location                  = var.location
   resource_group_name       = var.resource_group_name
   account_tier              = "Standard"
