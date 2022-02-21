@@ -21,3 +21,9 @@ variable "sql_server_azuread_admin" {
     object_id      = string
   })
 }
+
+variable "sql_server_firewall_allow_azure" {
+  description = "Allow Azure services and resources to access this server"
+  type        = bool
+  default     = true
+}

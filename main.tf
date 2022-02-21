@@ -50,6 +50,8 @@ resource "azurerm_mssql_server" "this" {
 }
 
 resource "azurerm_mssql_firewall_rule" "this" {
+  count = var.sql_server_firewall_allow_azure ? 1 : 0
+
   name             = "AllowAllWindowsAzureIps"
   server_id        = azurerm_mssql_server.this.id
   start_ip_address = "0.0.0.0"
