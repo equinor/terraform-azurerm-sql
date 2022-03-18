@@ -14,6 +14,17 @@ variable "location" {
   type = string
 }
 
+variable "sql_name" {
+  description = "SQL Name, generated if not set"
+  type        = string
+  default     = null
+}
+
+variable "sql_name_nodash" {
+  description = "SQL name with no dash, generated if not set"
+  type        = string
+  default     = null
+}
 variable "sql_server_azuread_admin" {
   description = "Azure AD user or group that should have admin access to the SQL server"
   type = object({
