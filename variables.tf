@@ -14,7 +14,7 @@ variable "location" {
   type = string
 }
 
-variable "sql_name" {
+variable "sql_server_name" {
   description = "SQL Name, generated if not set"
   type        = string
   default     = null
