@@ -39,7 +39,7 @@ resource "azurerm_mssql_server" "this" {
   resource_group_name          = var.resource_group_name
   location                     = var.location
   version                      = "12.0"
-  administrator_login          = coalesce(var.sql_name_nodash, "sql${var.app_name}${var.environment_name}")
+  administrator_login          = "sql${var.app_name}${var.environment_name}"
   administrator_login_password = random_password.this.result
   minimum_tls_version          = "1.2"
 
