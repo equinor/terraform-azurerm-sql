@@ -35,7 +35,7 @@ resource "random_password" "this" {
 }
 
 resource "azurerm_mssql_server" "this" {
-  name                         = "sql-${var.app_name}-${var.environment_name}"
+  name                         = coalesce(var.sql_server_name, "sql-${var.app_name}-${var.environment_name}")
   resource_group_name          = var.resource_group_name
   location                     = var.location
   version                      = "12.0"
