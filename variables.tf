@@ -15,7 +15,7 @@ variable "location" {
 }
 
 variable "sql_server_name" {
-  description = "SQL Name, generated if not set"
+  description = "SQL server name, generated if not set"
   type        = string
   default     = null
 }
