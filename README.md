@@ -2,6 +2,52 @@
 
 Terraform module which creates an Azure SQL Server.
 
+## Usage
+
+```terraform
+provider "azurerm" {
+  features {}
+}
+
+locals {
+  application = "my-app"
+  environment = "example"
+}
+
+resource "azurerm_resource_group" "example" {
+  name     = "rg-${local.application}-${local.environment}"
+  location = "northeurope"
+}
+
+module "sql" {
+  source = "github.com/equinor/terraform-azurerm-sql"
+
+  application = local.application
+  environment = local.environment
+
+  location            = azurerm_resource_group.this.location
+  resource_group_name = azurerm_resource_group.this.name
+
+  azuread_admin_login_username = "AzureAD Admins"
+  azuread_admin_object_id      = "8e42d531-ed48-40d5-ade2-b8f3384db8ae"
+}
+```
+
+## Test
+
+### Prerequisites
+
+- Install the latest version of [Go](https://go.dev/dl/).
+- Install [Terraform](https://www.terraform.io/downloads).
+- Configure your Azure credentials using one of the [options supported by the AzureRM provider](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs#authenticating-to-azure).
+
+### Run test
+
+```bash
+cd ./test/
+go test -v -timeout 60m
+```
+
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 
