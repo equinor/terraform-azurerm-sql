@@ -1,6 +1,8 @@
-module github.com/equinor/terraform-azurerm-sql/test
+module sql
 
-go 1.17
+go 1.18
+
+require github.com/gruntwork-io/terratest v0.40.6
 
 require (
 	cloud.google.com/go v0.83.0 // indirect
@@ -14,7 +16,6 @@ require (
 	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/golang/snappy v0.0.3 // indirect
 	github.com/googleapis/gax-go/v2 v2.0.5 // indirect
-	github.com/gruntwork-io/terratest v0.40.0 // indirect
 	github.com/hashicorp/errwrap v1.0.0 // indirect
 	github.com/hashicorp/go-cleanhttp v0.5.2 // indirect
 	github.com/hashicorp/go-getter v1.5.9 // indirect
