@@ -87,7 +87,7 @@ No modules.
 |------|-------------|------|---------|:--------:|
 | <a name="input_application"></a> [application](#input\_application) | The application to create the resources for. | `string` | n/a | yes |
 | <a name="input_azuread_admin_login_username"></a> [azuread\_admin\_login\_username](#input\_azuread\_admin\_login\_username) | The login username of the Azure AD Administrator of the SQL Server. | `string` | n/a | yes |
-| <a name="input_azuread_admin_object_id"></a> [azuread\_admin\_object\_id](#input\_azuread\_admin\_object\_id) | The object id of the Azure AD Administrator of the SQL Server. | `string` | n/a | yes |
+| <a name="input_azuread_admin_object_id"></a> [azuread\_admin\_object\_id](#input\_azuread\_admin\_object\_id) | The Object ID of the Azure AD Administrator of the SQL Server. | `string` | n/a | yes |
 | <a name="input_environment"></a> [environment](#input\_environment) | The environment to create the resources for. | `string` | n/a | yes |
 | <a name="input_firewall_allow_all_azure_ips"></a> [firewall\_allow\_all\_azure\_ips](#input\_firewall\_allow\_all\_azure\_ips) | Allow Azure services and resources to access the SQL Server. | `bool` | `true` | no |
 | <a name="input_location"></a> [location](#input\_location) | Specifies the supported Azure location where the resources exist. | `string` | n/a | yes |
