@@ -1,9 +1,10 @@
 locals {
-  app_name_alnum = join("", regexall("[a-z0-9]", lower(var.app_name)))
+  suffix       = "${var.application}-${var.environment}"
+  suffix_alnum = join("", regexall("[a-z0-9]", lower(local.suffix)))
 }
 
 resource "azurerm_storage_account" "this" {
-  name                      = "stsql${local.app_name_alnum}${var.environment_name}"
+  name                      = coalesce(var.storage_account_name, "stsql${local.suffix_alnum}")
   location                  = var.location
   resource_group_name       = var.resource_group_name
   account_tier              = "Standard"
@@ -12,7 +13,6 @@ resource "azurerm_storage_account" "this" {
   access_tier               = "Hot"
   min_tls_version           = "TLS1_2"
   enable_https_traffic_only = true
-  allow_blob_public_access  = false
   shared_access_key_enabled = true
 
   blob_properties {
@@ -35,22 +35,22 @@ resource "random_password" "this" {
 }
 
 resource "azurerm_mssql_server" "this" {
-  name                         = "sql-${var.app_name}-${var.environment_name}"
-  resource_group_name          = var.resource_group_name
+  name                         = coalesce(var.sql_server_name, "sql-${local.suffix}")
   location                     = var.location
+  resource_group_name          = var.resource_group_name
   version                      = "12.0"
-  administrator_login          = "sql${var.app_name}${var.environment_name}"
+  administrator_login          = "sql${local.suffix_alnum}"
   administrator_login_password = random_password.this.result
   minimum_tls_version          = "1.2"
 
   azuread_administrator {
-    login_username = var.sql_server_azuread_admin.login_username
-    object_id      = var.sql_server_azuread_admin.object_id
+    login_username = var.azuread_admin_login_username
+    object_id      = var.azuread_admin_object_id
   }
 }
 
 resource "azurerm_mssql_firewall_rule" "this" {
-  count = var.sql_server_firewall_allow_azure ? 1 : 0
+  count = var.firewall_allow_all_azure_ips ? 1 : 0
 
   name             = "AllowAllWindowsAzureIps"
   server_id        = azurerm_mssql_server.this.id
@@ -73,7 +73,7 @@ resource "azurerm_mssql_server_security_alert_policy" "this" {
 }
 
 resource "azurerm_storage_container" "this" {
-  name                 = "vulnerability-assessments"
+  name                 = "vulnerability-assessment"
   storage_account_name = azurerm_storage_account.this.name
 }
 
