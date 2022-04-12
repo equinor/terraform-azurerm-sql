@@ -42,7 +42,7 @@ variable "azuread_admin_login_username" {
 }
 
 variable "azuread_admin_object_id" {
-  description = "The object id of the Azure AD Administrator of the SQL Server."
+  description = "The Object ID of the Azure AD Administrator of the SQL Server."
   type        = string
 }
 

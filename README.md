@@ -25,8 +25,8 @@ module "sql" {
   application = local.application
   environment = local.environment
 
-  location            = azurerm_resource_group.this.location
-  resource_group_name = azurerm_resource_group.this.name
+  location            = azurerm_resource_group.example.location
+  resource_group_name = azurerm_resource_group.example.name
 
   azuread_admin_login_username = "AzureAD Admins"
   azuread_admin_object_id      = "8e42d531-ed48-40d5-ade2-b8f3384db8ae"
