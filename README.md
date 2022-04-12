@@ -1,3 +1,3 @@
-# Azure SQL Terraform module
+# terraform-azurerm-sql
 
-Terraform module which creates an Azure SQL Server with Azure AD administrator, server-level auditing and vulnerability assessment.
+Terraform module which creates an Azure SQL Server.
