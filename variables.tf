@@ -24,6 +24,12 @@ variable "resource_group_name" {
   type        = string
 }
 
+variable "tags" {
+  description = "A mapping of tags to assign to the resources."
+  type        = map(string)
+  default     = {}
+}
+
 variable "sql_server_name" {
   description = "Specifies the name of the SQL Server."
   type        = string

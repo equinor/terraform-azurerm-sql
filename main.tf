@@ -1,6 +1,8 @@
 locals {
   suffix       = "${var.application}-${var.environment}"
   suffix_alnum = join("", regexall("[a-z0-9]", lower(local.suffix)))
+
+  tags = merge({ application = var.application, environment = var.environment }, var.tags)
 }
 
 resource "azurerm_storage_account" "this" {
@@ -14,6 +16,8 @@ resource "azurerm_storage_account" "this" {
   min_tls_version           = "TLS1_2"
   enable_https_traffic_only = true
   shared_access_key_enabled = true
+
+  tags = local.tags
 
   blob_properties {
     delete_retention_policy {
@@ -42,6 +46,8 @@ resource "azurerm_mssql_server" "this" {
   administrator_login          = "sql${local.suffix_alnum}"
   administrator_login_password = random_password.this.result
   minimum_tls_version          = "1.2"
+
+  tags = local.tags
 
   azuread_administrator {
     login_username = var.azuread_admin_login_username
