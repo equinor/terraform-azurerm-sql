@@ -6,9 +6,9 @@ import (
 	"github.com/gruntwork-io/terratest/modules/terraform"
 )
 
-func TestSqlServerWithDatabase(t *testing.T) {
+func TestTerraformSql(t *testing.T) {
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{
-		TerraformDir: "../examples/sql-server-with-database",
+		TerraformDir: "./fixture",
 	})
 
 	defer terraform.Destroy(t, terraformOptions)
