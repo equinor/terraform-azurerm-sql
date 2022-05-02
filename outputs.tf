@@ -19,13 +19,12 @@ output "sql_server_name" {
 }
 
 output "sql_server_admin_login" {
-  description = "The administrator login name for the SQL Server."
+  description = "The admin login of the SQL Server."
   value       = azurerm_mssql_server.this.administrator_login
-  sensitive   = true
 }
 
-output "sql_server_admin_login_password" {
-  description = "The administrator login password for the SQL Server."
+output "sql_server_admin_password" {
+  description = "The admin password of the SQL Server."
   value       = azurerm_mssql_server.this.administrator_login_password
   sensitive   = true
 }

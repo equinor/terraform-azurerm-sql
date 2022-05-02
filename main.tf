@@ -50,13 +50,13 @@ resource "azurerm_mssql_server" "this" {
   tags = local.tags
 
   azuread_administrator {
-    login_username = var.azuread_admin_login_username
+    login_username = var.azuread_admin_name
     object_id      = var.azuread_admin_object_id
   }
 }
 
 resource "azurerm_mssql_firewall_rule" "this" {
-  count = var.firewall_allow_all_azure_ips ? 1 : 0
+  count = var.firewall_allow_azure_ips ? 1 : 0
 
   name             = "AllowAllWindowsAzureIps"
   server_id        = azurerm_mssql_server.this.id
