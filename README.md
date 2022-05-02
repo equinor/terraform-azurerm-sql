@@ -86,22 +86,22 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_application"></a> [application](#input\_application) | The application to create the resources for. | `string` | n/a | yes |
-| <a name="input_azuread_admin_login_username"></a> [azuread\_admin\_login\_username](#input\_azuread\_admin\_login\_username) | The login username of the Azure AD Administrator of the SQL Server. | `string` | n/a | yes |
-| <a name="input_azuread_admin_object_id"></a> [azuread\_admin\_object\_id](#input\_azuread\_admin\_object\_id) | The Object ID of the Azure AD Administrator of the SQL Server. | `string` | n/a | yes |
+| <a name="input_azuread_admin_name"></a> [azuread\_admin\_name](#input\_azuread\_admin\_name) | The name of the Azure AD admin for the SQL Server. | `string` | n/a | yes |
+| <a name="input_azuread_admin_object_id"></a> [azuread\_admin\_object\_id](#input\_azuread\_admin\_object\_id) | The object ID of the Azure AD admin for the SQL Server. | `string` | n/a | yes |
 | <a name="input_environment"></a> [environment](#input\_environment) | The environment to create the resources for. | `string` | n/a | yes |
-| <a name="input_firewall_allow_all_azure_ips"></a> [firewall\_allow\_all\_azure\_ips](#input\_firewall\_allow\_all\_azure\_ips) | Allow Azure services and resources to access the SQL Server. | `bool` | `true` | no |
-| <a name="input_location"></a> [location](#input\_location) | Specifies the supported Azure location where the resources exist. | `string` | n/a | yes |
+| <a name="input_firewall_allow_azure_ips"></a> [firewall\_allow\_azure\_ips](#input\_firewall\_allow\_azure\_ips) | Allow Azure IPs to bypass the firewall and access the SQL Server. | `bool` | `true` | no |
+| <a name="input_location"></a> [location](#input\_location) | The supported Azure location where the resources exist. | `string` | n/a | yes |
 | <a name="input_resource_group_name"></a> [resource\_group\_name](#input\_resource\_group\_name) | The name of the resource group in which to create the resources. | `string` | n/a | yes |
-| <a name="input_sql_server_name"></a> [sql\_server\_name](#input\_sql\_server\_name) | Specifies the name of the SQL Server. | `string` | `null` | no |
-| <a name="input_storage_account_name"></a> [storage\_account\_name](#input\_storage\_account\_name) | Specifies the name of the Storage Account. | `string` | `null` | no |
+| <a name="input_sql_server_name"></a> [sql\_server\_name](#input\_sql\_server\_name) | A custom name for the SQL Server. | `string` | `null` | no |
+| <a name="input_storage_account_name"></a> [storage\_account\_name](#input\_storage\_account\_name) | A custom name for the Storage Account. | `string` | `null` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | A mapping of tags to assign to the resources. | `map(string)` | `{}` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| <a name="output_sql_server_admin_login"></a> [sql\_server\_admin\_login](#output\_sql\_server\_admin\_login) | The administrator login name for the SQL Server. |
-| <a name="output_sql_server_admin_login_password"></a> [sql\_server\_admin\_login\_password](#output\_sql\_server\_admin\_login\_password) | The administrator login password for the SQL Server. |
+| <a name="output_sql_server_admin_login"></a> [sql\_server\_admin\_login](#output\_sql\_server\_admin\_login) | The admin login of the SQL Server. |
+| <a name="output_sql_server_admin_password"></a> [sql\_server\_admin\_password](#output\_sql\_server\_admin\_password) | The admin password of the SQL Server. |
 | <a name="output_sql_server_id"></a> [sql\_server\_id](#output\_sql\_server\_id) | The ID of the SQL Server. |
 | <a name="output_sql_server_name"></a> [sql\_server\_name](#output\_sql\_server\_name) | The name of the SQL Server. |
 | <a name="output_storage_account_id"></a> [storage\_account\_id](#output\_storage\_account\_id) | The ID of the Storage Account. |
