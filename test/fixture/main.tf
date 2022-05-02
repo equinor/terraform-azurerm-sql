@@ -27,8 +27,8 @@ module "sql" {
   location            = azurerm_resource_group.this.location
   resource_group_name = azurerm_resource_group.this.name
 
-  azuread_admin_login_username = "AzureAD Admins"
-  azuread_admin_object_id      = "6d8487a5-a115-458b-8ae8-c34783b17242"
+  azuread_admin_name      = "AzureAD Admins"
+  azuread_admin_object_id = "6d8487a5-a115-458b-8ae8-c34783b17242"
 }
 
 resource "azurerm_mssql_firewall_rule" "this" {

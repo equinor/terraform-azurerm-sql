@@ -50,7 +50,7 @@ resource "azurerm_mssql_server" "this" {
   tags = local.tags
 
   azuread_administrator {
-    login_username = var.azuread_admin_login_username
+    login_username = var.azuread_admin_name
     object_id      = var.azuread_admin_object_id
   }
 }

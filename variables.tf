@@ -36,8 +36,8 @@ variable "sql_server_name" {
   default     = null
 }
 
-variable "azuread_admin_login_username" {
-  description = "The login username of the Azure AD admin for the SQL Server."
+variable "azuread_admin_name" {
+  description = "The name of the Azure AD admin for the SQL Server."
   type        = string
 }
 
@@ -47,7 +47,7 @@ variable "azuread_admin_object_id" {
 }
 
 variable "firewall_allow_all_azure_ips" {
-  description = "Allow Azure services and resources to bypass the SQL Server firewall."
+  description = "Allow all Azure IPs to bypass the SQL Server firewall."
   type        = bool
   default     = true
 }
