@@ -23,8 +23,8 @@ output "sql_server_admin_login" {
   value       = azurerm_mssql_server.this.administrator_login
 }
 
-output "sql_server_admin_login_password" {
-  description = "The admin login password of the SQL Server."
+output "sql_server_admin_password" {
+  description = "The admin password of the SQL Server."
   value       = azurerm_mssql_server.this.administrator_login_password
   sensitive   = true
 }
