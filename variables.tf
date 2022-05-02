@@ -46,8 +46,8 @@ variable "azuread_admin_object_id" {
   type        = string
 }
 
-variable "firewall_allow_all_azure_ips" {
-  description = "Allow all Azure IPs to bypass the SQL Server firewall."
+variable "firewall_allow_azure_ips" {
+  description = "Allow Azure IPs to bypass the firewall and access the SQL Server."
   type        = bool
   default     = true
 }

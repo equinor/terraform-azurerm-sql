@@ -56,7 +56,7 @@ resource "azurerm_mssql_server" "this" {
 }
 
 resource "azurerm_mssql_firewall_rule" "this" {
-  count = var.firewall_allow_all_azure_ips ? 1 : 0
+  count = var.firewall_allow_azure_ips ? 1 : 0
 
   name             = "AllowAllWindowsAzureIps"
   server_id        = azurerm_mssql_server.this.id
