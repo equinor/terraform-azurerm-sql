@@ -31,4 +31,10 @@ module "sql" {
 
   azuread_admin_name      = "john.smith@example.com"
   azuread_admin_object_id = data.azurerm_client_config.current.object_id # Must be a real object ID within the current tenant.
+
+  firewall_rules = {
+    "Rule1" = ["1.1.1.1", "1.1.1.1"]
+    "Rule2" = ["2.2.2.2", "2.2.2.2"]
+    "Rule3" = ["3.3.3.3", "3.3.3.3"]
+  }
 }

@@ -30,6 +30,12 @@ module "sql" {
 
   azuread_admin_name      = "john.smith@example.com"
   azuread_admin_object_id = "123e4567-e89b-12d3-a456-426614174000"
+
+  firewall_rules = {
+    "Rule1" = ["1.1.1.1", "1.1.1.1"]
+    "Rule2" = ["2.2.2.2", "2.2.2.2"]
+    "Rule3" = ["3.3.3.3", "3.3.3.3"]
+  }
 }
 ```
 
