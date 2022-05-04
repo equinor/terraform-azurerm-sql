@@ -46,8 +46,7 @@ variable "azuread_admin_object_id" {
   type        = string
 }
 
-variable "firewall_allow_azure_ips" {
-  description = "Allow Azure IPs to bypass the firewall and access the SQL Server."
-  type        = bool
-  default     = true
+variable "firewall_rules" {
+  description = "A map of IP address ranges that should be able to access the SQL Server."
+  type        = map(tuple([string, string]))
 }

@@ -28,8 +28,14 @@ module "sql" {
   location            = azurerm_resource_group.example.location
   resource_group_name = azurerm_resource_group.example.name
 
-  azuread_admin_name      = "John Smith"
-  azuread_admin_object_id = "8e42d531-ed48-40d5-ade2-b8f3384db8ae"
+  azuread_admin_name      = "john.smith@example.com"
+  azuread_admin_object_id = "123e4567-e89b-12d3-a456-426614174000"
+
+  firewall_rules = {
+    "Rule1" = ["1.1.1.1", "1.1.1.1"]
+    "Rule2" = ["2.2.2.2", "2.2.2.2"]
+    "Rule3" = ["3.3.3.3", "3.3.3.3"]
+  }
 }
 ```
 
@@ -89,7 +95,7 @@ No modules.
 | <a name="input_azuread_admin_name"></a> [azuread\_admin\_name](#input\_azuread\_admin\_name) | The name of the Azure AD admin for the SQL Server. | `string` | n/a | yes |
 | <a name="input_azuread_admin_object_id"></a> [azuread\_admin\_object\_id](#input\_azuread\_admin\_object\_id) | The object ID of the Azure AD admin for the SQL Server. | `string` | n/a | yes |
 | <a name="input_environment"></a> [environment](#input\_environment) | The environment to create the resources for. | `string` | n/a | yes |
-| <a name="input_firewall_allow_azure_ips"></a> [firewall\_allow\_azure\_ips](#input\_firewall\_allow\_azure\_ips) | Allow Azure IPs to bypass the firewall and access the SQL Server. | `bool` | `true` | no |
+| <a name="input_firewall_rules"></a> [firewall\_rules](#input\_firewall\_rules) | A map of IP address ranges that should be able to access the SQL Server. | `map(tuple([string, string]))` | n/a | yes |
 | <a name="input_location"></a> [location](#input\_location) | The supported Azure location where the resources exist. | `string` | n/a | yes |
 | <a name="input_resource_group_name"></a> [resource\_group\_name](#input\_resource\_group\_name) | The name of the resource group in which to create the resources. | `string` | n/a | yes |
 | <a name="input_sql_server_name"></a> [sql\_server\_name](#input\_sql\_server\_name) | A custom name for the SQL Server. | `string` | `null` | no |
