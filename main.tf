@@ -39,7 +39,7 @@ resource "random_password" "this" {
 }
 
 resource "azurerm_mssql_server" "this" {
-  name                         = coalesce(var.sql_server_name, "sql-${local.suffix}")
+  name                         = coalesce(var.server_name, "sql-${local.suffix}")
   location                     = var.location
   resource_group_name          = var.resource_group_name
   version                      = "12.0"
@@ -50,7 +50,7 @@ resource "azurerm_mssql_server" "this" {
   tags = local.tags
 
   azuread_administrator {
-    login_username = var.azuread_admin_name
+    login_username = var.azuread_admin_login
     object_id      = var.azuread_admin_object_id
   }
 }

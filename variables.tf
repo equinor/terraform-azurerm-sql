@@ -30,23 +30,23 @@ variable "tags" {
   default     = {}
 }
 
-variable "sql_server_name" {
-  description = "A custom name for the SQL Server."
+variable "server_name" {
+  description = "A custom name for this SQL server."
   type        = string
   default     = null
 }
 
-variable "azuread_admin_name" {
-  description = "The name of the Azure AD admin for the SQL Server."
+variable "azuread_admin_login" {
+  description = "The login username of the Azure AD administrator of this SQL server."
   type        = string
 }
 
 variable "azuread_admin_object_id" {
-  description = "The object ID of the Azure AD admin for the SQL Server."
+  description = "The object ID of the Azure AD administrator of this SQL server."
   type        = string
 }
 
 variable "firewall_rules" {
-  description = "A map of IP address ranges that should be able to access the SQL Server."
+  description = "A map of IP address ranges that should be able to access this SQL Server."
   type        = map(tuple([string, string]))
 }

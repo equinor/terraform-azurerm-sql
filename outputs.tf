@@ -8,23 +8,23 @@ output "storage_account_name" {
   value       = azurerm_storage_account.this.name
 }
 
-output "sql_server_id" {
+output "server_id" {
   description = "The ID of the SQL Server."
   value       = azurerm_mssql_server.this.id
 }
 
-output "sql_server_name" {
+output "server_name" {
   description = "The name of the SQL Server."
   value       = azurerm_mssql_server.this.name
 }
 
-output "sql_server_admin_login" {
-  description = "The admin login of the SQL Server."
+output "admin_login" {
+  description = "The login username of the administrator of this SQL server."
   value       = azurerm_mssql_server.this.administrator_login
 }
 
-output "sql_server_admin_password" {
-  description = "The admin password of the SQL Server."
+output "admin_password" {
+  description = "The login password of the administrator of this SQL server."
   value       = azurerm_mssql_server.this.administrator_login_password
   sensitive   = true
 }

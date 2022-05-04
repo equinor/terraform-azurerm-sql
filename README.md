@@ -28,7 +28,7 @@ module "sql" {
   location            = azurerm_resource_group.example.location
   resource_group_name = azurerm_resource_group.example.name
 
-  azuread_admin_name      = "john.smith@example.com"
+  azuread_admin_login     = "john.smith@example.com"
   azuread_admin_object_id = "123e4567-e89b-12d3-a456-426614174000"
 
   firewall_rules = {
