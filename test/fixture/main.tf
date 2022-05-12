@@ -9,6 +9,10 @@ locals {
 
 data "azurerm_client_config" "current" {}
 
+data "http" "public_ip" {
+  url = "https://ifconfig.me"
+}
+
 resource "random_id" "this" {
   byte_length = 8
 }
@@ -30,11 +34,9 @@ module "sql" {
   resource_group_name = azurerm_resource_group.this.name
 
   azuread_admin_login     = "john.smith@example.com"
-  azuread_admin_object_id = data.azurerm_client_config.current.object_id # Must be a real object ID within the current tenant.
+  azuread_admin_object_id = data.azurerm_client_config.current.object_id
 
   firewall_rules = {
-    "Rule1" = ["1.1.1.1", "1.1.1.1"]
-    "Rule2" = ["2.2.2.2", "2.2.2.2"]
-    "Rule3" = ["3.3.3.3", "3.3.3.3"]
+    "AllowClientPublicIp" = [data.http.public_ip.body, data.http.public_ip.body]
   }
 }
