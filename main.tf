@@ -53,6 +53,13 @@ resource "azurerm_mssql_server" "this" {
     login_username = var.azuread_admin_login
     object_id      = var.azuread_admin_object_id
   }
+
+  lifecycle {
+    ignore_changes = [
+      # Allow admin password to be updated outside of Terraform.
+      administrator_login_password
+    ]
+  }
 }
 
 resource "azurerm_mssql_firewall_rule" "this" {
