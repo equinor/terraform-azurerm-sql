@@ -56,9 +56,3 @@ variable "allow_blob_public_access" {
   type        = bool
   default     = false
 }
-
-variable "shared_access_key_enabled" {
-  description = "Is authorization with access key enabled for this Storage Account?"
-  type        = bool
-  default     = true
-}
