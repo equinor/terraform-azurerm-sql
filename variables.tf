@@ -50,9 +50,3 @@ variable "firewall_rules" {
   description = "A map of IP address ranges that should be able to access this SQL Server."
   type        = map(tuple([string, string]))
 }
-
-variable "allow_blob_public_access" {
-  description = "Allow public acces to this Blob Storage?"
-  type        = bool
-  default     = false
-}
