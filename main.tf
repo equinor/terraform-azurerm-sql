@@ -6,16 +6,19 @@ locals {
 }
 
 resource "azurerm_storage_account" "this" {
-  name                      = coalesce(var.storage_account_name, "stsql${local.suffix_alnum}")
-  location                  = var.location
-  resource_group_name       = var.resource_group_name
-  account_tier              = "Standard"
-  account_replication_type  = "LRS"
-  account_kind              = "BlobStorage"
-  access_tier               = "Hot"
-  min_tls_version           = "TLS1_2"
-  enable_https_traffic_only = true
-  shared_access_key_enabled = true
+  name                = coalesce(var.storage_account_name, "stsql${local.suffix_alnum}")
+  location            = var.location
+  resource_group_name = var.resource_group_name
+
+  account_tier             = "Standard"
+  account_replication_type = "LRS"
+  account_kind             = "BlobStorage"
+  access_tier              = "Hot"
+
+  min_tls_version                 = "TLS1_2"
+  enable_https_traffic_only       = true
+  shared_access_key_enabled       = true
+  allow_nested_items_to_be_public = false
 
   tags = local.tags
 
