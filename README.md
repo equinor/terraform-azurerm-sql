@@ -91,7 +91,6 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_allow_blob_public_access"></a> [allow\_blob\_public\_access](#input\_allow\_blob\_public\_access) | Allow public acces to this Blob Storage? | `bool` | `false` | no |
 | <a name="input_application"></a> [application](#input\_application) | The application to create the resources for. | `string` | n/a | yes |
 | <a name="input_azuread_admin_login"></a> [azuread\_admin\_login](#input\_azuread\_admin\_login) | The login username of the Azure AD administrator of this SQL server. | `string` | n/a | yes |
 | <a name="input_azuread_admin_object_id"></a> [azuread\_admin\_object\_id](#input\_azuread\_admin\_object\_id) | The object ID of the Azure AD administrator of this SQL server. | `string` | n/a | yes |
