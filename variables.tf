@@ -50,3 +50,9 @@ variable "firewall_rules" {
   description = "A map of IP address ranges that should be able to access this SQL Server."
   type        = map(tuple([string, string]))
 }
+
+variable "threat_protection_enabled" {
+  description = "Is threat protection (Microsoft Defender for Storage) enabled for this Storage Account?"
+  type        = bool
+  default     = true
+}
