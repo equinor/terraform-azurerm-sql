@@ -8,6 +8,12 @@ variable "environment" {
   type        = string
 }
 
+variable "database_name" {
+  description = "A custom name for this SQL database."
+  type        = string
+  default     = null
+}
+
 variable "server_id" {
   description = "The ID of the SQL server to create this SQL database in."
   type        = string
