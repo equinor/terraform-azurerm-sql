@@ -1,7 +1,8 @@
 resource "azurerm_mssql_database" "this" {
-  name      = coalesce(var.database_name, replace(lower("sqldb-${var.application}-${var.environment}"), "/[^a-z0-9-]+/", ""))
-  server_id = var.server_id
-  sku_name  = var.sku_name
+  name                 = coalesce(var.database_name, replace(lower("sqldb-${var.application}-${var.environment}"), "/[^a-z0-9-]+/", ""))
+  server_id            = var.server_id
+  sku_name             = var.sku_name
+  storage_account_type = var.storage_account_type
 
   short_term_retention_policy {
     retention_days           = var.pitr_retention_days

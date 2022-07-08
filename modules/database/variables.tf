@@ -25,6 +25,12 @@ variable "sku_name" {
   default     = "Basic"
 }
 
+variable "storage_account_type" {
+  description = "(Optional) Specifies the storage account type used to store backups for this database. Possible values are `Geo`, `GeoZone`, `Local` and `Zone`."
+  type        = string
+  default     = "Geo"
+}
+
 variable "tags" {
   description = "A mapping of tags to assign to the resources."
   type        = map(string)
