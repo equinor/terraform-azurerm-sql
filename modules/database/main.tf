@@ -1,6 +1,6 @@
 locals {
   database_name_format = lower("sqldb-${var.application}-${var.environment}")
-  database_name        = replace(local.database_name_convention, "/[^a-z0-9-]+/", "")
+  database_name        = replace(local.database_name_format, "/[^a-z0-9-]+/", "")
 
   tags = merge(
     {
