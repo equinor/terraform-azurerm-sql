@@ -26,7 +26,7 @@ variable "sku_name" {
 }
 
 variable "storage_account_type" {
-  description = "(Optional) Specifies the storage account type used to store backups for this database. Possible values are `Geo`, `GeoZone`, `Local` and `Zone`."
+  description = "The storage account type used to store backups for this database."
   type        = string
   default     = "Geo"
 }
