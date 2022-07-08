@@ -31,12 +31,6 @@ variable "storage_account_type" {
   default     = "Geo"
 }
 
-variable "tags" {
-  description = "A mapping of tags to assign to the resources."
-  type        = map(string)
-  default     = {}
-}
-
 variable "pitr_retention_days" {
   description = "The number of days that point-in-time restore backups should be retained. Value must be between `7` and `35`"
   type        = number
@@ -65,4 +59,10 @@ variable "ltr_week_of_year" {
   description = "The week of year to take the yearly long-term backup. Value must be between `1` and `52`."
   type        = number
   default     = 1
+}
+
+variable "tags" {
+  description = "A mapping of tags to assign to the resources."
+  type        = map(string)
+  default     = {}
 }
