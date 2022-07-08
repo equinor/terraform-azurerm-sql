@@ -13,7 +13,7 @@ resource "azurerm_mssql_database" "this" {
     weekly_retention  = var.ltr_weekly_retention
     monthly_retention = var.ltr_monthly_retention
     yearly_retention  = var.ltr_yearly_retention
-    week_of_year      = var.ltr_week_of_year
+    week_of_year      = var.ltr_yearly_retention == "PT0S" ? null : var.ltr_week_of_year
   }
 
   tags = merge({ application = var.application, environment = var.environment }, var.tags)
