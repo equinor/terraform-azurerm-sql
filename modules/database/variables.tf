@@ -13,6 +13,12 @@ variable "server_id" {
   type        = string
 }
 
+variable "sku_name" {
+  description = "The SKU name of this SQL database."
+  type        = string
+  default     = "Basic"
+}
+
 variable "zone_redundancy" {
   description = "Whether or not this database is zone redundant."
   type        = bool
