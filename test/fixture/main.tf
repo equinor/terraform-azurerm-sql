@@ -41,7 +41,7 @@ module "sql" {
   }
 }
 
-module "sql_db" {
+module "database" {
   source = "../../modules/database"
 
   application = local.application
