@@ -25,12 +25,6 @@ variable "sku_name" {
   default     = "Basic"
 }
 
-variable "zone_redundant" {
-  description = "Whether or not this database is zone redundant."
-  type        = bool
-  default     = false
-}
-
 variable "tags" {
   description = "A mapping of tags to assign to the resources."
   type        = map(string)
