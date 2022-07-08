@@ -40,3 +40,11 @@ module "sql" {
     "AllowClientPublicIp" = [data.http.public_ip.body, data.http.public_ip.body]
   }
 }
+
+module "database" {
+  source = "../../modules/database"
+
+  application = local.application
+  environment = local.environment
+  server_id   = module.sql.server_id
+}
