@@ -1,5 +1,18 @@
+locals {
+  database_name_format = lower("sqldb-${var.application}-${var.environment}")
+  database_name        = replace(local.database_name_convention, "/[^a-z0-9-]+/", "")
+
+  tags = merge(
+    {
+      application = var.application
+      environment = var.environment
+    },
+    var.tags
+  )
+}
+
 resource "azurerm_mssql_database" "this" {
-  name                 = coalesce(var.database_name, replace(lower("sqldb-${var.application}-${var.environment}"), "/[^a-z0-9-]+/", ""))
+  name                 = coalesce(var.database_name, local.database_name)
   server_id            = var.server_id
   sku_name             = var.sku_name
   storage_account_type = var.storage_account_type
@@ -16,5 +29,5 @@ resource "azurerm_mssql_database" "this" {
     week_of_year      = var.ltr_yearly_retention == "PT0S" ? null : var.ltr_week_of_year
   }
 
-  tags = merge({ application = var.application, environment = var.environment }, var.tags)
+  tags = var.tags
 }
