@@ -30,3 +30,33 @@ variable "tags" {
   type        = map(string)
   default     = {}
 }
+
+variable "pitr_retention_days" {
+  description = "The number of days that point-in-time restore backups should be retained."
+  type        = number
+  default     = 7
+}
+
+variable "ltr_weekly_duration" {
+  description = "The duration to keep weekly backups for in an ISO 8601 duration format."
+  type        = string
+  default     = "P4W"
+}
+
+variable "ltr_monthly_duration" {
+  description = "The duration to keep the first backup of each month for in an ISO 8601 duration format."
+  type        = string
+  default     = "PT0S"
+}
+
+variable "ltr_yearly_duration" {
+  description = "The duration to keep the yearly backup for in an ISO 8601 duration format."
+  type        = string
+  default     = "PT0S"
+}
+
+variable "ltr_week_of_year" {
+  description = "The week of year to take the yearly backup."
+  type        = number
+  default     = 1
+}

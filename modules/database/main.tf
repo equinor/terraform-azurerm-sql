@@ -8,13 +8,16 @@ resource "azurerm_mssql_database" "this" {
   read_scale     = true
   zone_redundant = var.zone_redundancy
 
-  long_term_retention_policy {
-    week_of_year      = 26
-    monthly_retention = "P3W"
+  short_term_retention_policy {
+    retention_days           = var.pitr_retention_days
+    backup_interval_in_hours = 12
   }
 
-  short_term_retention_policy {
-    retention = 7
+  long_term_retention_policy {
+    weekly_retention  = var.ltr_weekly_duration
+    monthly_retention = var.ltr_monthly_duration
+    yearly_retention  = var.ltr_yearly_duration
+    week_of_year      = var.ltr_week_of_year
   }
 
   tags = merge({ application = var.application, environment = var.environment }, var.tags)
