@@ -19,10 +19,10 @@ variable "sku_name" {
   default     = "Basic"
 }
 
-variable "zone_redundancy" {
+variable "zone_redundant" {
   description = "Whether or not this database is zone redundant."
   type        = bool
-  default     = true
+  default     = false
 }
 
 variable "tags" {

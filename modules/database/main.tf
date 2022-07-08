@@ -6,7 +6,7 @@ resource "azurerm_mssql_database" "this" {
   license_type   = "LicenseIncluded"
   max_size_gb    = 4
   read_scale     = true
-  zone_redundant = var.zone_redundancy
+  zone_redundant = var.zone_redundant
 
   short_term_retention_policy {
     retention_days           = var.pitr_retention_days
