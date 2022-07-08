@@ -43,26 +43,26 @@ variable "pitr_retention_days" {
   default     = 7
 }
 
-variable "ltr_weekly_duration" {
-  description = "The duration to keep weekly backups for in an ISO 8601 duration format."
+variable "ltr_weekly_retention" {
+  description = "The duration that weekly long-term backups should be retained in an ISO 8601 duration format."
   type        = string
   default     = "P4W"
 }
 
-variable "ltr_monthly_duration" {
-  description = "The duration to keep the first backup of each month for in an ISO 8601 duration format."
+variable "ltr_monthly_retention" {
+  description = "The duration that monthly long-term backups should be retained in an ISO 8601 duration format."
   type        = string
   default     = "PT0S"
 }
 
-variable "ltr_yearly_duration" {
-  description = "The duration to keep the yearly backup for in an ISO 8601 duration format."
+variable "ltr_yearly_retention" {
+  description = "The duration that yearly long-term backups should be retained in an ISO 8601 duration format."
   type        = string
   default     = "PT0S"
 }
 
 variable "ltr_week_of_year" {
-  description = "The week of year to take the yearly backup."
+  description = "The week of year to take the yearly long-term backup."
   type        = number
   default     = 1
 }

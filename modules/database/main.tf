@@ -9,9 +9,9 @@ resource "azurerm_mssql_database" "this" {
   }
 
   long_term_retention_policy {
-    weekly_retention  = var.ltr_weekly_duration
-    monthly_retention = var.ltr_monthly_duration
-    yearly_retention  = var.ltr_yearly_duration
+    weekly_retention  = var.ltr_weekly_retention
+    monthly_retention = var.ltr_monthly_retention
+    yearly_retention  = var.ltr_yearly_retention
     week_of_year      = var.ltr_week_of_year
   }
 
