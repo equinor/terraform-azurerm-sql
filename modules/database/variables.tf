@@ -8,13 +8,8 @@ variable "environment" {
   type        = string
 }
 
-variable "location" {
-  description = "The supported Azure location where the resources exist."
-  type        = string
-}
-
-variable "resource_group_name" {
-  description = "The name of the resource group in which to create the resources."
+variable "server_id" {
+  description = "The ID of the SQL server to create this SQL database in."
   type        = string
 }
 
