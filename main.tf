@@ -36,6 +36,11 @@ resource "azurerm_storage_account" "this" {
   }
 }
 
+resource "azurerm_advanced_threat_protection" "this" {
+  target_resource_id = azurerm_storage_account.this.id
+  enabled            = var.threat_protection_enabled
+}
+
 resource "random_password" "this" {
   length  = 32
   special = true
