@@ -92,8 +92,7 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_application"></a> [application](#input\_application) | The application to create the resources for. | `string` | n/a | yes |
-| <a name="input_azuread_admin_login"></a> [azuread\_admin\_login](#input\_azuread\_admin\_login) | The login username of the Azure AD administrator of this SQL server. | `string` | n/a | yes |
-| <a name="input_azuread_admin_object_id"></a> [azuread\_admin\_object\_id](#input\_azuread\_admin\_object\_id) | The object ID of the Azure AD administrator of this SQL server. | `string` | n/a | yes |
+| <a name="input_azuread_admin"></a> [azuread\_admin](#input\_azuread\_admin) | The user principal name (or group name) and object ID of the Azure AD administrator of this SQL server. | <pre>object({<br>    user_principal_name = string<br>    object_id           = string<br>  })</pre> | `null` | no |
 | <a name="input_environment"></a> [environment](#input\_environment) | The environment to create the resources for. | `string` | n/a | yes |
 | <a name="input_firewall_rules"></a> [firewall\_rules](#input\_firewall\_rules) | A map of IP address ranges that should be able to access this SQL Server. | `map(tuple([string, string]))` | n/a | yes |
 | <a name="input_location"></a> [location](#input\_location) | The supported Azure location where the resources exist. | `string` | n/a | yes |
