@@ -33,8 +33,10 @@ module "sql" {
   location            = azurerm_resource_group.this.location
   resource_group_name = azurerm_resource_group.this.name
 
-  azuread_admin_login     = "john.smith@example.com"
-  azuread_admin_object_id = data.azurerm_client_config.current.object_id
+  azuread_admin = {
+    user_principal_name = "john.smith@example.com"
+    object_id           = data.azurerm_client_config.current.object_id
+  }
 
   firewall_rules = {
     "AllowClientPublicIp" = [data.http.public_ip.body, data.http.public_ip.body]
