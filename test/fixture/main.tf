@@ -25,13 +25,11 @@ resource "azurerm_resource_group" "this" {
 module "sql" {
   source = "../.."
 
-  application = local.application
-  environment = local.environment
-
+  application          = local.application
+  environment          = local.environment
   storage_account_name = "st${local.application}sql001"
-
-  location            = azurerm_resource_group.this.location
-  resource_group_name = azurerm_resource_group.this.name
+  location             = azurerm_resource_group.this.location
+  resource_group_name  = azurerm_resource_group.this.name
 
   azuread_admin = {
     user_principal_name = "john.smith@example.com"
