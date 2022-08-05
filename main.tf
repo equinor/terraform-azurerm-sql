@@ -37,7 +37,7 @@ resource "azurerm_storage_account" "this" {
 }
 
 resource "azurerm_advanced_threat_protection" "this" {
-  target_resource_id = azurerm_storage_account.this.id
+  target_resource_id = azurerm_mssql_server.this.id
   enabled            = var.threat_protection_enabled
 }
 
