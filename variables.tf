@@ -52,7 +52,7 @@ variable "firewall_rules" {
 }
 
 variable "threat_protection_enabled" {
-  description = "Is threat protection (Microsoft Defender for Storage) enabled for this Storage Account?"
+  description = "Is threat protection (Microsoft Defender for SQL) enabled for this SQL Server?"
   type        = bool
   default     = true
 }
