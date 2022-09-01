@@ -34,7 +34,7 @@ No modules.
 | <a name="input_ltr_week_of_year"></a> [ltr\_week\_of\_year](#input\_ltr\_week\_of\_year) | The week of year to take the yearly long-term backup. Value must be between `1` and `52`. | `number` | `1` | no |
 | <a name="input_ltr_weekly_retention"></a> [ltr\_weekly\_retention](#input\_ltr\_weekly\_retention) | The duration that weekly long-term backups should be retained. Value must be in an ISO 8601 duration format, e.g. `P1Y`, `P1M`, `P1W` or `P7D`. | `string` | `"P1M"` | no |
 | <a name="input_ltr_yearly_retention"></a> [ltr\_yearly\_retention](#input\_ltr\_yearly\_retention) | The duration that yearly long-term backups should be retained. Value must be in an ISO 8601 duration format, e.g. `P1Y`, `P12M`, `P52W` or `P365D` | `string` | `"PT0S"` | no |
-| <a name="input_name"></a> [name](#input\_name) | A custom name for this SQL database. | `string` | n/a | yes |
+| <a name="input_name"></a> [name](#input\_name) | The name this SQL database. | `string` | n/a | yes |
 | <a name="input_pitr_retention_days"></a> [pitr\_retention\_days](#input\_pitr\_retention\_days) | The number of days that point-in-time restore backups should be retained. Value must be between `7` and `35` | `number` | `7` | no |
 | <a name="input_server_id"></a> [server\_id](#input\_server\_id) | The ID of the SQL server to create this SQL database in. | `string` | n/a | yes |
 | <a name="input_sku_name"></a> [sku\_name](#input\_sku\_name) | The SKU name of this SQL database. | `string` | `"Basic"` | no |
