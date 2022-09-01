@@ -91,6 +91,7 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_admin_login"></a> [admin\_login](#input\_admin\_login) | The login username of the administrator of this SQL server. | `string` | n/a | yes |
 | <a name="input_azuread_admin"></a> [azuread\_admin](#input\_azuread\_admin) | The user principal name (or group name) and object ID of the Azure AD administrator of this SQL server. | <pre>object({<br>    user_principal_name = string<br>    object_id           = string<br>  })</pre> | `null` | no |
 | <a name="input_firewall_rules"></a> [firewall\_rules](#input\_firewall\_rules) | A map of IP address ranges that should be able to access this SQL Server. | `map(tuple([string, string]))` | n/a | yes |
 | <a name="input_location"></a> [location](#input\_location) | The supported Azure location where the resources exist. | `string` | n/a | yes |
