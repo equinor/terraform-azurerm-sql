@@ -6,9 +6,9 @@ import (
 	"github.com/gruntwork-io/terratest/modules/terraform"
 )
 
-func TestTerraformSql(t *testing.T) {
+func TestBasicExample(t *testing.T) {
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{
-		TerraformDir: "./fixture",
+		TerraformDir: "../examples/basic",
 	})
 
 	defer terraform.Destroy(t, terraformOptions)
