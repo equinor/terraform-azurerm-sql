@@ -111,3 +111,17 @@ resource "azurerm_mssql_server_vulnerability_assessment" "this" {
     emails                    = []
   }
 }
+
+module "database" {
+  source = "./modules/database"
+
+  name                  = var.database_name
+  server_id             = azurerm_mssql_server.this.id
+  sku_name              = var.sku_name
+  pitr_retention_days   = var.pitr_retention_days
+  ltr_weekly_retention  = var.ltr_weekly_retention
+  ltr_monthly_retention = var.ltr_monthly_retention
+  ltr_yearly_retention  = var.ltr_yearly_retention
+
+  tags = var.tags
+}

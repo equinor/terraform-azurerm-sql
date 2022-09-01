@@ -1,5 +1,5 @@
 variable "name" {
-  description = "A custom name for this SQL database."
+  description = "The name this SQL database."
   type        = string
 }
 
