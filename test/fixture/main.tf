@@ -20,6 +20,7 @@ module "sql" {
   resource_group_name  = azurerm_resource_group.this.name
   location             = azurerm_resource_group.this.location
   storage_account_name = "${random_id.this.hex}sqlst"
+  admin_login          = "masterlogin"
 
   azuread_admin = {
     user_principal_name = "john.smith@example.com"
