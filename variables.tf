@@ -18,7 +18,7 @@ variable "storage_account_name" {
   type        = string
 }
 
-output "admin_login" {
+variable "admin_login" {
   description = "The login username of the administrator of this SQL server."
   type        = string
 }
