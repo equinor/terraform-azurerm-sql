@@ -1,12 +1,5 @@
-locals {
-  suffix       = "${var.application}-${var.environment}"
-  suffix_alnum = join("", regexall("[a-z0-9]", lower(local.suffix)))
-
-  tags = merge({ application = var.application, environment = var.environment }, var.tags)
-}
-
 resource "azurerm_storage_account" "this" {
-  name                = coalesce(var.storage_account_name, "stsql${local.suffix_alnum}")
+  name                = var.storage_account_name
   location            = var.location
   resource_group_name = var.resource_group_name
 
@@ -20,7 +13,7 @@ resource "azurerm_storage_account" "this" {
   shared_access_key_enabled       = true
   allow_nested_items_to_be_public = false
 
-  tags = local.tags
+  tags = var.tags
 
   blob_properties {
     delete_retention_policy {
@@ -42,7 +35,7 @@ resource "random_password" "this" {
 }
 
 resource "azurerm_mssql_server" "this" {
-  name                         = coalesce(var.server_name, "sql-${local.suffix}")
+  name                         = var.server_name
   location                     = var.location
   resource_group_name          = var.resource_group_name
   version                      = "12.0"
@@ -50,7 +43,7 @@ resource "azurerm_mssql_server" "this" {
   administrator_login_password = random_password.this.result
   minimum_tls_version          = "1.2"
 
-  tags = local.tags
+  tags = var.tags
 
   dynamic "azuread_administrator" {
     for_each = var.azuread_admin != null ? [var.azuread_admin] : []
