@@ -1,9 +1,5 @@
-locals {
-  database_name = replace(lower("sqldb-${var.application}-${var.environment}"), "/[^a-z0-9-]+/", "")
-}
-
 resource "azurerm_mssql_database" "this" {
-  name                 = coalesce(var.database_name, local.database_name)
+  name                 = var.name
   server_id            = var.server_id
   sku_name             = var.sku_name
   storage_account_type = var.storage_account_type
@@ -20,11 +16,5 @@ resource "azurerm_mssql_database" "this" {
     week_of_year      = var.ltr_week_of_year
   }
 
-  tags = merge(
-    {
-      application = var.application
-      environment = var.environment
-    },
-    var.tags
-  )
+  tags = var.tags
 }
