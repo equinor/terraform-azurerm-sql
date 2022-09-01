@@ -1,7 +1,6 @@
 variable "name" {
   description = "A custom name for this SQL database."
   type        = string
-  default     = null
 }
 
 variable "server_id" {
