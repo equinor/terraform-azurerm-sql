@@ -1,6 +1,6 @@
-# Azure SQL database Terraform module
+# Azure SQL database Terraform sub-module
 
-Terraform module which creates an Azure SQL database.
+Terraform sub-module which creates Azure SQL database.
 
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
