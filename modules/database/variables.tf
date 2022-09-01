@@ -1,14 +1,4 @@
-variable "application" {
-  description = "The application to create the resources for."
-  type        = string
-}
-
-variable "environment" {
-  description = "The environment to create the resources for."
-  type        = string
-}
-
-variable "database_name" {
+variable "name" {
   description = "A custom name for this SQL database."
   type        = string
   default     = null
