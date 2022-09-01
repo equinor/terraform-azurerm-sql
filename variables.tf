@@ -1,17 +1,6 @@
-variable "application" {
-  description = "The application to create the resources for."
+variable "server_name" {
+  description = "The name of this SQL server."
   type        = string
-}
-
-variable "environment" {
-  description = "The environment to create the resources for."
-  type        = string
-}
-
-variable "storage_account_name" {
-  description = "A custom name for the Storage Account."
-  type        = string
-  default     = null
 }
 
 variable "location" {
@@ -24,16 +13,9 @@ variable "resource_group_name" {
   type        = string
 }
 
-variable "tags" {
-  description = "A mapping of tags to assign to the resources."
-  type        = map(string)
-  default     = {}
-}
-
-variable "server_name" {
-  description = "A custom name for this SQL server."
+variable "storage_account_name" {
+  description = "The name of this Storage account."
   type        = string
-  default     = null
 }
 
 variable "azuread_admin" {
@@ -48,4 +30,10 @@ variable "azuread_admin" {
 variable "firewall_rules" {
   description = "A map of IP address ranges that should be able to access this SQL Server."
   type        = map(tuple([string, string]))
+}
+
+variable "tags" {
+  description = "A mapping of tags to assign to the resources."
+  type        = map(string)
+  default     = {}
 }
