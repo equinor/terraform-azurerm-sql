@@ -30,8 +30,15 @@ resource "azurerm_storage_account" "this" {
 }
 
 resource "random_password" "this" {
-  length  = 32
-  special = true
+  length      = 128
+  lower       = true
+  upper       = true
+  numeric     = true
+  special     = true
+  min_lower   = 1
+  min_upper   = 1
+  min_numeric = 1
+  min_special = 1
 }
 
 resource "azurerm_mssql_server" "this" {
@@ -39,7 +46,7 @@ resource "azurerm_mssql_server" "this" {
   location                     = var.location
   resource_group_name          = var.resource_group_name
   version                      = "12.0"
-  administrator_login          = "sql${local.suffix_alnum}"
+  administrator_login          = var.admin_login
   administrator_login_password = random_password.this.result
   minimum_tls_version          = "1.2"
 
