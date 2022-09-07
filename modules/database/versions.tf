@@ -4,7 +4,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = ">= 3.0.0" # todo(@hknutsen): find minimum required version
+      version = ">= 3.4.0"
     }
   }
 }
