@@ -122,6 +122,7 @@ module "database" {
   ltr_weekly_retention  = var.ltr_weekly_retention
   ltr_monthly_retention = var.ltr_monthly_retention
   ltr_yearly_retention  = var.ltr_yearly_retention
+  ltr_week_of_year      = var.ltr_week_of_year
 
   tags = var.tags
 }
