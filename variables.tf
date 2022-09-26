@@ -37,45 +37,18 @@ variable "firewall_rules" {
   type        = map(tuple([string, string]))
 }
 
-variable "database_name" {
-  description = "The name of this SQL database."
-  type        = string
-}
-
-variable "sku_name" {
-  description = "The SKU name of this SQL database."
-  type        = string
-  default     = "Basic"
-}
-
-variable "pitr_retention_days" {
-  description = "The number of days that point-in-time restore backups should be retained. Value must be between `7` and `35`"
-  type        = number
-  default     = 7
-}
-
-variable "ltr_weekly_retention" {
-  description = "The duration that weekly long-term backups should be retained. Value must be in an ISO 8601 duration format, e.g. `P1Y`, `P1M`, `P1W` or `P7D`."
-  type        = string
-  default     = "P1M"
-}
-
-variable "ltr_monthly_retention" {
-  description = "The duration that monthly long-term backups should be retained. Value must be in an ISO 8601 duration format, e.g. `P1Y`, `P1M`, `P4W` or `P30D`."
-  type        = string
-  default     = "PT0S"
-}
-
-variable "ltr_yearly_retention" {
-  description = "The duration that yearly long-term backups should be retained. Value must be in an ISO 8601 duration format, e.g. `P1Y`, `P12M`, `P52W` or `P365D`"
-  type        = string
-  default     = "PT0S"
-}
-
-variable "ltr_week_of_year" {
-  description = "The week of year to take the yearly long-term backup. Value must be between `1` and `52`."
-  type        = number
-  default     = 1
+variable "databases" {
+  description = "A mapping of databases to create for this SQL Server."
+  type = map(object({
+    name                  = string
+    sku_name              = optional(string, "Basic")
+    pitr_retention_days   = optional(number, 7)
+    ltr_weekly_retention  = optional(string, "P1M")
+    ltr_monthly_retention = optional(string, "PT0S")
+    ltr_yearly_retention  = optional(string, "PT0S")
+    ltr_week_of_year      = optional(number, 1)
+  }))
+  default = {}
 }
 
 variable "tags" {
