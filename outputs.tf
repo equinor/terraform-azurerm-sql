@@ -28,3 +28,10 @@ output "storage_account_name" {
   description = "The name of this Storage Account."
   value       = azurerm_storage_account.this.name
 }
+
+output "database_ids" {
+  description = "A mapping of database IDs for this SQL Server"
+  value = {
+    for k, v in module.database : k => v.id
+  }
+}

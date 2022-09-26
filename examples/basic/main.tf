@@ -22,7 +22,6 @@ module "sql" {
   location             = azurerm_resource_group.this.location
   storage_account_name = "st${random_id.this.hex}sql"
   admin_login          = "masterlogin"
-  database_name        = "sqldb-${random_id.this.hex}"
 
   azuread_admin = {
     user_principal_name = "john.smith@example.com"
@@ -31,7 +30,13 @@ module "sql" {
 
   firewall_rules = {
     "Rule1" = ["1.1.1.1", "1.1.1.1"],
-    "Rule2" = ["1.1.1.1", "1.1.1.1"],
-    "Rule3" = ["1.1.1.1", "1.1.1.1"]
+    "Rule2" = ["2.2.2.2", "2.2.2.2"],
+    "Rule3" = ["3.3.3.3", "3.3.3.3"]
+  }
+
+  databases = {
+    this = {
+      name = "sqldb-${random_id.this.hex}"
+    }
   }
 }
