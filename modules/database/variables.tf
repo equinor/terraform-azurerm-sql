@@ -45,9 +45,9 @@ variable "ltr_yearly_retention" {
 }
 
 variable "ltr_week_of_year" {
-  description = "The week of year to take the yearly long-term backup. Value must be between `1` and `52`."
+  description = "The week of year to take the yearly long-term backup and value must be between `1` and `52`. if yearly LTR is enabled."
   type        = number
-  default     = 1
+  default     = 0
 }
 
 variable "tags" {
