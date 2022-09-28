@@ -43,7 +43,7 @@ variable "databases" {
     name                  = string
     sku_name              = optional(string, "Basic")
     pitr_retention_days   = optional(number, 7)
-    ltr_weekly_retention  = optional(string, "P1M")
+    ltr_weekly_retention  = optional(string, "PT0S")
     ltr_monthly_retention = optional(string, "PT0S")
     ltr_yearly_retention  = optional(string, "PT0S")
     ltr_week_of_year      = optional(number, 1)

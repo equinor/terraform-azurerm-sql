@@ -29,7 +29,7 @@ variable "pitr_retention_days" {
 variable "ltr_weekly_retention" {
   description = "The duration that weekly long-term backups should be retained. Value must be in an ISO 8601 duration format, e.g. `P1Y`, `P1M`, `P1W` or `P7D`."
   type        = string
-  default     = "P1M"
+  default     = "PT0S"
 }
 
 variable "ltr_monthly_retention" {
