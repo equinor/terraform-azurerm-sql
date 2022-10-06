@@ -38,15 +38,15 @@ variable "firewall_rules" {
 }
 
 variable "databases" {
-  description = "A mapping of databases to create for this SQL Server."
+  description = "A map of identifier => SQL Database object."
   type = map(object({
     name                  = string
-    sku_name              = optional(string, "Basic")
-    pitr_retention_days   = optional(number, 7)
-    ltr_weekly_retention  = optional(string, "PT0S")
-    ltr_monthly_retention = optional(string, "PT0S")
-    ltr_yearly_retention  = optional(string, "PT0S")
-    ltr_week_of_year      = optional(number, 1)
+    sku_name              = optional(string)
+    pitr_retention_days   = optional(number)
+    ltr_weekly_retention  = optional(string)
+    ltr_monthly_retention = optional(string)
+    ltr_yearly_retention  = optional(string)
+    ltr_week_of_year      = optional(number)
   }))
   default = {}
 }
