@@ -35,7 +35,7 @@ module "sql" {
   }
 
   databases = {
-    this = {
+    "this" = {
       name = "sqldb-${random_id.this.hex}"
     }
   }
