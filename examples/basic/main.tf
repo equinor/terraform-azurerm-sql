@@ -25,14 +25,6 @@ module "sql" {
   azuread_admin_login     = "john.smith@example.com"
   azuread_admin_object_id = data.azurerm_client_config.current.object_id
 
-  firewall_rules = {
-    "allow_azure" = {
-      name             = "AllowAllWindowsAzureIps"
-      start_ip_address = "0.0.0.0"
-      end_ip_address   = "0.0.0.0"
-    }
-  }
-
   databases = {
     "this" = {
       name = "sqldb-${random_id.this.hex}"
