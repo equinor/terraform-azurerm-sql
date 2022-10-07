@@ -23,6 +23,16 @@ variable "admin_login" {
   type        = string
 }
 
+variable "azuread_admin_login" {
+  description = "The user principal name or group name of the Azure AD administrator of this SQL server."
+  type        = string
+}
+
+variable "azuread_admin_object_id" {
+  description = "The object ID of the Azure AD administrator of this SQL server."
+  type        = string
+}
+
 variable "azuread_admin" {
   description = "The user principal name (or group name) and object ID of the Azure AD administrator of this SQL server."
   type = object({
@@ -33,7 +43,7 @@ variable "azuread_admin" {
 }
 
 variable "firewall_rules" {
-  description = "A map of identifier => SQL server firewall rules."
+  description = "A map of identifier => SQL server firewall rule."
   type = map(object({
     name             = string
     start_ip_address = string
