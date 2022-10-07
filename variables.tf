@@ -33,15 +33,6 @@ variable "azuread_admin_object_id" {
   type        = string
 }
 
-variable "azuread_admin" {
-  description = "The user principal name (or group name) and object ID of the Azure AD administrator of this SQL server."
-  type = object({
-    user_principal_name = string
-    object_id           = string
-  })
-  default = null
-}
-
 variable "firewall_rules" {
   description = "A map of identifier => SQL server firewall rule."
   type = map(object({
