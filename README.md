@@ -42,7 +42,6 @@ Terraform module which creates Azure SQL resources.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_admin_login"></a> [admin\_login](#input\_admin\_login) | The login username of the administrator of this SQL server. | `string` | n/a | yes |
-| <a name="input_azuread_admin"></a> [azuread\_admin](#input\_azuread\_admin) | The user principal name (or group name) and object ID of the Azure AD administrator of this SQL server. | <pre>object({<br>    user_principal_name = string<br>    object_id           = string<br>  })</pre> | `null` | no |
 | <a name="input_azuread_admin_login"></a> [azuread\_admin\_login](#input\_azuread\_admin\_login) | The user principal name or group name of the Azure AD administrator of this SQL server. | `string` | n/a | yes |
 | <a name="input_azuread_admin_object_id"></a> [azuread\_admin\_object\_id](#input\_azuread\_admin\_object\_id) | The object ID of the Azure AD administrator of this SQL server. | `string` | n/a | yes |
 | <a name="input_databases"></a> [databases](#input\_databases) | A map of identifier => SQL Database object. | <pre>map(object({<br>    name                  = string<br>    sku_name              = optional(string)<br>    pitr_retention_days   = optional(number)<br>    ltr_weekly_retention  = optional(string)<br>    ltr_monthly_retention = optional(string)<br>    ltr_yearly_retention  = optional(string)<br>    ltr_week_of_year      = optional(number)<br>  }))</pre> | `{}` | no |
