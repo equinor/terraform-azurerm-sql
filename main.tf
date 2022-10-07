@@ -71,12 +71,12 @@ resource "azurerm_mssql_server" "this" {
 }
 
 resource "azurerm_mssql_firewall_rule" "this" {
-  for_each = merge({ "AllowAllWindowsAzureIps" = ["0.0.0.0", "0.0.0.0"] }, var.firewall_rules)
+  for_each = var.firewall_rules
 
-  name             = each.key
+  name             = each.value.name
   server_id        = azurerm_mssql_server.this.id
-  start_ip_address = each.value[0]
-  end_ip_address   = each.value[1]
+  start_ip_address = each.value.start_ip_address
+  end_ip_address   = each.value.end_ip_address
 }
 
 resource "azurerm_mssql_server_extended_auditing_policy" "this" {

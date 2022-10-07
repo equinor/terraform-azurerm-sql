@@ -28,12 +28,6 @@ module "sql" {
     object_id           = data.azurerm_client_config.current.object_id
   }
 
-  firewall_rules = {
-    "Rule1" = ["1.1.1.1", "1.1.1.1"],
-    "Rule2" = ["2.2.2.2", "2.2.2.2"],
-    "Rule3" = ["3.3.3.3", "3.3.3.3"]
-  }
-
   databases = {
     this = {
       name = "sqldb-${random_id.this.hex}"

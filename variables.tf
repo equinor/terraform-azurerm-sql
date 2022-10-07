@@ -33,8 +33,19 @@ variable "azuread_admin" {
 }
 
 variable "firewall_rules" {
-  description = "A map of IP address ranges that should be able to access this SQL Server."
-  type        = map(tuple([string, string]))
+  description = "A map of identifier => SQL server firewall rules."
+  type = map(object({
+    name             = string
+    start_ip_address = string
+    end_ip_address   = string
+  }))
+  default = {
+    "allow_azure" = {
+      name             = "AllowAllWindowsAzureIps"
+      start_ip_address = "0.0.0.0"
+      end_ip_address   = "0.0.0.0"
+    }
+  }
 }
 
 variable "databases" {
