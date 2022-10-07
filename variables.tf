@@ -43,6 +43,12 @@ variable "firewall_rules" {
   default = {}
 }
 
+variable "firewall_azure_ips_allowed" {
+  description = "Should Azure IPs be allowed to bypass this SQL server firewall?"
+  type        = bool
+  default     = false
+}
+
 variable "databases" {
   description = "A map of identifier => SQL Database object."
   type = map(object({
