@@ -24,10 +24,4 @@ module "sql" {
   admin_login             = "masterlogin"
   azuread_admin_login     = "john.smith@example.com"
   azuread_admin_object_id = data.azurerm_client_config.current.object_id
-
-  databases = {
-    "this" = {
-      name = "sqldb-${random_id.this.hex}"
-    }
-  }
 }
