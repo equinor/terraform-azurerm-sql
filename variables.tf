@@ -40,13 +40,7 @@ variable "firewall_rules" {
     start_ip_address = string
     end_ip_address   = string
   }))
-  default = {
-    "allow_azure" = {
-      name             = "AllowAllWindowsAzureIps"
-      start_ip_address = "0.0.0.0"
-      end_ip_address   = "0.0.0.0"
-    }
-  }
+  default = {}
 }
 
 variable "databases" {
