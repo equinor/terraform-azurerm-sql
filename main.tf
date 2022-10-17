@@ -63,8 +63,9 @@ resource "azurerm_mssql_server" "this" {
   tags = var.tags
 
   azuread_administrator {
-    login_username = var.azuread_admin_login
-    object_id      = var.azuread_admin_object_id
+    login_username              = var.azuread_admin_login
+    object_id                   = var.azuread_admin_object_id
+    azuread_authentication_only = true
   }
 
   lifecycle {
