@@ -23,30 +23,42 @@ variable "admin_login" {
   type        = string
 }
 
-variable "azuread_admin" {
-  description = "The user principal name (or group name) and object ID of the Azure AD administrator of this SQL server."
-  type = object({
-    user_principal_name = string
-    object_id           = string
-  })
-  default = null
+variable "azuread_admin_login" {
+  description = "The user principal name or group name of the Azure AD administrator of this SQL server."
+  type        = string
+}
+
+variable "azuread_admin_object_id" {
+  description = "The object ID of the Azure AD administrator of this SQL server."
+  type        = string
 }
 
 variable "firewall_rules" {
-  description = "A map of IP address ranges that should be able to access this SQL Server."
-  type        = map(tuple([string, string]))
+  description = "A map of identifier => SQL server firewall rule."
+  type = map(object({
+    name             = string
+    start_ip_address = string
+    end_ip_address   = string
+  }))
+  default = {}
+}
+
+variable "firewall_azure_ips_allowed" {
+  description = "Should Azure IPs be allowed to bypass this SQL server firewall?"
+  type        = bool
+  default     = false
 }
 
 variable "databases" {
-  description = "A mapping of databases to create for this SQL Server."
+  description = "A map of identifier => SQL Database object."
   type = map(object({
     name                  = string
-    sku_name              = optional(string, "Basic")
-    pitr_retention_days   = optional(number, 7)
-    ltr_weekly_retention  = optional(string, "P1M")
-    ltr_monthly_retention = optional(string, "PT0S")
-    ltr_yearly_retention  = optional(string, "PT0S")
-    ltr_week_of_year      = optional(number, 1)
+    sku_name              = optional(string)
+    pitr_retention_days   = optional(number)
+    ltr_weekly_retention  = optional(string)
+    ltr_monthly_retention = optional(string)
+    ltr_yearly_retention  = optional(string)
+    ltr_week_of_year      = optional(number)
   }))
   default = {}
 }

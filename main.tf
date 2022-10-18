@@ -1,3 +1,13 @@
+locals {
+  firewall_rule_allow_azure_ips = {
+    "azure" = {
+      name             = "AllowAllWindowsAzureIps"
+      start_ip_address = "0.0.0.0"
+      end_ip_address   = "0.0.0.0"
+    }
+  }
+}
+
 resource "azurerm_storage_account" "this" {
   name                = var.storage_account_name
   location            = var.location
@@ -52,14 +62,9 @@ resource "azurerm_mssql_server" "this" {
 
   tags = var.tags
 
-  dynamic "azuread_administrator" {
-    for_each = var.azuread_admin != null ? [var.azuread_admin] : []
-    iterator = i
-
-    content {
-      login_username = i.value.user_principal_name
-      object_id      = i.value.object_id
-    }
+  azuread_administrator {
+    login_username = var.azuread_admin_login
+    object_id      = var.azuread_admin_object_id
   }
 
   lifecycle {
@@ -71,12 +76,12 @@ resource "azurerm_mssql_server" "this" {
 }
 
 resource "azurerm_mssql_firewall_rule" "this" {
-  for_each = merge({ "AllowAllWindowsAzureIps" = ["0.0.0.0", "0.0.0.0"] }, var.firewall_rules)
+  for_each = var.firewall_azure_ips_allowed ? merge(local.firewall_rule_allow_azure_ips, var.firewall_rules) : var.firewall_rules
 
-  name             = each.key
+  name             = each.value.name
   server_id        = azurerm_mssql_server.this.id
-  start_ip_address = each.value[0]
-  end_ip_address   = each.value[1]
+  start_ip_address = each.value.start_ip_address
+  end_ip_address   = each.value.end_ip_address
 }
 
 resource "azurerm_mssql_server_extended_auditing_policy" "this" {

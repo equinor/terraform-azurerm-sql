@@ -17,4 +17,11 @@ resource "azurerm_mssql_database" "this" {
   }
 
   tags = var.tags
+
+  lifecycle {
+    ignore_changes = [
+      # Ignore sku_name to allow sku to be scaled outside of terraform
+      sku_name
+    ]
+  }
 }
