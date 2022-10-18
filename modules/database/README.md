@@ -32,7 +32,7 @@ No modules.
 |------|-------------|------|---------|:--------:|
 | <a name="input_ltr_monthly_retention"></a> [ltr\_monthly\_retention](#input\_ltr\_monthly\_retention) | The duration that monthly long-term backups should be retained. Value must be in an ISO 8601 duration format, e.g. `P1Y`, `P1M`, `P4W` or `P30D`. | `string` | `"PT0S"` | no |
 | <a name="input_ltr_week_of_year"></a> [ltr\_week\_of\_year](#input\_ltr\_week\_of\_year) | The week of year to take the yearly long-term backup and value must be between `1` and `52`. if yearly LTR is enabled. | `number` | `0` | no |
-| <a name="input_ltr_weekly_retention"></a> [ltr\_weekly\_retention](#input\_ltr\_weekly\_retention) | The duration that weekly long-term backups should be retained. Value must be in an ISO 8601 duration format, e.g. `P1Y`, `P1M`, `P1W` or `P7D`. | `string` | `"P1M"` | no |
+| <a name="input_ltr_weekly_retention"></a> [ltr\_weekly\_retention](#input\_ltr\_weekly\_retention) | The duration that weekly long-term backups should be retained. Value must be in an ISO 8601 duration format, e.g. `P1Y`, `P1M`, `P1W` or `P7D`. | `string` | `"PT0S"` | no |
 | <a name="input_ltr_yearly_retention"></a> [ltr\_yearly\_retention](#input\_ltr\_yearly\_retention) | The duration that yearly long-term backups should be retained. Value must be in an ISO 8601 duration format, e.g. `P1Y`, `P12M`, `P52W` or `P365D` | `string` | `"PT0S"` | no |
 | <a name="input_name"></a> [name](#input\_name) | The name this SQL database. | `string` | n/a | yes |
 | <a name="input_pitr_retention_days"></a> [pitr\_retention\_days](#input\_pitr\_retention\_days) | The number of days that point-in-time restore backups should be retained. Value must be between `7` and `35` | `number` | `7` | no |
