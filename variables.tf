@@ -33,6 +33,12 @@ variable "azuread_admin_object_id" {
   type        = string
 }
 
+variable "azuread_authentication_only" {
+  description = "Should Azure AD-only authentication be enabled?"
+  type        = bool
+  default     = false
+}
+
 variable "firewall_rules" {
   description = "A map of identifier => SQL server firewall rule."
   type = map(object({
