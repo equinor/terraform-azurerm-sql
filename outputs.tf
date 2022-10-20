@@ -35,3 +35,10 @@ output "database_ids" {
     for k, v in module.database : k => v.id
   }
 }
+
+output "connection_string" {
+  description = "The connection string of this SQL database."
+  value       = "Server=tcp:${azurerm_mssql_server.this.name}.database.windows.net,1433;Initial Catalog=${module.database.azurerm_mssql_databse.this.name};Persist Security Info=False;User ID=${azurerm_mssql_server.this.administrator_login};Password=${azurerm_mssql_server.this.administrator_login_password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
+  sensetive   = true
+}
+
