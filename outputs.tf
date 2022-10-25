@@ -36,9 +36,9 @@ output "database_ids" {
   }
 }
 
-output "connection_string" {
-  description = "The connection string of this SQL database."
-  value       = "Server=tcp:${azurerm_mssql_server.this.name}.database.windows.net,1433;Initial Catalog=${module.database.azurerm_mssql_databse.this.name};Persist Security Info=False;User ID=${azurerm_mssql_server.this.administrator_login};Password=${azurerm_mssql_server.this.administrator_login_password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
-  sensetive   = true
+output "connection_strings" {
+  description = "A mapping of connection strings for the SQL Server"
+  value = {
+    for a, b in module.database : a => b.connection_strings
+  }
 }
-
