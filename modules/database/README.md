@@ -45,9 +45,6 @@ No modules.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_admin_login"></a> [admin\_login](#output\_admin\_login) | The login username of the administrator of this SQL server. |
-| <a name="output_admin_password"></a> [admin\_password](#output\_admin\_password) | The login password of the administrator of this SQL server. |
-| <a name="output_connection_strings"></a> [connection\_strings](#output\_connection\_strings) | The connection strings of the SQL Database |
 | <a name="output_id"></a> [id](#output\_id) | The ID of this SQL database. |
 | <a name="output_name"></a> [name](#output\_name) | The name of this SQL database. |
 <!-- END_TF_DOCS -->

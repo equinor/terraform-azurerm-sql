@@ -60,8 +60,8 @@ Terraform module which creates Azure SQL resources.
 |------|-------------|
 | <a name="output_admin_login"></a> [admin\_login](#output\_admin\_login) | The login username of the administrator of this SQL server. |
 | <a name="output_admin_password"></a> [admin\_password](#output\_admin\_password) | The login password of the administrator of this SQL server. |
-| <a name="output_connection_strings"></a> [connection\_strings](#output\_connection\_strings) | A mapping of connection strings for the SQL Server |
-| <a name="output_database_ids"></a> [database\_ids](#output\_database\_ids) | A mapping of database IDs for this SQL Server |
+| <a name="output_connection_strings_dotnet"></a> [connection\_strings\_dotnet](#output\_connection\_strings\_dotnet) | A mapping of database connection strings for this SQL Server. |
+| <a name="output_database_ids"></a> [database\_ids](#output\_database\_ids) | A mapping of database IDs for this SQL Server. |
 | <a name="output_server_id"></a> [server\_id](#output\_server\_id) | The ID of this SQL Server. |
 | <a name="output_server_name"></a> [server\_name](#output\_server\_name) | The name of this SQL Server. |
 | <a name="output_storage_account_id"></a> [storage\_account\_id](#output\_storage\_account\_id) | The ID of this Storage Account. |
