@@ -36,9 +36,10 @@ output "database_ids" {
   }
 }
 
-output "connection_strings" {
-  description = "A mapping of connection strings for the SQL Server"
+output "connection_strings_dotnet" {
+  description = "A mapping of database connection strings for this SQL Server."
   value = {
-    for a, b in module.database : a => b.connection_strings
+    for a, b in module.database : a => format("Server=tcp:${azurerm_mssql_server.this.fully_qualified_domain_name},1433;Initial Catalog=%s;Persist Security Info=False;User ID=${azurerm_mssql_server.this.administrator_login};Password=${azurerm_mssql_server.this.administrator_login_password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;", b.name)
   }
+  sensitive = true
 }
