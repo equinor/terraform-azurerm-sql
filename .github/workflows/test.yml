@@ -19,7 +19,6 @@ jobs:
           python-version: "3.8"
 
       - name: Test with Checkov
-        if: github.event_name == 'pull_request'
         uses: bridgecrewio/checkov-action@v12
         with:
           framework: terraform
