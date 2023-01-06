@@ -130,6 +130,7 @@ module "database" {
   ltr_monthly_retention = each.value.ltr_monthly_retention
   ltr_yearly_retention  = each.value.ltr_yearly_retention
   ltr_week_of_year      = each.value.ltr_week_of_year
+  str_backup_interval   = each.value.str_backup_interval
 
   tags = var.tags
 }

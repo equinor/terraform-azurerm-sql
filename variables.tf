@@ -65,6 +65,7 @@ variable "databases" {
     ltr_monthly_retention = optional(string)
     ltr_yearly_retention  = optional(string)
     ltr_week_of_year      = optional(number)
+    str_backup_interval   = optional(number)
   }))
   default = {}
 }
