@@ -28,6 +28,13 @@ variable "pitr_retention_days" {
   nullable    = false
 }
 
+variable "str_backup_interval" {
+  description = "The hours between each differential backup. Value has to be 12 or 24, defaults to 12 hours."
+  type        = number
+  default     = 12
+  nullable    = false
+}
+
 variable "ltr_weekly_retention" {
   description = "The duration that weekly long-term backups should be retained. Value must be in an ISO 8601 duration format, e.g. `P1Y`, `P1M`, `P1W` or `P7D`."
   type        = string
