@@ -102,8 +102,8 @@ resource "azurerm_mssql_server_security_alert_policy" "this" {
 }
 
 resource "azurerm_storage_container" "this" {
-  name                 = "vulnerability-assessment"
-  storage_account_name = azurerm_storage_account.this.name
+  name                  = var.storage_container_name
+  storage_account_name  = azurerm_storage_account.this.name
 }
 
 resource "azurerm_mssql_server_vulnerability_assessment" "this" {
