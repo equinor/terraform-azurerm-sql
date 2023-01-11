@@ -55,6 +55,12 @@ variable "firewall_azure_ips_allowed" {
   default     = false
 }
 
+variable "storage_container_name" {
+  description = "The name of this Storage Container."
+  type        = string
+  default     = "vulnerability-assessment"
+}
+
 variable "databases" {
   description = "A map of identifier => SQL Database object."
   type = map(object({
