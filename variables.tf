@@ -39,11 +39,11 @@ variable "azuread_authentication_only" {
   default     = false
 }
 
-variable "mssql_server_identity" {
+variable "identity" {
   description = "The identity to configure for this SQL Server."
 
   type = object({
-    identity_type = optional(string, "SystemAssigned")
+    type = optional(string, "SystemAssigned")
     identity_ids  = optional(list(string), [])
   })
 

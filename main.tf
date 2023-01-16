@@ -76,10 +76,10 @@ resource "azurerm_mssql_server" "this" {
   }
 
   dynamic "identity" {
-    for_each = var.mssql_server_identity != null ? [var.mssql_server_identity] : []
+    for_each = var.identity != null ? [var.identity] : []
 
     content {
-      type         = identity.value["identity_type"]
+      type         = identity.value["type"]
       identity_ids = identity.value["identity_ids"]
     }
   }
