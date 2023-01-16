@@ -74,6 +74,15 @@ resource "azurerm_mssql_server" "this" {
       administrator_login_password
     ]
   }
+
+  dynamic "identity" {
+    for_each = var.identity != null ? [var.identity] : []
+
+    content {
+      type         = identity.value["type"]
+      identity_ids = identity.value["identity_ids"]
+    }
+  }
 }
 
 resource "azurerm_mssql_firewall_rule" "this" {
@@ -102,8 +111,8 @@ resource "azurerm_mssql_server_security_alert_policy" "this" {
 }
 
 resource "azurerm_storage_container" "this" {
-  name                  = var.storage_container_name
-  storage_account_name  = azurerm_storage_account.this.name
+  name                 = var.storage_container_name
+  storage_account_name = azurerm_storage_account.this.name
 }
 
 resource "azurerm_mssql_server_vulnerability_assessment" "this" {
