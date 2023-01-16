@@ -39,13 +39,26 @@ variable "azuread_authentication_only" {
   default     = false
 }
 
+variable "mssql_server_identity" {
+  description = "The identity to configure for this SQL Server."
+
+  type = object({
+    identity_type = optional(string, "SystemAssigned")
+    identity_ids  = optional(list(string), [])
+  })
+
+  default = null
+}
+
 variable "firewall_rules" {
   description = "A map of identifier => SQL server firewall rule."
+
   type = map(object({
     name             = string
     start_ip_address = string
     end_ip_address   = string
   }))
+
   default = {}
 }
 
@@ -63,6 +76,7 @@ variable "storage_container_name" {
 
 variable "databases" {
   description = "A map of identifier => SQL Database object."
+
   type = map(object({
     name                  = string
     sku_name              = optional(string)
@@ -73,6 +87,7 @@ variable "databases" {
     ltr_week_of_year      = optional(number)
     str_backup_interval   = optional(number)
   }))
+
   default = {}
 }
 
