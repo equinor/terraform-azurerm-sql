@@ -31,7 +31,5 @@ output "storage_account_name" {
 
 output "database_ids" {
   description = "A mapping of database IDs for this SQL Server"
-  value = {
-    for k, v in module.database : k => v.id
-  }
+  value       = module.database.id
 }
