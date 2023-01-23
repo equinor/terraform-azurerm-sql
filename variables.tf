@@ -1,3 +1,8 @@
+variable "database_name" {
+  description = "The name of this SQL database."
+  type        = string
+}
+
 variable "server_name" {
   description = "The name of this SQL server."
   type        = string
@@ -43,8 +48,8 @@ variable "identity" {
   description = "The identity to configure for this SQL Server."
 
   type = object({
-    type = optional(string, "SystemAssigned")
-    identity_ids  = optional(list(string), [])
+    type         = optional(string, "SystemAssigned")
+    identity_ids = optional(list(string), [])
   })
 
   default = null
@@ -74,21 +79,52 @@ variable "storage_container_name" {
   default     = "vulnerability-assessment"
 }
 
-variable "databases" {
-  description = "A map of identifier => SQL Database object."
+variable "sku_name" {
+  description = "The SKU name of this SQL database."
+  type        = string
+  default     = "Basic"
+}
 
-  type = map(object({
-    name                  = string
-    sku_name              = optional(string)
-    pitr_retention_days   = optional(number)
-    ltr_weekly_retention  = optional(string)
-    ltr_monthly_retention = optional(string)
-    ltr_yearly_retention  = optional(string)
-    ltr_week_of_year      = optional(number)
-    str_backup_interval   = optional(number)
-  }))
+variable "database_storage_account_type" {
+  description = "The type of Storage account used to store backups for this SQL database."
+  type        = string
+  default     = "Geo"
+}
 
-  default = {}
+variable "pitr_retention_days" {
+  description = "The number of days that point-in-time restore backups should be retained."
+  type        = number
+  default     = 7
+}
+
+variable "str_backup_interval" {
+  description = "The hours between each differential backup. Value has to be 12 or 24."
+  type        = number
+  default     = 12
+}
+
+variable "ltr_weekly_retention" {
+  description = "The duration that weekly long-term backups should be retained. Value must be in an ISO 8601 duration format, e.g. `P1Y`, `P1M`, `P1W` or `P7D`."
+  type        = string
+  default     = "PT0S"
+}
+
+variable "ltr_monthly_retention" {
+  description = "The duration that monthly long-term backups should be retained. Value must be in an ISO 8601 duration format, e.g. `P1Y`, `P1M`, `P4W` or `P30D`."
+  type        = string
+  default     = "PT0S"
+}
+
+variable "ltr_yearly_retention" {
+  description = "The duration that yearly long-term backups should be retained. Value must be in an ISO 8601 duration format, e.g. `P1Y`, `P12M`, `P52W` or `P365D`"
+  type        = string
+  default     = "PT0S"
+}
+
+variable "ltr_week_of_year" {
+  description = "The week of year to take the yearly long-term backup. Value must be between `1` and `52`."
+  type        = number
+  default     = 1
 }
 
 variable "tags" {

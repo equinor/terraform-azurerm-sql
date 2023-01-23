@@ -25,6 +25,7 @@ module "sql" {
   # source = "github.com/equinor/terraform-azurerm-sql?ref=v0.0.0"
   source = "../.."
 
+  database_name              = "sqldb-${random_id.this.hex}"
   server_name                = "sql-${random_id.this.hex}"
   resource_group_name        = azurerm_resource_group.this.name
   location                   = azurerm_resource_group.this.location
@@ -40,12 +41,6 @@ module "sql" {
       name             = "AllowAllOfficeIps"
       start_ip_address = "1.1.1.1"
       end_ip_address   = "1.1.1.1"
-    }
-  }
-
-  databases = {
-    "this" = {
-      name = "sqldb-${random_id.this.hex}"
     }
   }
 
