@@ -1,3 +1,5 @@
-# Azure SQL Terraform module
+# Azure SQL Terraform Module
 
-Terraform module which creates Azure SQL resources.
+[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
+
+Terraform module which creates an Azure SQL database.
