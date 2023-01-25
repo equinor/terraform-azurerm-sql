@@ -1,13 +1,3 @@
-locals {
-  firewall_rule_allow_azure_ips = {
-    "azure" = {
-      name             = "AllowAllWindowsAzureIps"
-      start_ip_address = "0.0.0.0"
-      end_ip_address   = "0.0.0.0"
-    }
-  }
-}
-
 resource "azurerm_storage_account" "this" {
   name                = var.storage_account_name
   location            = var.location
@@ -90,7 +80,7 @@ resource "azurerm_mssql_server" "this" {
 }
 
 resource "azurerm_mssql_firewall_rule" "this" {
-  for_each = var.firewall_azure_ips_allowed ? merge(local.firewall_rule_allow_azure_ips, var.firewall_rules) : var.firewall_rules
+  for_each = var.firewall_rules
 
   name             = each.value.name
   server_id        = azurerm_mssql_server.this.id

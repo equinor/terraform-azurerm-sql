@@ -52,7 +52,7 @@ variable "identity" {
 }
 
 variable "firewall_rules" {
-  description = "A map of identifier => SQL server firewall rule."
+  description = "A map of firewall rules for this SQL server."
 
   type = map(object({
     name             = string
@@ -60,13 +60,13 @@ variable "firewall_rules" {
     end_ip_address   = string
   }))
 
-  default = {}
-}
-
-variable "firewall_azure_ips_allowed" {
-  description = "Should Azure IPs be allowed to bypass this SQL server firewall?"
-  type        = bool
-  default     = false
+  default = {
+    "azure" = {
+      name             = "AllowAllWindowsAzureIps"
+      start_ip_address = "0.0.0.0"
+      end_ip_address   = "0.0.0.0"
+    }
+  }
 }
 
 variable "storage_container_name" {

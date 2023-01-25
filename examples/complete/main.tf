@@ -25,14 +25,12 @@ module "sql" {
   # source = "github.com/equinor/terraform-azurerm-sql?ref=v0.0.0"
   source = "../.."
 
-  database_name              = "sqldb-${random_id.this.hex}"
-  server_name                = "sql-${random_id.this.hex}"
-  resource_group_name        = azurerm_resource_group.this.name
-  location                   = azurerm_resource_group.this.location
-  storage_account_name       = "st${random_id.this.hex}sql"
-  storage_container_name     = "st-container-${random_id.this.hex}-sql"
-  admin_login                = "masterlogin"
-  firewall_azure_ips_allowed = true
+  database_name        = "sqldb-${random_id.this.hex}"
+  server_name          = "sql-${random_id.this.hex}"
+  resource_group_name  = azurerm_resource_group.this.name
+  location             = azurerm_resource_group.this.location
+  storage_account_name = "st${random_id.this.hex}sql"
+  admin_login          = "masterlogin"
 
   azuread_administrator = {
     login_username = "azureadmasterlogin"
@@ -40,10 +38,10 @@ module "sql" {
   }
 
   firewall_rules = {
-    "office" = {
-      name             = "AllowAllOfficeIps"
-      start_ip_address = "1.1.1.1"
-      end_ip_address   = "1.1.1.1"
+    "azure" = {
+      name             = "AllowAllWindowsAzureIps"
+      start_ip_address = "0.0.0.0"
+      end_ip_address   = "0.0.0.0"
     }
   }
 
