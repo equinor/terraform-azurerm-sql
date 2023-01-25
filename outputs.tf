@@ -8,12 +8,12 @@ output "server_name" {
   value       = azurerm_mssql_server.this.name
 }
 
-output "admin_login" {
+output "administrator_login" {
   description = "The login username of the administrator of this SQL server."
   value       = azurerm_mssql_server.this.administrator_login
 }
 
-output "admin_password" {
+output "administrator_password" {
   description = "The login password of the administrator of this SQL server."
   value       = azurerm_mssql_server.this.administrator_login_password
   sensitive   = true
@@ -29,7 +29,7 @@ output "storage_account_name" {
   value       = azurerm_storage_account.this.name
 }
 
-output "database_ids" {
-  description = "A mapping of database IDs for this SQL Server"
+output "database_id" {
+  description = "The ID of this SQL database."
   value       = module.database.id
 }
