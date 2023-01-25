@@ -30,7 +30,7 @@ module "sql" {
   resource_group_name  = azurerm_resource_group.this.name
   location             = azurerm_resource_group.this.location
   storage_account_name = "st${random_id.this.hex}sql"
-  admin_login          = "masterlogin"
+  administrator_login  = "masterlogin"
 
   azuread_administrator = {
     login_username = "azureadmasterlogin"
@@ -44,6 +44,13 @@ module "sql" {
       end_ip_address   = "0.0.0.0"
     }
   }
+
+  short_term_retention_policy_retention_days           = 7
+  short_term_retention_policy_backup_interval_in_hours = 12
+
+  long_term_retention_policy_weekly_retention  = "PT0S"
+  long_term_retention_policy_monthly_retention = "PT0S"
+  long_term_retention_policy_yearly_retention  = "PT0S"
 
   tags = local.tags
 }

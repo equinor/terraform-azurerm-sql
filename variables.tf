@@ -23,7 +23,7 @@ variable "storage_account_name" {
   type        = string
 }
 
-variable "admin_login" {
+variable "administrator_login" {
   description = "The login username of the administrator of this SQL server."
   type        = string
 }
@@ -87,37 +87,37 @@ variable "database_storage_account_type" {
   default     = "Geo"
 }
 
-variable "pitr_retention_days" {
+variable "short_term_retention_policy_retention_days" {
   description = "The number of days that point-in-time restore backups should be retained."
   type        = number
   default     = 7
 }
 
-variable "str_backup_interval" {
+variable "short_term_retention_policy_backup_interval_in_hours" {
   description = "The hours between each differential backup. Value has to be 12 or 24."
   type        = number
   default     = 12
 }
 
-variable "ltr_weekly_retention" {
+variable "long_term_retention_policy_weekly_retention" {
   description = "The duration that weekly long-term backups should be retained. Value must be in an ISO 8601 duration format, e.g. `P1Y`, `P1M`, `P1W` or `P7D`."
   type        = string
   default     = "PT0S"
 }
 
-variable "ltr_monthly_retention" {
+variable "long_term_retention_policy_monthly_retention" {
   description = "The duration that monthly long-term backups should be retained. Value must be in an ISO 8601 duration format, e.g. `P1Y`, `P1M`, `P4W` or `P30D`."
   type        = string
   default     = "PT0S"
 }
 
-variable "ltr_yearly_retention" {
+variable "long_term_retention_policy_yearly_retention" {
   description = "The duration that yearly long-term backups should be retained. Value must be in an ISO 8601 duration format, e.g. `P1Y`, `P12M`, `P52W` or `P365D`"
   type        = string
   default     = "PT0S"
 }
 
-variable "ltr_week_of_year" {
+variable "long_term_retention_policy_week_of_year" {
   description = "The week of year to take the yearly long-term backup. Value must be between `1` and `52`."
   type        = number
   default     = 1

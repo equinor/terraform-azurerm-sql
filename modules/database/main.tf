@@ -5,15 +5,15 @@ resource "azurerm_mssql_database" "this" {
   storage_account_type = var.storage_account_type
 
   short_term_retention_policy {
-    retention_days           = var.pitr_retention_days
-    backup_interval_in_hours = var.str_backup_interval
+    retention_days           = var.short_term_retention_policy_retention_days
+    backup_interval_in_hours = var.short_term_retention_policy_backup_interval_in_hours
   }
 
   long_term_retention_policy {
-    weekly_retention  = var.ltr_weekly_retention
-    monthly_retention = var.ltr_monthly_retention
-    yearly_retention  = var.ltr_yearly_retention
-    week_of_year      = var.ltr_week_of_year
+    weekly_retention  = var.long_term_retention_policy_weekly_retention
+    monthly_retention = var.long_term_retention_policy_monthly_retention
+    yearly_retention  = var.long_term_retention_policy_yearly_retention
+    week_of_year      = var.long_term_retention_policy_week_of_year
   }
 
   tags = var.tags
