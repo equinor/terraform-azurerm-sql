@@ -30,7 +30,7 @@ module "sql" {
   resource_group_name  = azurerm_resource_group.this.name
   location             = azurerm_resource_group.this.location
   storage_account_name = "st${random_id.this.hex}sql"
-  admin_login          = "masterlogin"
+  administrator_login  = "masterlogin"
 
   azuread_administrator = {
     login_username = "azureadmasterlogin"
