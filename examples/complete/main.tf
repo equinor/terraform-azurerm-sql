@@ -45,5 +45,12 @@ module "sql" {
     }
   }
 
+  short_term_retention_policy_retention_days           = 7
+  short_term_retention_policy_backup_interval_in_hours = 12
+
+  long_term_retention_policy_weekly_retention  = "PT0S"
+  long_term_retention_policy_monthly_retention = "PT0S"
+  long_term_retention_policy_yearly_retention  = "PT0S"
+
   tags = local.tags
 }
