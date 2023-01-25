@@ -62,10 +62,14 @@ resource "azurerm_mssql_server" "this" {
 
   tags = var.tags
 
-  azuread_administrator {
-    login_username              = var.azuread_admin_login
-    object_id                   = var.azuread_admin_object_id
-    azuread_authentication_only = var.azuread_authentication_only
+  dynamic "azuread_administrator" {
+    for_each = var.azuread_administrator != null ? [var.azuread_administrator] : []
+
+    content {
+      login_username              = azuread_administrator.value["login_username"]
+      object_id                   = azuread_administrator.value["object_id"]
+      azuread_authentication_only = azuread_administrator.value["azuread_authentication_only"]
+    }
   }
 
   lifecycle {
