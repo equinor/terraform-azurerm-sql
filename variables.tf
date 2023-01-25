@@ -28,20 +28,16 @@ variable "admin_login" {
   type        = string
 }
 
-variable "azuread_admin_login" {
-  description = "The user principal name or group name of the Azure AD administrator of this SQL server."
-  type        = string
-}
+variable "azuread_administrator" {
+  description = "An Azure AD administrator to configure for this SQL server."
 
-variable "azuread_admin_object_id" {
-  description = "The object ID of the Azure AD administrator of this SQL server."
-  type        = string
-}
+  type = object({
+    login_username              = string
+    object_id                   = string
+    azuread_authentication_only = optional(bool, false)
+  })
 
-variable "azuread_authentication_only" {
-  description = "Should Azure AD-only authentication be enabled?"
-  type        = bool
-  default     = false
+  default = null
 }
 
 variable "identity" {
