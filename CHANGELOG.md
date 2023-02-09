@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.1.0](https://github.com/equinor/terraform-azurerm-sql/compare/v7.0.0...v7.1.0) (2023-02-09)
+
+
+### Features
+
+* set max size in GB ([#63](https://github.com/equinor/terraform-azurerm-sql/issues/63)) ([5f45ff0](https://github.com/equinor/terraform-azurerm-sql/commit/5f45ff0d4223ec057853f80aa0322471a9e9af90))
+
 ## [7.0.0](https://github.com/equinor/terraform-azurerm-sql/compare/v6.5.0...v7.0.0) (2023-01-25)
 
 
