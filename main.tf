@@ -127,6 +127,7 @@ module "database" {
   name                 = var.database_name
   server_id            = azurerm_mssql_server.this.id
   sku_name             = var.sku_name
+  max_size_gb          = var.max_size_gb
   storage_account_type = var.database_storage_account_type
 
   short_term_retention_policy_retention_days           = var.short_term_retention_policy_retention_days
