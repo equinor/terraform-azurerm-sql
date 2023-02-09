@@ -31,6 +31,8 @@ module "sql" {
   location             = azurerm_resource_group.this.location
   storage_account_name = "st${random_id.this.hex}sql"
   administrator_login  = "masterlogin"
+  sku_name             = "Basic"
+  max_size_gb          = 2
 
   azuread_administrator = {
     login_username = "azureadmasterlogin"

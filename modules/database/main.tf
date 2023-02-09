@@ -2,6 +2,7 @@ resource "azurerm_mssql_database" "this" {
   name                 = var.name
   server_id            = var.server_id
   sku_name             = var.sku_name
+  max_size_gb          = var.max_size_gb
   storage_account_type = var.storage_account_type
 
   short_term_retention_policy {

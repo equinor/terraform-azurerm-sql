@@ -14,6 +14,12 @@ variable "sku_name" {
   default     = "Basic"
 }
 
+variable "max_size_gb" {
+  description = "The max size of this SQL database in gigabytes."
+  type        = number
+  default     = null
+}
+
 variable "storage_account_type" {
   description = "The type of Storage account used to store backups for this SQL database. Value must be `Geo`, `GeoZone`, `Local` or `Zone`."
   type        = string
