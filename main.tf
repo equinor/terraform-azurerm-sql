@@ -97,11 +97,12 @@ resource "azurerm_mssql_server_extended_auditing_policy" "this" {
 }
 
 resource "azurerm_mssql_server_security_alert_policy" "this" {
-  resource_group_name = azurerm_mssql_server.this.resource_group_name
-  server_name         = azurerm_mssql_server.this.name
-  state               = "Enabled"
-  disabled_alerts     = []
-  email_addresses     = []
+  resource_group_name  = azurerm_mssql_server.this.resource_group_name
+  server_name          = azurerm_mssql_server.this.name
+  state                = "Enabled"
+  disabled_alerts      = []
+  email_addresses      = var.server_security_alert_policy_email_addresses
+  email_account_admins = var.server_security_alert_policy_email_account_admins
 }
 
 resource "azurerm_storage_container" "this" {
