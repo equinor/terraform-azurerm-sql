@@ -76,7 +76,7 @@ variable "server_security_alert_policy_email_addresses" {
 }
 
 variable "server_security_alert_policy_email_account_admins" {
-  description = "Is alerts for this SQL server sent to account adminitrators?"
+  description = "Are alerts for this SQL server sent to subscription owners and administrators?"
   type        = bool
   default     = true
 }
