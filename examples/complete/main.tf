@@ -47,9 +47,8 @@ module "sql" {
     }
   }
 
-  server_security_alert_policy_email_account_admins = true
-  server_security_alert_policy_email_addresses      = []
-
+  security_alert_policy_email_account_admins = true
+  security_alert_policy_email_addresses      = []
   short_term_retention_policy_retention_days           = 7
   short_term_retention_policy_backup_interval_in_hours = 12
 
