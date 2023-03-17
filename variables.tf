@@ -140,6 +140,19 @@ variable "long_term_retention_policy_week_of_year" {
   default     = 1
 }
 
+variable "failover_groups" {
+  description = "A map of failover groups to create for this SQL database."
+
+  type = map(object({
+    name                                              = string
+    partner_server_id                                 = string
+    read_write_endpoint_failover_policy_mode          = optional(string, "Automatic")
+    read_write_endpoint_failover_policy_grace_minutes = optional(number, 60)
+  }))
+
+  default = {}
+}
+
 variable "tags" {
   description = "A mapping of tags to assign to the resources."
   type        = map(string)

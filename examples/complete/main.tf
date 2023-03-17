@@ -21,6 +21,19 @@ resource "azurerm_resource_group" "this" {
   tags = local.tags
 }
 
+resource "azurerm_mssql_server" "secondary" {
+  name                = "sql-${random_id.this.hex}-002"
+  resource_group_name = azurerm_resource_group.this.name
+  location            = "West Europe"
+  version             = "12.0"
+
+  azuread_administrator {
+    login_username              = "azureadmasterlogin"
+    object_id                   = data.azurerm_client_config.current.object_id
+    azuread_authentication_only = true
+  }
+}
+
 module "sql" {
   # source = "github.com/equinor/terraform-azurerm-sql?ref=v0.0.0"
   source = "../.."
@@ -47,14 +60,23 @@ module "sql" {
     }
   }
 
-  security_alert_policy_email_account_admins = true
-  security_alert_policy_email_addresses      = []
+  security_alert_policy_email_account_admins           = true
+  security_alert_policy_email_addresses                = []
   short_term_retention_policy_retention_days           = 7
   short_term_retention_policy_backup_interval_in_hours = 12
 
   long_term_retention_policy_weekly_retention  = "PT0S"
   long_term_retention_policy_monthly_retention = "PT0S"
   long_term_retention_policy_yearly_retention  = "PT0S"
+
+  failover_groups = {
+    "main" = {
+      name                                              = "sql-fog-${random_id.this.hex}"
+      partner_server_id                                 = azurerm_mssql_server.secondary.id
+      read_write_endpoint_failover_policy_mode          = "Automatic"
+      read_write_endpoint_failover_policy_grace_minutes = 60
+    }
+  }
 
   tags = local.tags
 }
