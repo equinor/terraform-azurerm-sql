@@ -1,154 +1,69 @@
-provider "azurerm" {
-  features {}
-}
+module "server" {
+  source = "./modules/server"
 
-resource "azurerm_resource_group" "this" {
-name     = "var.resource_group_name"
-location = "var.location"
-}
+  server_name           = var.server_name
+  location              = var.location
+  resource_group_name   = var.resource_group_name
+  administrator_login   = var.administrator_login
+  azuread_administrator = var.azuread_administrator
+  identity              = var.identity
 
-resource "random_password" "this" {
-  length      = 128
-  lower       = true
-  upper       = true
-  numeric     = true
-  special     = true
-  min_lower   = 1
-  min_upper   = 1
-  min_numeric = 1
-  min_special = 1
-}
+  firewall_rules = var.firewall_rules
 
-resource "azurerm_mssql_server" "this" {
-  name                         = var.server_name
-  location                     = var.location
-  resource_group_name          = var.resource_group_name
-  version                      = "12.0"
-  administrator_login          = var.administrator_login
-  administrator_login_password = random_password.this.result
-  minimum_tls_version          = "1.2"
+  security_alert_policy_email_addresses      = var.security_alert_policy_email_addresses
+  security_alert_policy_email_account_admins = var.security_alert_policy_email_account_admins
+
+  storage_account_name   = var.storage_account_name
+  storage_container_name = var.storage_container_name
 
   tags = var.tags
-
-  dynamic "azuread_administrator" {
-    for_each = var.azuread_administrator != null ? [var.azuread_administrator] : []
-
-    content {
-      login_username              = azuread_administrator.value["login_username"]
-      object_id                   = azuread_administrator.value["object_id"]
-      azuread_authentication_only = azuread_administrator.value["azuread_authentication_only"]
-    }
-  }
-
-  lifecycle {
-    ignore_changes = [
-      # Allow admin password to be updated outside of Terraform.
-      administrator_login_password
-    ]
-  }
-
-  dynamic "identity" {
-    for_each = var.identity != null ? [var.identity] : []
-
-    content {
-      type         = identity.value["type"]
-      identity_ids = identity.value["identity_ids"]
-    }
-  }
 }
 
-resource "azurerm_mssql_firewall_rule" "this" {
-  for_each = var.firewall_rules
-
-  name             = each.value.name
-  server_id        = azurerm_mssql_server.this.id
-  start_ip_address = each.value.start_ip_address
-  end_ip_address   = each.value.end_ip_address
+moved {
+  from = random_password.this
+  to   = module.server.random_password.this
 }
 
-resource "azurerm_mssql_server_extended_auditing_policy" "this" {
-  server_id                               = azurerm_mssql_server.this.id
-  storage_endpoint                        = azurerm_storage_account.this.primary_blob_endpoint
-  storage_account_access_key              = azurerm_storage_account.this.primary_access_key
-  storage_account_access_key_is_secondary = false
-  retention_in_days                       = 7
+moved {
+  from = azurerm_mssql_server.this
+  to   = module.server.azurerm_mssql_server.this
 }
 
-resource "azurerm_log_analytics_workspace" "this" {
-  name                = "var.log_analytic_workspace"
-  location            = azurerm_resource_group.example.location
-  resource_group_name = azurerm_resource_group.example.name
-  sku                 = "PerGB2018"
-  retention_in_days   = 30
+moved {
+  from = azurerm_mssql_firewall_rule.this
+  to   = module.server.azurerm_mssql_firewall_rule.this
 }
 
-resource "azurerm_mssql_server_security_alert_policy" "this" {
-  resource_group_name = azurerm_mssql_server.this.resource_group_name
-  server_name         = azurerm_mssql_server.this.name
-  state               = "Enabled"
-  disabled_alerts     = []
-  email_addresses     = []
+moved {
+  from = azurerm_mssql_server_extended_auditing_policy.this
+  to   = module.server.azurerm_mssql_server_extended_auditing_policy.this
 }
 
-resource "azurerm_eventhub_namespace" "this" {
-  name                = "var.eventhub_namespace"
-  location            = azurerm_resource_group.this.location
-  resource_group_name = azurerm_resource_group.this.name
-  sku                 = "Standard"
+moved {
+  from = azurerm_mssql_server_security_alert_policy.this
+  to   = module.server.azurerm_mssql_server_security_alert_policy.this
 }
 
-resource "azurerm_eventhub" "this" {
-  name                = "var.eventhub"
-  namespace_name      = azurerm_eventhub_namespace.this.name
-  resource_group_name = azurerm_resource_group.this.name
-  partition_count     = 2
-  message_retention   = 1
+moved {
+  from = azurerm_storage_account.this
+  to   = module.server.azurerm_storage_account.this
 }
 
-resource "azurerm_eventhub_namespace_authorization_rule" "this" {
-  name                = "var.eventhub_auth_rule"
-  namespace_name      = azurerm_eventhub_namespace.this.name
-  resource_group_name = azurerm_resource_group.this.name
-  listen              = true
-  send                = true
-  manage              = true
+moved {
+  from = azurerm_storage_container.this
+  to   = module.server.azurerm_storage_container.this
 }
 
-resource "azurerm_mssql_server_extended_auditing_policy" "this" {
-  server_id              = azurerm_mssql_server.this.id
-  log_monitoring_enabled = true
-}
-
-resource "azurerm_monitor_diagnostic_setting" "this" {
-  name                           = "var.diagnostic_setting"
-  target_resource_id             = "${azurerm_mssql_server.this.id}/database/master"
-  eventhub_authorization_rule_id = azurerm_eventhub_namespace_authorization_rule.this.id
-  eventhub_name                  = azurerm_eventhub.this.name
-  log_analytics_workspace_id     = azurerm_log_analytics_workspace.this.id
-
-log {
-  category = "SQLSecurityAudtiEvents"
-  enabled  = true
-
-  retention_policy {
-    enabled = false
-  }
- }
-
- metric {
-   category = "AllMetrics"
-
-   retention_policy {
-     enabled = false
-   }
- }
+moved {
+  from = azurerm_mssql_server_vulnerability_assessment.this
+  to   = module.server.azurerm_mssql_server_vulnerability_assessment.this
 }
 
 module "database" {
   source = "./modules/database"
 
   name                 = var.database_name
-  server_id            = azurerm_mssql_server.this.id
+  server_id            = module.server.id
   sku_name             = var.sku_name
   max_size_gb          = var.max_size_gb
   storage_account_type = var.database_storage_account_type
