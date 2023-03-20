@@ -1,32 +1,10 @@
-resource "azurerm_storage_account" "this" {
-  name                = var.storage_account_name
-  location            = var.location
-  resource_group_name = var.resource_group_name
+provider "azurerm" {
+  features {}
+}
 
-  account_tier             = "Standard"
-  account_replication_type = "LRS"
-  account_kind             = "BlobStorage"
-  access_tier              = "Hot"
-
-  min_tls_version                 = "TLS1_2"
-  enable_https_traffic_only       = true
-  shared_access_key_enabled       = true
-  allow_nested_items_to_be_public = false
-
-  tags = var.tags
-
-  blob_properties {
-    delete_retention_policy {
-      days = 30
-    }
-
-    container_delete_retention_policy {
-      days = 30
-    }
-
-    change_feed_enabled = false
-    versioning_enabled  = false
-  }
+resource "azurerm_resource_group" "this" {
+name     = "var.resource_group_name"
+location = "var.location"
 }
 
 resource "random_password" "this" {
@@ -96,6 +74,14 @@ resource "azurerm_mssql_server_extended_auditing_policy" "this" {
   retention_in_days                       = 7
 }
 
+resource "azurerm_log_analytics_workspace" "this" {
+  name                = "var.log_analytic_workspace"
+  location            = azurerm_resource_group.example.location
+  resource_group_name = azurerm_resource_group.example.name
+  sku                 = "PerGB2018"
+  retention_in_days   = 30
+}
+
 resource "azurerm_mssql_server_security_alert_policy" "this" {
   resource_group_name = azurerm_mssql_server.this.resource_group_name
   server_name         = azurerm_mssql_server.this.name
@@ -104,21 +90,58 @@ resource "azurerm_mssql_server_security_alert_policy" "this" {
   email_addresses     = []
 }
 
-resource "azurerm_storage_container" "this" {
-  name                 = var.storage_container_name
-  storage_account_name = azurerm_storage_account.this.name
+resource "azurerm_eventhub_namespace" "this" {
+  name                = "var.eventhub_namespace"
+  location            = azurerm_resource_group.this.location
+  resource_group_name = azurerm_resource_group.this.name
+  sku                 = "Standard"
 }
 
-resource "azurerm_mssql_server_vulnerability_assessment" "this" {
-  server_security_alert_policy_id = azurerm_mssql_server_security_alert_policy.this.id
-  storage_container_path          = "${azurerm_storage_account.this.primary_blob_endpoint}${azurerm_storage_container.this.name}/"
-  storage_account_access_key      = azurerm_storage_account.this.primary_access_key
+resource "azurerm_eventhub" "this" {
+  name                = "var.eventhub"
+  namespace_name      = azurerm_eventhub_namespace.this.name
+  resource_group_name = azurerm_resource_group.this.name
+  partition_count     = 2
+  message_retention   = 1
+}
 
-  recurring_scans {
-    enabled                   = true
-    email_subscription_admins = false
-    emails                    = []
+resource "azurerm_eventhub_namespace_authorization_rule" "this" {
+  name                = "var.eventhub_auth_rule"
+  namespace_name      = azurerm_eventhub_namespace.this.name
+  resource_group_name = azurerm_resource_group.this.name
+  listen              = true
+  send                = true
+  manage              = true
+}
+
+resource "azurerm_mssql_server_extended_auditing_policy" "this" {
+  server_id              = azurerm_mssql_server.this.id
+  log_monitoring_enabled = true
+}
+
+resource "azurerm_monitor_diagnostic_setting" "this" {
+  name                           = "var.diagnostic_setting"
+  target_resource_id             = "${azurerm_mssql_server.this.id}/database/master"
+  eventhub_authorization_rule_id = azurerm_eventhub_namespace_authorization_rule.this.id
+  eventhub_name                  = azurerm_eventhub.this.name
+  log_analytics_workspace_id     = azurerm_log_analytics_workspace.this.id
+
+log {
+  category = "SQLSecurityAudtiEvents"
+  enabled  = true
+
+  retention_policy {
+    enabled = false
   }
+ }
+
+ metric {
+   category = "AllMetrics"
+
+   retention_policy {
+     enabled = false
+   }
+ }
 }
 
 module "database" {
