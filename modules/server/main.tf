@@ -121,3 +121,25 @@ resource "azurerm_mssql_server_vulnerability_assessment" "this" {
     emails                    = []
   }
 }
+
+resource "azurerm_mssql_failover_group" "this" {
+  for_each = var.failover_groups
+
+  name      = each.value["name"]
+  server_id = azurerm_mssql_server.this.id
+
+  databases = [
+    module.database.id # TODO: add additional databases?
+  ]
+
+  partner_server {
+    id = each.value["partner_server_id"]
+  }
+
+  read_write_endpoint_failover_policy {
+    mode          = each.value["read_write_endpoint_failover_policy_mode"]
+    grace_minutes = each.value["read_write_endpoint_failover_policy_grace_minutes"]
+  }
+
+  # TODO: add tags?
+}
