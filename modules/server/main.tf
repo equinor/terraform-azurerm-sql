@@ -127,10 +127,7 @@ resource "azurerm_mssql_failover_group" "this" {
 
   name      = each.value["name"]
   server_id = azurerm_mssql_server.this.id
-
-  databases = [
-    module.database.id # TODO: add additional databases?
-  ]
+  databases = var.databases
 
   partner_server {
     id = each.value["partner_server_id"]

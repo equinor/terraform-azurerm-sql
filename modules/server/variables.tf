@@ -87,6 +87,7 @@ variable "failover_groups" {
 
   type = map(object({
     name                                              = string
+    databases                                         = optional(list(string), [])
     partner_server_id                                 = string
     read_write_endpoint_failover_policy_mode          = optional(string, "Automatic")
     read_write_endpoint_failover_policy_grace_minutes = optional(number, 60)
