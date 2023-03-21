@@ -1,12 +1,15 @@
 module "server" {
   source = "./modules/server"
 
-  server_name           = var.server_name
-  location              = var.location
-  resource_group_name   = var.resource_group_name
-  administrator_login   = var.administrator_login
-  azuread_administrator = var.azuread_administrator
-  identity              = var.identity
+  server_name                               = var.server_name
+  location                                  = var.location
+  resource_group_name                       = var.resource_group_name
+  administrator_login                       = var.administrator_login
+  azuread_administrator                     = var.azuread_administrator
+  identity                                  = var.identity
+  log_analytics_workspace_id                = var.log_analytics_workspace_id
+  log_analytics_destination_type            = var.log_analytics_destination_type
+  diagnostic_setting_enabled_log_categories = var.diagnostic_setting_enabled_log_categories
 
   firewall_rules = var.firewall_rules
 
@@ -17,46 +20,6 @@ module "server" {
   storage_container_name = var.storage_container_name
 
   tags = var.tags
-}
-
-moved {
-  from = random_password.this
-  to   = module.server.random_password.this
-}
-
-moved {
-  from = azurerm_mssql_server.this
-  to   = module.server.azurerm_mssql_server.this
-}
-
-moved {
-  from = azurerm_mssql_firewall_rule.this
-  to   = module.server.azurerm_mssql_firewall_rule.this
-}
-
-moved {
-  from = azurerm_mssql_server_extended_auditing_policy.this
-  to   = module.server.azurerm_mssql_server_extended_auditing_policy.this
-}
-
-moved {
-  from = azurerm_mssql_server_security_alert_policy.this
-  to   = module.server.azurerm_mssql_server_security_alert_policy.this
-}
-
-moved {
-  from = azurerm_storage_account.this
-  to   = module.server.azurerm_storage_account.this
-}
-
-moved {
-  from = azurerm_storage_container.this
-  to   = module.server.azurerm_storage_container.this
-}
-
-moved {
-  from = azurerm_mssql_server_vulnerability_assessment.this
-  to   = module.server.azurerm_mssql_server_vulnerability_assessment.this
 }
 
 module "database" {
