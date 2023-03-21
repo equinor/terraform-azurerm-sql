@@ -21,18 +21,28 @@ resource "azurerm_resource_group" "this" {
   tags = local.tags
 }
 
+module "log_analytics" {
+  source = "github.com/equinor/terraform-azurerm-log-analytics?ref=v1.3.1"
+
+  workspace_name      = "log-${random_id.this.hex}"
+  resource_group_name = azurerm_resource_group.this.name
+  location            = azurerm_resource_group.this.location
+
+}
+
 module "sql" {
   # source = "github.com/equinor/terraform-azurerm-sql?ref=v0.0.0"
   source = "../.."
 
-  database_name        = "sqldb-${random_id.this.hex}"
-  server_name          = "sql-${random_id.this.hex}"
-  resource_group_name  = azurerm_resource_group.this.name
-  location             = azurerm_resource_group.this.location
-  storage_account_name = "st${random_id.this.hex}sql"
-  administrator_login  = "masterlogin"
-  sku_name             = "Basic"
-  max_size_gb          = 2
+  database_name              = "sqldb-${random_id.this.hex}"
+  server_name                = "sql-${random_id.this.hex}"
+  resource_group_name        = azurerm_resource_group.this.name
+  location                   = azurerm_resource_group.this.location
+  storage_account_name       = "st${random_id.this.hex}sql"
+  administrator_login        = "masterlogin"
+  sku_name                   = "Basic"
+  max_size_gb                = 2
+  log_analytics_workspace_id = module.sql.workspace_id
 
   azuread_administrator = {
     login_username = "azureadmasterlogin"
@@ -47,8 +57,8 @@ module "sql" {
     }
   }
 
-  security_alert_policy_email_account_admins = true
-  security_alert_policy_email_addresses      = []
+  security_alert_policy_email_account_admins           = true
+  security_alert_policy_email_addresses                = []
   short_term_retention_policy_retention_days           = 7
   short_term_retention_policy_backup_interval_in_hours = 12
 

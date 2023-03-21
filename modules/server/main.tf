@@ -58,11 +58,9 @@ resource "azurerm_mssql_firewall_rule" "this" {
 }
 
 resource "azurerm_mssql_server_extended_auditing_policy" "this" {
-  server_id                               = azurerm_mssql_server.this.id
-  storage_endpoint                        = azurerm_storage_account.this.primary_blob_endpoint
-  storage_account_access_key              = azurerm_storage_account.this.primary_access_key
-  storage_account_access_key_is_secondary = false
-  retention_in_days                       = 7
+  server_id              = azurerm_mssql_server.this.id
+  log_monitoring_enabled = true
+  retention_in_days      = 7
 }
 
 resource "azurerm_mssql_server_security_alert_policy" "this" {
@@ -119,5 +117,27 @@ resource "azurerm_mssql_server_vulnerability_assessment" "this" {
     enabled                   = true
     email_subscription_admins = false
     emails                    = []
+  }
+}
+
+resource "azurerm_monitor_diagnostic_setting" "this" {
+  name                           = var.diagnostic_setting_name
+  target_resource_id             = azurerm_mssql_server.this.id
+  log_analytics_workspace_id     = var.log_analytics_workspace_id
+  log_analytics_destination_type = var.log_analytics_destination_type
+
+  dynamic "enabled_log" {
+    for_each = toset(var.diagnostic_setting_enabled_log_categories)
+
+    content {
+      category = enabled_log.value
+    }
+  }
+  metric {
+    category = "AllMetrics"
+
+    retention_policy {
+      enabled = false
+    }
   }
 }

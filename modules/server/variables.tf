@@ -81,6 +81,31 @@ variable "storage_container_name" {
   type        = string
   default     = "vulnerability-assessment"
 }
+variable "log_analytics_workspace_id" {
+  description = "The ID of the Log Analytics workspace to send diagnostics to."
+  type        = string
+}
+
+variable "log_analytics_destination_type" {
+  description = "The type of log analytics destination to use for this Log Analytics Workspace."
+  type        = string
+  default     = null
+}
+
+variable "diagnostic_setting_name" {
+  description = "The name of this diagnostic setting."
+  type        = string
+  default     = "audit-logs"
+}
+
+variable "diagnostic_setting_enabled_log_categories" {
+  description = "A list of log categories to be enabled for this diagnostic setting."
+  type        = list(string)
+
+  default = [
+    "Timeouts"
+  ]
+}
 
 variable "tags" {
   description = "A mapping of tags to assign to the resources."
