@@ -42,7 +42,7 @@ module "sql" {
   administrator_login        = "masterlogin"
   sku_name                   = "Basic"
   max_size_gb                = 2
-  log_analytics_workspace_id = module.sql.workspace_id
+  log_analytics_workspace_id = module.log_analytics.workspace_id
 
   azuread_administrator = {
     login_username = "azureadmasterlogin"
