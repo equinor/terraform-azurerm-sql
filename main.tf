@@ -1,15 +1,12 @@
 module "server" {
   source = "./modules/server"
 
-  server_name                               = var.server_name
-  location                                  = var.location
-  resource_group_name                       = var.resource_group_name
-  administrator_login                       = var.administrator_login
-  azuread_administrator                     = var.azuread_administrator
-  identity                                  = var.identity
-  log_analytics_workspace_id                = var.log_analytics_workspace_id
-  log_analytics_destination_type            = var.log_analytics_destination_type
-  diagnostic_setting_enabled_log_categories = var.diagnostic_setting_enabled_log_categories
+  server_name           = var.server_name
+  location              = var.location
+  resource_group_name   = var.resource_group_name
+  administrator_login   = var.administrator_login
+  azuread_administrator = var.azuread_administrator
+  identity              = var.identity
 
   firewall_rules = var.firewall_rules
 
@@ -30,6 +27,10 @@ module "database" {
   sku_name             = var.sku_name
   max_size_gb          = var.max_size_gb
   storage_account_type = var.database_storage_account_type
+
+  log_analytics_workspace_id                = var.log_analytics_workspace_id
+  log_analytics_destination_type            = var.log_analytics_destination_type
+  diagnostic_setting_enabled_log_categories = var.diagnostic_setting_enabled_log_categories
 
   short_term_retention_policy_retention_days           = var.short_term_retention_policy_retention_days
   short_term_retention_policy_backup_interval_in_hours = var.short_term_retention_policy_backup_interval_in_hours

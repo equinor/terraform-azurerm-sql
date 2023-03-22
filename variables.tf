@@ -156,7 +156,17 @@ variable "diagnostic_setting_enabled_log_categories" {
   type        = list(string)
 
   default = [
-    "Timeouts"
+    "SQLInsights",
+    "AutomaticTuning",
+    "QueryStoreRuntimeStatistics",
+    "QueryStoreWaitStatistics",
+    "Errors",
+    "DatabaseWaitStatistics",
+    "Timeouts",
+    "Blocks",
+    "Deadlocks",
+    "DevOpsOperationsAudit",
+    "SQLSecurityAuditEvents"
   ]
 }
 
