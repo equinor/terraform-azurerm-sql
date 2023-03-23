@@ -19,6 +19,46 @@ module "server" {
   tags = var.tags
 }
 
+moved {
+  from = random_password.this
+  to   = module.server.random_password.this
+}
+
+moved {
+  from = azurerm_mssql_server.this
+  to   = module.server.azurerm_mssql_server.this
+}
+
+moved {
+  from = azurerm_mssql_firewall_rule.this
+  to   = module.server.azurerm_mssql_firewall_rule.this
+}
+
+moved {
+  from = azurerm_mssql_server_extended_auditing_policy.this
+  to   = module.server.azurerm_mssql_server_extended_auditing_policy.this
+}
+
+moved {
+  from = azurerm_mssql_server_security_alert_policy.this
+  to   = module.server.azurerm_mssql_server_security_alert_policy.this
+}
+
+moved {
+  from = azurerm_storage_account.this
+  to   = module.server.azurerm_storage_account.this
+}
+
+moved {
+  from = azurerm_storage_container.this
+  to   = module.server.azurerm_storage_container.this
+}
+
+moved {
+  from = azurerm_mssql_server_vulnerability_assessment.this
+  to   = module.server.azurerm_mssql_server_vulnerability_assessment.this
+}
+
 module "database" {
   source = "./modules/database"
 
