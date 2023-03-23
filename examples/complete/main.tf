@@ -27,7 +27,6 @@ module "log_analytics" {
   workspace_name      = "log-${random_id.this.hex}"
   resource_group_name = azurerm_resource_group.this.name
   location            = azurerm_resource_group.this.location
-
 }
 
 module "sql" {

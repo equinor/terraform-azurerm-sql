@@ -16,6 +16,11 @@ module "server" {
   storage_account_name   = var.storage_account_name
   storage_container_name = var.storage_container_name
 
+  log_analytics_workspace_id                = var.log_analytics_workspace_id
+  log_analytics_destination_type            = var.log_analytics_destination_type
+  diagnostic_setting_name                   = var.diagnostic_setting_name
+  diagnostic_setting_enabled_log_categories = var.diagnostic_setting_enabled_log_categories
+
   tags = var.tags
 }
 
@@ -67,10 +72,6 @@ module "database" {
   sku_name             = var.sku_name
   max_size_gb          = var.max_size_gb
   storage_account_type = var.database_storage_account_type
-
-  log_analytics_workspace_id                = var.log_analytics_workspace_id
-  log_analytics_destination_type            = var.log_analytics_destination_type
-  diagnostic_setting_enabled_log_categories = var.diagnostic_setting_enabled_log_categories
 
   short_term_retention_policy_retention_days           = var.short_term_retention_policy_retention_days
   short_term_retention_policy_backup_interval_in_hours = var.short_term_retention_policy_backup_interval_in_hours
