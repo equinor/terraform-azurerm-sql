@@ -19,11 +19,6 @@ resource "azurerm_mssql_server" "this" {
   administrator_login_password = random_password.this.result
   minimum_tls_version          = "1.2"
 
-  log_analytics_workspace_id                = var.log_analytics_workspace_id
-  log_analytics_destination_type            = var.log_analytics_destination_type
-  diagnostic_setting_name                   = var.diagnostic_setting_name
-  diagnostic_setting_enabled_log_categories = var.diagnostic_setting_enabled_log_categories
-
   tags = var.tags
 
   dynamic "azuread_administrator" {
