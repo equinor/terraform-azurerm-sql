@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.2.0](https://github.com/equinor/terraform-azurerm-sql/compare/v7.1.0...v7.2.0) (2023-03-20)
+
+
+### Features
+
+* set server alert policy email attributes ([#69](https://github.com/equinor/terraform-azurerm-sql/issues/69)) ([e1e67e9](https://github.com/equinor/terraform-azurerm-sql/commit/e1e67e92b96b1727a97b1ac30ec121d4f25f91bf))
+
 ## [7.1.0](https://github.com/equinor/terraform-azurerm-sql/compare/v7.0.0...v7.1.0) (2023-02-09)
 
 
