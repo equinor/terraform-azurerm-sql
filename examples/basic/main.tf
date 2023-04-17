@@ -17,10 +17,17 @@ module "sql" {
   # source = "github.com/equinor/terraform-azurerm-sql?ref=v0.0.0"
   source = "../.."
 
-  database_name        = "sqldb-${random_id.this.hex}"
   server_name          = "sql-${random_id.this.hex}"
   resource_group_name  = azurerm_resource_group.this.name
   location             = azurerm_resource_group.this.location
   storage_account_name = "st${random_id.this.hex}sql"
   administrator_login  = "masterlogin"
+}
+
+module "database" {
+  # source = "github.com/equinor/terraform-azurerm-sql//modules/database?ref=v0.0.0"
+  source = "../../modules/database"
+
+  name      = "sqldb-${random_id.this.hex}"
+  server_id = module.sql.server_id
 }

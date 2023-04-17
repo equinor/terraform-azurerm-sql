@@ -25,14 +25,11 @@ module "sql" {
   # source = "github.com/equinor/terraform-azurerm-sql?ref=v0.0.0"
   source = "../.."
 
-  database_name        = "sqldb-${random_id.this.hex}"
   server_name          = "sql-${random_id.this.hex}"
   resource_group_name  = azurerm_resource_group.this.name
   location             = azurerm_resource_group.this.location
   storage_account_name = "st${random_id.this.hex}sql"
   administrator_login  = "masterlogin"
-  sku_name             = "Basic"
-  max_size_gb          = 2
 
   azuread_administrator = {
     login_username = "azureadmasterlogin"
@@ -49,6 +46,19 @@ module "sql" {
 
   security_alert_policy_email_account_admins = true
   security_alert_policy_email_addresses      = []
+
+  tags = local.tags
+}
+
+module "database" {
+  # source = "github.com/equinor/terraform-azurerm-sql//modules/database?ref=v0.0.0"
+  source = "../../modules/database"
+
+  name        = "sqldb-${random_id.this.hex}"
+  server_id   = module.sql.server_id
+  sku_name    = "Basic"
+  max_size_gb = 2
+
   short_term_retention_policy_retention_days           = 7
   short_term_retention_policy_backup_interval_in_hours = 12
 
