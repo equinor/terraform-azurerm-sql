@@ -78,11 +78,7 @@ variable "diagnostic_setting_name" {
 variable "diagnostic_setting_enabled_log_categories" {
   description = "A list of log categories to be enabled for this diagnostic setting."
   type        = list(string)
-
-  default = [
-    "SQLSecurityAuditEvents",
-    "DevOpsOperationsAudit"
-  ]
+  default     = ["SQLSecurityAuditEvents"]
 }
 
 variable "security_alert_policy_email_addresses" {
