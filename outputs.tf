@@ -18,13 +18,3 @@ output "administrator_password" {
   value       = azurerm_mssql_server.this.administrator_login_password
   sensitive   = true
 }
-
-output "storage_account_id" {
-  description = "The ID of this Storage Account."
-  value       = azurerm_storage_account.this.id
-}
-
-output "storage_account_name" {
-  description = "The name of this Storage Account."
-  value       = azurerm_storage_account.this.name
-}

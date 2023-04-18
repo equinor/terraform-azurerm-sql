@@ -29,6 +29,17 @@ module "log_analytics" {
   location            = azurerm_resource_group.this.location
 }
 
+module "storage" {
+  source = "github.com/equinor/terraform-azurerm-storage?ref=v10.3.0"
+
+  account_name                 = "st${random_id.this.hex}"
+  resource_group_name          = azurerm_resource_group.this.name
+  location                     = azurerm_resource_group.this.location
+  log_analytics_workspace_id   = module.log_analytics.workspace_id
+  shared_access_key_enabled    = true
+  network_rules_default_action = "Allow"
+}
+
 module "sql" {
   # source = "github.com/equinor/terraform-azurerm-sql?ref=v0.0.0"
   source = "../.."
@@ -38,7 +49,8 @@ module "sql" {
   location                   = azurerm_resource_group.this.location
   administrator_login        = "masterlogin"
   log_analytics_workspace_id = module.log_analytics.workspace_id
-  storage_account_name       = "st${random_id.this.hex}sql"
+  storage_blob_endpoint      = module.storage.blob_endpoint
+  storage_account_access_key = module.storage.primary_access_key
 
   azuread_administrator = {
     login_username = "azureadmasterlogin"

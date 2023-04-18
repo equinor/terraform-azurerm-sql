@@ -100,46 +100,10 @@ resource "azurerm_mssql_server_security_alert_policy" "this" {
   email_account_admins = var.security_alert_policy_email_account_admins
 }
 
-resource "azurerm_storage_account" "this" {
-  name                = var.storage_account_name
-  location            = var.location
-  resource_group_name = var.resource_group_name
-
-  account_tier             = "Standard"
-  account_replication_type = "LRS"
-  account_kind             = "BlobStorage"
-  access_tier              = "Hot"
-
-  min_tls_version                 = "TLS1_2"
-  enable_https_traffic_only       = true
-  shared_access_key_enabled       = true
-  allow_nested_items_to_be_public = false
-
-  tags = var.tags
-
-  blob_properties {
-    delete_retention_policy {
-      days = 30
-    }
-
-    container_delete_retention_policy {
-      days = 30
-    }
-
-    change_feed_enabled = false
-    versioning_enabled  = false
-  }
-}
-
-resource "azurerm_storage_container" "this" {
-  name                 = var.storage_container_name
-  storage_account_name = azurerm_storage_account.this.name
-}
-
 resource "azurerm_mssql_server_vulnerability_assessment" "this" {
   server_security_alert_policy_id = azurerm_mssql_server_security_alert_policy.this.id
-  storage_container_path          = "${azurerm_storage_account.this.primary_blob_endpoint}${azurerm_storage_container.this.name}/"
-  storage_account_access_key      = azurerm_storage_account.this.primary_access_key
+  storage_container_path          = "${var.storage_blob_endpoint}${var.storage_container_name}/"
+  storage_account_access_key      = var.storage_account_access_key
 
   recurring_scans {
     enabled                   = true

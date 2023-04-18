@@ -23,9 +23,15 @@ variable "log_analytics_workspace_id" {
   type        = string
 }
 
-variable "storage_account_name" {
-  description = "The name of this Storage account."
+variable "storage_blob_endpoint" {
+  description = "The blob endpoint Storage account to use for this SQL server."
   type        = string
+}
+
+variable "storage_account_access_key" {
+  description = "The shared access key of the Storage account to use for this SQL server."
+  type        = string
+  sensitive   = true
 }
 
 variable "azuread_administrator" {
