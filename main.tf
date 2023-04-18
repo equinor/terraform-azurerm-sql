@@ -84,7 +84,11 @@ resource "azurerm_monitor_diagnostic_setting" "this" {
     }
   }
 
-  # TODO: depend on "azurerm_mssql_server_extended_auditing_policy.this" ???
+  depends_on = [
+    # Wait for server extended auditing policy to be created.
+    # This ensures the master database exists before trying to create a diagnostic setting for it.
+    azurerm_mssql_server_extended_auditing_policy.this
+  ]
 }
 
 resource "azurerm_mssql_server_security_alert_policy" "this" {
