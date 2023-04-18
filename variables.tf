@@ -13,13 +13,18 @@ variable "location" {
   type        = string
 }
 
-variable "storage_account_name" {
-  description = "The name of this Storage account."
+variable "administrator_login" {
+  description = "The login username of the administrator of this SQL server."
   type        = string
 }
 
-variable "administrator_login" {
-  description = "The login username of the administrator of this SQL server."
+variable "log_analytics_workspace_id" {
+  description = "The ID of the Log Analytics workspace to send diagnostics to."
+  type        = string
+}
+
+variable "storage_account_name" {
+  description = "The name of this Storage account."
   type        = string
 }
 
@@ -62,6 +67,18 @@ variable "firewall_rules" {
       end_ip_address   = "0.0.0.0"
     }
   }
+}
+
+variable "diagnostic_setting_name" {
+  description = "The name of this diagnostic setting."
+  type        = string
+  default     = "audit-logs"
+}
+
+variable "diagnostic_setting_enabled_log_categories" {
+  description = "A list of log categories to be enabled for this diagnostic setting."
+  type        = list(string)
+  default     = ["SQLSecurityAuditEvents"]
 }
 
 variable "security_alert_policy_email_addresses" {

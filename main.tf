@@ -58,11 +58,37 @@ resource "azurerm_mssql_firewall_rule" "this" {
 }
 
 resource "azurerm_mssql_server_extended_auditing_policy" "this" {
-  server_id                               = azurerm_mssql_server.this.id
-  storage_endpoint                        = azurerm_storage_account.this.primary_blob_endpoint
-  storage_account_access_key              = azurerm_storage_account.this.primary_access_key
-  storage_account_access_key_is_secondary = false
-  retention_in_days                       = 7
+  server_id              = azurerm_mssql_server.this.id
+  log_monitoring_enabled = true
+}
+
+# Create diagnostic setting for master database to enable server wide.
+resource "azurerm_monitor_diagnostic_setting" "this" {
+  name                       = var.diagnostic_setting_name
+  target_resource_id         = "${azurerm_mssql_server.this.id}/databases/master"
+  log_analytics_workspace_id = var.log_analytics_workspace_id
+
+  dynamic "enabled_log" {
+    for_each = toset(var.diagnostic_setting_enabled_log_categories)
+
+    content {
+      category = enabled_log.value
+    }
+  }
+
+  metric {
+    category = "AllMetrics"
+
+    retention_policy {
+      enabled = false
+    }
+  }
+
+  depends_on = [
+    # Wait for server extended auditing policy to be created.
+    # This ensures the master database exists before trying to create a diagnostic setting for it.
+    azurerm_mssql_server_extended_auditing_policy.this
+  ]
 }
 
 resource "azurerm_mssql_server_security_alert_policy" "this" {

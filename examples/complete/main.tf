@@ -21,15 +21,24 @@ resource "azurerm_resource_group" "this" {
   tags = local.tags
 }
 
+module "log_analytics" {
+  source = "github.com/equinor/terraform-azurerm-log-analytics?ref=v1.4.0"
+
+  workspace_name      = "log-${random_id.this.hex}"
+  resource_group_name = azurerm_resource_group.this.name
+  location            = azurerm_resource_group.this.location
+}
+
 module "sql" {
   # source = "github.com/equinor/terraform-azurerm-sql?ref=v0.0.0"
   source = "../.."
 
-  server_name          = "sql-${random_id.this.hex}"
-  resource_group_name  = azurerm_resource_group.this.name
-  location             = azurerm_resource_group.this.location
-  storage_account_name = "st${random_id.this.hex}sql"
-  administrator_login  = "masterlogin"
+  server_name                = "sql-${random_id.this.hex}"
+  resource_group_name        = azurerm_resource_group.this.name
+  location                   = azurerm_resource_group.this.location
+  administrator_login        = "masterlogin"
+  log_analytics_workspace_id = module.log_analytics.workspace_id
+  storage_account_name       = "st${random_id.this.hex}sql"
 
   azuread_administrator = {
     login_username = "azureadmasterlogin"
