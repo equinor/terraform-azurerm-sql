@@ -57,6 +57,26 @@ resource "azurerm_mssql_firewall_rule" "this" {
   end_ip_address   = each.value.end_ip_address
 }
 
+resource "azurerm_mssql_failover_group" "this" {
+  for_each = var.failover_groups
+
+  name      = each.value["name"]
+  server_id = azurerm_mssql_server.this.id
+
+  partner_server {
+    id = each.value["partner_server_id"]
+  }
+
+  databases = each.value["databases"]
+
+  readonly_endpoint_failover_policy_enabled = each.value["readonly_endpoint_failover_policy_enabled"]
+
+  read_write_endpoint_failover_policy {
+    mode          = each.value["read_write_endpoint_failover_policy_mode"]
+    grace_minutes = each.value["read_write_endpoint_failover_policy_grace_minutes"]
+  }
+}
+
 resource "azurerm_mssql_server_extended_auditing_policy" "this" {
   server_id              = azurerm_mssql_server.this.id
   log_monitoring_enabled = true
