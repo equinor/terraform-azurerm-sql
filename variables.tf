@@ -84,8 +84,8 @@ variable "failover_groups" {
     databases         = list(string)
 
     readonly_endpoint_failover_policy_enabled         = optional(bool, false)
-    read_write_endpoint_failover_policy_mode          = optional(string, "Manual")
-    read_write_endpoint_failover_policy_grace_minutes = optional(number, 1)
+    read_write_endpoint_failover_policy_mode          = optional(string, "Automatic")
+    read_write_endpoint_failover_policy_grace_minutes = optional(number, 60)
   }))
 
   default = {}

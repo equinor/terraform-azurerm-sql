@@ -60,7 +60,7 @@ module "sql_secondary" {
 
   server_name                = "sql-${random_id.this.hex}-002"
   resource_group_name        = azurerm_resource_group.this.name
-  location                   = azurerm_resource_group.this.location
+  location                   = var.location_secondary
   administrator_login        = "masterlogin"
   log_analytics_workspace_id = module.log_analytics.workspace_id
   storage_blob_endpoint      = module.storage.blob_endpoint
