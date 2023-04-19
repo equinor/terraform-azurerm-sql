@@ -2,8 +2,6 @@ provider "azurerm" {
   features {}
 }
 
-data "azurerm_client_config" "current" {}
-
 resource "random_id" "this" {
   byte_length = 8
 }
