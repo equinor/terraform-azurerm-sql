@@ -87,14 +87,5 @@ module "database" {
   long_term_retention_policy_monthly_retention = "PT0S"
   long_term_retention_policy_yearly_retention  = "PT0S"
 
-  failover_groups = {
-    "main" = {
-      name                                              = "sql-fog-${random_id.this.hex}"
-      partner_server_id                                 = azurerm_mssql_server.secondary.id
-      read_write_endpoint_failover_policy_mode          = "Automatic"
-      read_write_endpoint_failover_policy_grace_minutes = 60
-    }
-  }
-
   tags = local.tags
 }
