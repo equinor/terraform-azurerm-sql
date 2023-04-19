@@ -43,7 +43,7 @@ module "sql_primary" {
   storage_account_access_key = module.storage.primary_access_key
 
   failover_groups = {
-    "secondary" = {
+    "main" = {
       name              = "fog-${random_id.this.hex}"
       databases         = [module.database.id]
       partner_server_id = module.sql_secondary.server_id
