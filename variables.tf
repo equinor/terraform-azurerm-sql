@@ -75,6 +75,22 @@ variable "firewall_rules" {
   }
 }
 
+variable "failover_groups" {
+  description = "A map of failover groups for this SQL server."
+
+  type = map(object({
+    name              = string
+    partner_server_id = string
+    databases         = list(string)
+
+    readonly_endpoint_failover_policy_enabled         = optional(bool, false)
+    read_write_endpoint_failover_policy_mode          = optional(string, "Manual")
+    read_write_endpoint_failover_policy_grace_minutes = optional(number, 1)
+  }))
+
+  default = {}
+}
+
 variable "diagnostic_setting_name" {
   description = "The name of this diagnostic setting."
   type        = string
