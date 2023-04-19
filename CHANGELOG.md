@@ -1,5 +1,31 @@
 # Changelog
 
+## [8.0.0](https://github.com/equinor/terraform-azurerm-sql/compare/v7.2.0...v8.0.0) (2023-04-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* remove resources `azurerm_storage_account.this` and `azurerm_storage_container.this`, remove variable `storage_account_name` and add variables `storage_blob_endpoint` and `storage_account_key`.
+* add variable `log_analytics_workspace_id`.
+* submodule `database` must be explicitly called.
+
+### Features
+
+* send diagnostics to Log Analytics ([#76](https://github.com/equinor/terraform-azurerm-sql/issues/76)) ([46efca3](https://github.com/equinor/terraform-azurerm-sql/commit/46efca3c13cad5e791a7ad1b806164a6e9410b67))
+* use existing Storage account ([52f112c](https://github.com/equinor/terraform-azurerm-sql/commit/52f112cf1c345d39955f0f0a5f8d034aced568c3)), closes [#75](https://github.com/equinor/terraform-azurerm-sql/issues/75)
+
+
+### Code Refactoring
+
+* 1-to-1 mapping of module-to-resources ([#77](https://github.com/equinor/terraform-azurerm-sql/issues/77)) ([6795252](https://github.com/equinor/terraform-azurerm-sql/commit/6795252b7c251ce1b0d4fe076d84f2e27c2b9db1))
+
+## [7.2.0](https://github.com/equinor/terraform-azurerm-sql/compare/v7.1.0...v7.2.0) (2023-03-20)
+
+
+### Features
+
+* set server alert policy email attributes ([#69](https://github.com/equinor/terraform-azurerm-sql/issues/69)) ([e1e67e9](https://github.com/equinor/terraform-azurerm-sql/commit/e1e67e92b96b1727a97b1ac30ec121d4f25f91bf))
+
 ## [7.1.0](https://github.com/equinor/terraform-azurerm-sql/compare/v7.0.0...v7.1.0) (2023-02-09)
 
 

@@ -1,6 +1,6 @@
 # Basic example
 
-Terraform configuration which creates an Azure SQL database with the following features:
+Terraform configuration which creates an Azure SQL server and database with the following features:
 
 - Basic SKU
 - Weekly long-term retention (LTR) backup policy
