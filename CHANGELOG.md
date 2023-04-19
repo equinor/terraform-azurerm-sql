@@ -1,5 +1,12 @@
 # Changelog
 
+## [8.0.1](https://github.com/equinor/terraform-azurerm-sql/compare/v8.0.0...v8.0.1) (2023-04-19)
+
+
+### Bug Fixes
+
+* disable all metrics ([#81](https://github.com/equinor/terraform-azurerm-sql/issues/81)) ([a949959](https://github.com/equinor/terraform-azurerm-sql/commit/a949959bb4054cf3284617a51c020e2e73cc5af2)), closes [#79](https://github.com/equinor/terraform-azurerm-sql/issues/79)
+
 ## [8.0.0](https://github.com/equinor/terraform-azurerm-sql/compare/v7.2.0...v8.0.0) (2023-04-18)
 
 
