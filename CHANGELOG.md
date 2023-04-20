@@ -1,5 +1,17 @@
 # Changelog
 
+## [8.1.0](https://github.com/equinor/terraform-azurerm-sql/compare/v8.0.1...v8.1.0) (2023-04-20)
+
+
+### Features
+
+* create failover groups ([#72](https://github.com/equinor/terraform-azurerm-sql/issues/72)) ([21ddc88](https://github.com/equinor/terraform-azurerm-sql/commit/21ddc88192f3fc2893afe3c1314e2febfac56ed9)), closes [#71](https://github.com/equinor/terraform-azurerm-sql/issues/71)
+
+
+### Bug Fixes
+
+* disable metrics ([#85](https://github.com/equinor/terraform-azurerm-sql/issues/85)) ([4400718](https://github.com/equinor/terraform-azurerm-sql/commit/44007181c452316d63785da1e30a52056ea299e1))
+
 ## [8.0.1](https://github.com/equinor/terraform-azurerm-sql/compare/v8.0.0...v8.0.1) (2023-04-19)
 
 
