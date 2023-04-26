@@ -1,3 +1,7 @@
+locals {
+  azuread_authentication_only = var.azuread_administrator != null ? var.azuread_administrator["azuread_authentication_only"] : false
+}
+
 resource "random_password" "this" {
   length      = 128
   lower       = true
@@ -15,8 +19,8 @@ resource "azurerm_mssql_server" "this" {
   location                     = var.location
   resource_group_name          = var.resource_group_name
   version                      = "12.0"
-  administrator_login          = var.administrator_login
-  administrator_login_password = random_password.this.result
+  administrator_login          = local.azuread_authentication_only ? null : var.administrator_login
+  administrator_login_password = local.azuread_authentication_only ? null : random_password.this.result
   minimum_tls_version          = "1.2"
 
   tags = var.tags
@@ -109,7 +113,7 @@ resource "azurerm_monitor_diagnostic_setting" "this" {
   metric {
     category = "InstanceAndAppAdvanced"
     enabled  = false
-    
+
     retention_policy {
       enabled = false
       days    = 0
