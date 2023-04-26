@@ -1,5 +1,12 @@
 # Changelog
 
+## [8.1.1](https://github.com/equinor/terraform-azurerm-sql/compare/v8.1.0...v8.1.1) (2023-04-26)
+
+
+### Bug Fixes
+
+* disable local admin config when using AD auth ([#86](https://github.com/equinor/terraform-azurerm-sql/issues/86)) ([06311c6](https://github.com/equinor/terraform-azurerm-sql/commit/06311c6d0d9032d558b952cd1a0fd20b82d26da9))
+
 ## [8.1.0](https://github.com/equinor/terraform-azurerm-sql/compare/v8.0.1...v8.1.0) (2023-04-20)
 
 
