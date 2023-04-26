@@ -47,14 +47,15 @@ module "sql" {
   server_name                = "sql-${random_id.this.hex}"
   resource_group_name        = azurerm_resource_group.this.name
   location                   = azurerm_resource_group.this.location
-  administrator_login        = "masterlogin"
+  administrator_login        = null
   log_analytics_workspace_id = module.log_analytics.workspace_id
   storage_blob_endpoint      = module.storage.blob_endpoint
   storage_account_access_key = module.storage.primary_access_key
 
   azuread_administrator = {
-    login_username = "azureadmasterlogin"
-    object_id      = data.azurerm_client_config.current.object_id
+    login_username              = "azureadmasterlogin"
+    object_id                   = data.azurerm_client_config.current.object_id
+    azuread_authentication_only = true
   }
 
   firewall_rules = {
