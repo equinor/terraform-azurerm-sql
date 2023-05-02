@@ -121,6 +121,24 @@ variable "storage_container_name" {
   default     = "vulnerability-assessment"
 }
 
+variable "recurring_scan_setting" {
+  description = "This specifies if recurring scans is enabled or disabled."
+  type        = bool
+  default     = true
+}
+
+variable "vulnerability_assessment_recurring_scan_email_subscription_admins" {
+  description = "Specifies if the schedule scan notification will be sent to the subscriptions administrators for this SQL server."
+  type        = bool
+  default     = true
+}
+
+variable "vulnerability_assessment_recurring_scan_emails" {
+  description = "The specified list of email addresses to which the scan notification is sent."
+  type        = list(string)
+  default     = []
+}
+
 variable "tags" {
   description = "A mapping of tags to assign to the resources."
   type        = map(string)
