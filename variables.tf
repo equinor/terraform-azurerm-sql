@@ -121,8 +121,8 @@ variable "storage_container_name" {
   default     = "vulnerability-assessment"
 }
 
-variable "recurring_scan_setting" {
-  description = "This specifies if recurring scans is enabled or disabled."
+variable "vulnerability_assessment_recurring_scan_enabled" {
+  description = "Specifies if recurring scans is enabled or disabled."
   type        = bool
   default     = true
 }
@@ -134,7 +134,7 @@ variable "vulnerability_assessment_recurring_scan_email_subscription_admins" {
 }
 
 variable "vulnerability_assessment_recurring_scan_emails" {
-  description = "The specified list of email addresses to which the scan notification is sent."
+  description = "Specifies an array of email addresses to which the scan notification."
   type        = list(string)
   default     = []
 }

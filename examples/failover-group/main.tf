@@ -12,7 +12,7 @@ resource "azurerm_resource_group" "this" {
 }
 
 module "log_analytics" {
-  source = "github.com/equinor/terraform-azurerm-log-analytics?ref=v1.4.0"
+  source = "github.com/equinor/terraform-azurerm-log-analytics?ref=v1.5.0"
 
   workspace_name      = "log-${random_id.this.hex}"
   resource_group_name = azurerm_resource_group.this.name
