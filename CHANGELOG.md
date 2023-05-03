@@ -1,5 +1,12 @@
 # Changelog
 
+## [8.2.0](https://github.com/equinor/terraform-azurerm-sql/compare/v8.1.1...v8.2.0) (2023-05-03)
+
+
+### Features
+
+* enable vulnerability assessment email notifications ([#88](https://github.com/equinor/terraform-azurerm-sql/issues/88)) ([7bcb5d9](https://github.com/equinor/terraform-azurerm-sql/commit/7bcb5d912b31e190def34550d0896e0502490bfb))
+
 ## [8.1.1](https://github.com/equinor/terraform-azurerm-sql/compare/v8.1.0...v8.1.1) (2023-04-26)
 
 
