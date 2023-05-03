@@ -152,8 +152,8 @@ resource "azurerm_mssql_server_vulnerability_assessment" "this" {
   storage_account_access_key      = var.storage_account_access_key
 
   recurring_scans {
-    enabled                   = true
-    email_subscription_admins = false
-    emails                    = []
+    enabled                   = var.vulnerability_assessment_recurring_scans_enabled
+    email_subscription_admins = var.vulnerability_assessment_recurring_scans_email_subscription_admins
+    emails                    = var.vulnerability_assessment_recurring_scans_emails
   }
 }
