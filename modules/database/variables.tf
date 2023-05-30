@@ -1,4 +1,4 @@
-variable "name" {
+variable "database_name" {
   description = "The name this SQL database."
   type        = string
 }

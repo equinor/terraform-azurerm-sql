@@ -76,10 +76,10 @@ module "database" {
   # source = "github.com/equinor/terraform-azurerm-sql//modules/database?ref=v0.0.0"
   source = "../../modules/database"
 
-  name        = "sqldb-${random_id.this.hex}"
-  server_id   = module.sql.server_id
-  sku_name    = "Basic"
-  max_size_gb = 2
+  database_name = "sqldb-${random_id.this.hex}"
+  server_id     = module.sql.server_id
+  sku_name      = "Basic"
+  max_size_gb   = 2
 
   short_term_retention_policy_retention_days           = 7
   short_term_retention_policy_backup_interval_in_hours = 12
