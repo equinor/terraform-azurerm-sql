@@ -1,5 +1,12 @@
 # Changelog
 
+## [8.3.0](https://github.com/equinor/terraform-azurerm-sql/compare/v8.2.0...v8.3.0) (2023-06-05)
+
+
+### Features
+
+* allow custom retention days for extended auditing policy ([#91](https://github.com/equinor/terraform-azurerm-sql/issues/91)) ([076fd59](https://github.com/equinor/terraform-azurerm-sql/commit/076fd59dcdb560a3b100a85329f332464a00ab26))
+
 ## [8.2.0](https://github.com/equinor/terraform-azurerm-sql/compare/v8.1.1...v8.2.0) (2023-05-03)
 
 
