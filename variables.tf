@@ -97,12 +97,6 @@ variable "failover_groups" {
   default = {}
 }
 
-variable "extended_auditing_policy_retention_in_days" {
-  description = "The number of days to retain logs in the Storage Account for this SQL server."
-  type        = number
-  default     = 0
-}
-
 variable "diagnostic_setting_name" {
   description = "The name of this diagnostic setting."
   type        = string
