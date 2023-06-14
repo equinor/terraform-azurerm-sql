@@ -84,7 +84,13 @@ resource "azurerm_mssql_failover_group" "this" {
 resource "azurerm_mssql_server_extended_auditing_policy" "this" {
   server_id              = azurerm_mssql_server.this.id
   log_monitoring_enabled = true
-  retention_in_days      = var.extended_auditing_policy_retention_in_days
+
+  # The following arguments are irrelevant when log_monitoring_enabled = true:
+  storage_endpoint                        = null
+  storage_account_access_key              = null
+  storage_account_access_key_is_secondary = null
+  storage_account_subscription_id         = null
+  retention_in_days                       = null
 }
 
 # Create diagnostic setting for master database to enable server wide.
