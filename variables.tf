@@ -28,10 +28,8 @@ variable "storage_blob_endpoint" {
   type        = string
 }
 
-variable "storage_account_access_key" {
-  description = "The shared access key of the Storage account to use for this SQL server."
-  type        = string
-  sensitive   = true
+variable "storage_account_id" {
+
 }
 
 variable "storage_container_name" {
@@ -52,16 +50,16 @@ variable "azuread_administrator" {
   default = null
 }
 
-variable "identity" {
-  description = "The identity to configure for this SQL Server."
+# variable "identity" {
+#   description = "The identity to configure for this SQL Server."
 
-  type = object({
-    type         = optional(string, "SystemAssigned")
-    identity_ids = optional(list(string), [])
-  })
+#   type = object({
+#     type         = optional(string, "SystemAssigned")
+#     identity_ids = optional(list(string), [])
+#   })
 
-  default = null
-}
+#   default = {}
+# }
 
 variable "firewall_rules" {
   description = "A map of firewall rules for this SQL server."
