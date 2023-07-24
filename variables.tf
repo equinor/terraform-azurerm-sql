@@ -23,17 +23,18 @@ variable "log_analytics_workspace_id" {
   type        = string
 }
 
-variable "storage_blob_endpoint" {
-  description = "The blob endpoint Storage account to use for this SQL server."
+variable "storage_account_id" {
+  description = "The ID of the Storage account to use for this SQL server."
   type        = string
 }
 
-variable "storage_account_id" {
-
+variable "storage_blob_endpoint" {
+  description = "The blob endpoint of the Storage account to use for this SQL server."
+  type        = string
 }
 
 variable "storage_container_name" {
-  description = "The name of this Storage Container."
+  description = "The name of the Storage container to use for this SQL server."
   type        = string
   default     = "vulnerability-assessment"
 }
@@ -50,16 +51,11 @@ variable "azuread_administrator" {
   default = null
 }
 
-# variable "identity" {
-#   description = "The identity to configure for this SQL Server."
-
-#   type = object({
-#     type         = optional(string, "SystemAssigned")
-#     identity_ids = optional(list(string), [])
-#   })
-
-#   default = {}
-# }
+variable "identity_ids" {
+  description = "A list of user-assigned identity IDs to be assigned to this SQL server."
+  type        = list(string)
+  default     = []
+}
 
 variable "firewall_rules" {
   description = "A map of firewall rules for this SQL server."

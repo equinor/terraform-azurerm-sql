@@ -42,8 +42,8 @@ module "sql" {
   location                   = azurerm_resource_group.this.location
   administrator_login        = "masterlogin"
   log_analytics_workspace_id = module.log_analytics.workspace_id
-  storage_blob_endpoint      = module.storage.blob_endpoint
   storage_account_id         = module.storage.account_id
+  storage_blob_endpoint      = module.storage.blob_endpoint
 }
 
 module "database" {

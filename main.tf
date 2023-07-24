@@ -42,18 +42,9 @@ resource "azurerm_mssql_server" "this" {
     ]
   }
 
-  # dynamic "identity" {
-  #   for_each = var.identity != null ? [var.identity] : []
-
-  #   content {
-  #     type         = identity.value["type"]
-  #     identity_ids = identity.value["identity_ids"]
-  #   }
-  # }
-
   identity {
-    type         = "SystemAssigned"
-    identity_ids = []
+    type         = length(var.identity_ids) > 0 ? "SystemAssigned, UserAssigned" : "SystemAssigned"
+    identity_ids = var.identity_ids
   }
 }
 
