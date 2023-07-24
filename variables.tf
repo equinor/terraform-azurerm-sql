@@ -13,11 +13,6 @@ variable "location" {
   type        = string
 }
 
-variable "administrator_login" {
-  description = "The login username of the administrator of this SQL server."
-  type        = string
-}
-
 variable "log_analytics_workspace_id" {
   description = "The ID of the Log Analytics workspace to send diagnostics to."
   type        = string
@@ -52,7 +47,13 @@ variable "azuread_administrator_object_id" {
 variable "azuread_authentication_only" {
   description = "Should Azure AD authentication only be enabled for this SQL server?"
   type        = bool
-  default     = false
+  default     = true
+}
+
+variable "administrator_login" {
+  description = "The login username of the administrator of this SQL server."
+  type        = string
+  default     = null
 }
 
 variable "identity_ids" {

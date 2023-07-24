@@ -45,8 +45,6 @@ module "sql" {
 
   azuread_administrator_login_username = "azureadadminlogin"
   azuread_administrator_object_id      = data.azurerm_client_config.current.object_id
-
-  administrator_login = "sqladminlogin"
 }
 
 module "database" {
