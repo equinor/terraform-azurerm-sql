@@ -4,6 +4,8 @@ provider "azurerm" {
   features {}
 }
 
+data "azurerm_client_config" "current" {}
+
 resource "random_id" "this" {
   byte_length = 8
 }
@@ -37,10 +39,14 @@ module "sql_primary" {
   server_name                = "sql-${random_id.this.hex}-001"
   resource_group_name        = azurerm_resource_group.this.name
   location                   = azurerm_resource_group.this.location
-  administrator_login        = "masterlogin"
   log_analytics_workspace_id = module.log_analytics.workspace_id
   storage_account_id         = module.storage.account_id
   storage_blob_endpoint      = module.storage.blob_endpoint
+
+  azuread_administrator_login_username = "azureadadminlogin"
+  azuread_administrator_object_id      = data.azurerm_client_config.current.object_id
+
+  administrator_login = "sqladminlogin"
 
   failover_groups = {
     "main" = {
@@ -58,10 +64,14 @@ module "sql_secondary" {
   server_name                = "sql-${random_id.this.hex}-002"
   resource_group_name        = azurerm_resource_group.this.name
   location                   = var.location_secondary
-  administrator_login        = "masterlogin"
   log_analytics_workspace_id = module.log_analytics.workspace_id
   storage_account_id         = module.storage.account_id
   storage_blob_endpoint      = module.storage.blob_endpoint
+
+  azuread_administrator_login_username = "azureadadminlogin"
+  azuread_administrator_object_id      = data.azurerm_client_config.current.object_id
+
+  administrator_login = "sqladminlogin"
 }
 
 module "database" {
