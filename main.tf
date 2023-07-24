@@ -42,13 +42,9 @@ resource "azurerm_mssql_server" "this" {
     ]
   }
 
-  dynamic "identity" {
-    for_each = var.identity != null ? [var.identity] : []
-
-    content {
-      type         = identity.value["type"]
-      identity_ids = identity.value["identity_ids"]
-    }
+  identity {
+    type         = length(var.identity_ids) > 0 ? "SystemAssigned, UserAssigned" : "SystemAssigned"
+    identity_ids = var.identity_ids
   }
 }
 
@@ -153,14 +149,21 @@ resource "azurerm_mssql_server_security_alert_policy" "this" {
   email_addresses      = var.security_alert_policy_email_addresses
 }
 
+resource "azurerm_role_assignment" "this" {
+  scope                = var.storage_account_id
+  role_definition_name = "Storage Blob Data Contributor"
+  principal_id         = azurerm_mssql_server.this.identity[0].principal_id
+}
+
 resource "azurerm_mssql_server_vulnerability_assessment" "this" {
   server_security_alert_policy_id = azurerm_mssql_server_security_alert_policy.this.id
   storage_container_path          = "${var.storage_blob_endpoint}${var.storage_container_name}/"
-  storage_account_access_key      = var.storage_account_access_key
 
   recurring_scans {
     enabled                   = var.vulnerability_assessment_recurring_scans_enabled
     email_subscription_admins = var.vulnerability_assessment_recurring_scans_email_subscription_admins
     emails                    = var.vulnerability_assessment_recurring_scans_emails
   }
+
+  depends_on = [azurerm_role_assignment.this]
 }
