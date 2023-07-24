@@ -1,4 +1,6 @@
 provider "azurerm" {
+  storage_use_azuread = true
+
   features {}
 }
 
@@ -22,12 +24,10 @@ module "log_analytics" {
 module "storage" {
   source = "github.com/equinor/terraform-azurerm-storage?ref=v10.3.0"
 
-  account_name                 = "st${random_id.this.hex}"
-  resource_group_name          = azurerm_resource_group.this.name
-  location                     = azurerm_resource_group.this.location
-  log_analytics_workspace_id   = module.log_analytics.workspace_id
-  shared_access_key_enabled    = true
-  network_rules_default_action = "Allow"
+  account_name               = "st${random_id.this.hex}"
+  resource_group_name        = azurerm_resource_group.this.name
+  location                   = azurerm_resource_group.this.location
+  log_analytics_workspace_id = module.log_analytics.workspace_id
 }
 
 module "sql_primary" {
@@ -39,8 +39,8 @@ module "sql_primary" {
   location                   = azurerm_resource_group.this.location
   administrator_login        = "masterlogin"
   log_analytics_workspace_id = module.log_analytics.workspace_id
+  storage_account_id         = module.storage.account_id
   storage_blob_endpoint      = module.storage.blob_endpoint
-  storage_account_access_key = module.storage.primary_access_key
 
   failover_groups = {
     "main" = {
