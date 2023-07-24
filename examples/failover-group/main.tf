@@ -60,8 +60,8 @@ module "sql_secondary" {
   location                   = var.location_secondary
   administrator_login        = "masterlogin"
   log_analytics_workspace_id = module.log_analytics.workspace_id
+  storage_account_id         = module.storage.account_id
   storage_blob_endpoint      = module.storage.blob_endpoint
-  storage_account_access_key = module.storage.primary_access_key
 }
 
 module "database" {
