@@ -39,16 +39,20 @@ variable "storage_container_name" {
   default     = "vulnerability-assessment"
 }
 
-variable "azuread_administrator" {
-  description = "An Azure AD administrator to configure for this SQL server."
+variable "azuread_administrator_login_username" {
+  description = "The login username of the Azure AD administrator for this SQL server."
+  type        = string
+}
 
-  type = object({
-    login_username              = string
-    object_id                   = string
-    azuread_authentication_only = optional(bool, false)
-  })
+variable "azuread_administrator_object_id" {
+  description = "The object ID of the Azure AD administrator for this SQL server."
+  type        = string
+}
 
-  default = null
+variable "azuread_authentication_only" {
+  description = "Should Azure AD authentication only be enabled for this SQL server?"
+  type        = bool
+  default     = false
 }
 
 variable "identity_ids" {
