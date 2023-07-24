@@ -53,6 +53,6 @@ module "database" {
   # source = "github.com/equinor/terraform-azurerm-sql//modules/database?ref=v0.0.0"
   source = "../../modules/database"
 
-  name      = "sqldb-${random_id.this.hex}"
-  server_id = module.sql.server_id
+  database_name = "sqldb-${random_id.this.hex}"
+  server_id     = module.sql.server_id
 }
