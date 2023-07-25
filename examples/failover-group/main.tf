@@ -46,8 +46,6 @@ module "sql_primary" {
   azuread_administrator_login_username = "azureadadminlogin"
   azuread_administrator_object_id      = data.azurerm_client_config.current.object_id
 
-  administrator_login = "sqladminlogin"
-
   failover_groups = {
     "main" = {
       name              = "fog-${random_id.this.hex}"
@@ -70,8 +68,6 @@ module "sql_secondary" {
 
   azuread_administrator_login_username = "azureadadminlogin"
   azuread_administrator_object_id      = data.azurerm_client_config.current.object_id
-
-  administrator_login = "sqladminlogin"
 }
 
 module "database" {
