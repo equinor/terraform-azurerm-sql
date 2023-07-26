@@ -1,5 +1,28 @@
 # Changelog
 
+## [9.0.0](https://github.com/equinor/terraform-azurerm-sql/compare/v8.3.1...v9.0.0) (2023-07-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* don't create failover groups ([#103](https://github.com/equinor/terraform-azurerm-sql/issues/103))
+* variable `azuread_authentication_only` default value changed from `false` to `true`.
+* Rename variable `name` to `database_name`.
+* remove variable `azuread_administrator`, add variables `azuread_administrator_login_username`, `azuread_administrator_object_id` and `azuread_authentication_only`.
+* Remove variables `storage_account_access_key` and `identity`. Add variables `storage_account_id` and `identity_ids`.
+
+### Features
+
+* don't create failover groups ([#103](https://github.com/equinor/terraform-azurerm-sql/issues/103)) ([79bcdcc](https://github.com/equinor/terraform-azurerm-sql/commit/79bcdcc22784e3d8a0310d19c06c881225226913)), closes [#102](https://github.com/equinor/terraform-azurerm-sql/issues/102)
+* enable Azure AD auth only by default ([#101](https://github.com/equinor/terraform-azurerm-sql/issues/101)) ([138b5fb](https://github.com/equinor/terraform-azurerm-sql/commit/138b5fb23e8178336589b48fb0ac0270f4928ce6)), closes [#98](https://github.com/equinor/terraform-azurerm-sql/issues/98)
+* force Azure AD admin configuration ([#100](https://github.com/equinor/terraform-azurerm-sql/issues/100)) ([ec9bbba](https://github.com/equinor/terraform-azurerm-sql/commit/ec9bbba4f62c254545fbd480648f6ba49c2fb88a))
+* use RBAC for connecting to Storage ([#97](https://github.com/equinor/terraform-azurerm-sql/issues/97)) ([28cffbe](https://github.com/equinor/terraform-azurerm-sql/commit/28cffbe0610dfde7e46297df7f6ef34511f36e9f)), closes [#96](https://github.com/equinor/terraform-azurerm-sql/issues/96)
+
+
+### Code Refactoring
+
+* rename database name variable ([#90](https://github.com/equinor/terraform-azurerm-sql/issues/90)) ([d862a18](https://github.com/equinor/terraform-azurerm-sql/commit/d862a18c12327ce38ddeaa7a577d281ee625d460))
+
 ## [8.3.1](https://github.com/equinor/terraform-azurerm-sql/compare/v8.3.0...v8.3.1) (2023-06-14)
 
 
