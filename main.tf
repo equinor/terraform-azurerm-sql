@@ -125,6 +125,11 @@ resource "azurerm_role_assignment" "this" {
   scope                = var.storage_account_id
   role_definition_name = "Storage Blob Data Contributor"
   principal_id         = azurerm_mssql_server.this.identity[0].principal_id
+
+  depends_on = [
+    # Ensure system-assigned identity is enabled before trying to assign a role to it.
+    azurerm_mssql_server.this.identity[0]
+  ]
 }
 
 resource "azurerm_mssql_server_vulnerability_assessment" "this" {
