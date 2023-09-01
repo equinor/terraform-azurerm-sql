@@ -47,10 +47,7 @@ module "sql" {
   azuread_administrator_object_id      = data.azurerm_client_config.current.object_id
 }
 
-module "database" {
-  # source = "github.com/equinor/terraform-azurerm-sql//modules/database?ref=v0.0.0"
-  source = "../../modules/database"
-
-  database_name = "sqldb-${random_id.this.hex}"
-  server_id     = module.sql.server_id
+resource "azurerm_mssql_database" "example" {
+  name      = "sqldb-${random_id.this.hex}"
+  server_id = module.sql.server_id
 }
