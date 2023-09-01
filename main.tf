@@ -128,7 +128,7 @@ resource "azurerm_role_assignment" "this" {
 
   depends_on = [
     # Ensure system-assigned identity is enabled before trying to assign a role to it.
-    azurerm_mssql_server.this.identity[0]
+    azurerm_mssql_server.this.identity
   ]
 }
 
