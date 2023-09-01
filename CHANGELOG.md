@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.0.1](https://github.com/equinor/terraform-azurerm-sql/compare/v9.0.0...v9.0.1) (2023-09-01)
+
+
+### Bug Fixes
+
+* unable to create role assignment ([#106](https://github.com/equinor/terraform-azurerm-sql/issues/106)) ([36b13f8](https://github.com/equinor/terraform-azurerm-sql/commit/36b13f8256333f06e6cd54d1fca2eb397a9b6365))
+
 ## [9.0.0](https://github.com/equinor/terraform-azurerm-sql/compare/v8.3.1...v9.0.0) (2023-07-26)
 
 
