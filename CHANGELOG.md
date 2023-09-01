@@ -1,5 +1,16 @@
 # Changelog
 
+## [10.0.0](https://github.com/equinor/terraform-azurerm-sql/compare/v9.0.1...v10.0.0) (2023-09-01)
+
+
+### ⚠ BREAKING CHANGES
+
+* remove database submodule ([#107](https://github.com/equinor/terraform-azurerm-sql/issues/107))
+
+### Features
+
+* remove database submodule ([#107](https://github.com/equinor/terraform-azurerm-sql/issues/107)) ([12fb3c5](https://github.com/equinor/terraform-azurerm-sql/commit/12fb3c54e01ae50a64463e88b1e6d5da35049e9d))
+
 ## [9.0.1](https://github.com/equinor/terraform-azurerm-sql/compare/v9.0.0...v9.0.1) (2023-09-01)
 
 
