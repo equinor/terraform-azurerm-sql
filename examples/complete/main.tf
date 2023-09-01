@@ -71,21 +71,7 @@ module "sql" {
   tags = local.tags
 }
 
-module "database" {
-  # source = "github.com/equinor/terraform-azurerm-sql//modules/database?ref=v0.0.0"
-  source = "../../modules/database"
-
-  database_name = "sqldb-${random_id.this.hex}"
-  server_id     = module.sql.server_id
-  sku_name      = "Basic"
-  max_size_gb   = 2
-
-  short_term_retention_policy_retention_days           = 7
-  short_term_retention_policy_backup_interval_in_hours = 12
-
-  long_term_retention_policy_weekly_retention  = "PT0S"
-  long_term_retention_policy_monthly_retention = "PT0S"
-  long_term_retention_policy_yearly_retention  = "PT0S"
-
-  tags = local.tags
+resource "azurerm_mssql_database" "example" {
+  name      = "sqldb-${random_id.this.hex}"
+  server_id = module.sql.server_id
 }
