@@ -127,8 +127,9 @@ resource "azurerm_role_assignment" "this" {
   principal_id         = azurerm_mssql_server.this.identity[0].principal_id
 
   depends_on = [
-    # Ensure system-assigned identity is enabled before trying to assign a role to it.
-    azurerm_mssql_server.this.identity
+    # Wait for server to be fully created.
+    # This ensures the system-assigned identity is enabled before trying to assign a role to it.
+    azurerm_mssql_server.this
   ]
 }
 
