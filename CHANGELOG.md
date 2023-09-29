@@ -1,5 +1,12 @@
 # Changelog
 
+## [10.1.0](https://github.com/equinor/terraform-azurerm-sql/compare/v10.0.0...v10.1.0) (2023-09-29)
+
+
+### Features
+
+* don't send alerts to admins by default ([#110](https://github.com/equinor/terraform-azurerm-sql/issues/110)) ([a338bf8](https://github.com/equinor/terraform-azurerm-sql/commit/a338bf87945bb5997fbc32f7e02e96338d9904e9))
+
 ## [10.0.0](https://github.com/equinor/terraform-azurerm-sql/compare/v9.0.1...v10.0.0) (2023-09-01)
 
 
