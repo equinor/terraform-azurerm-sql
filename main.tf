@@ -117,7 +117,7 @@ resource "azurerm_mssql_server_security_alert_policy" "this" {
   server_name          = azurerm_mssql_server.this.name
   state                = "Enabled"
   disabled_alerts      = []
-  email_account_admins = var.security_alert_policy_email_account_admins
+  email_account_admins = false
   email_addresses      = var.security_alert_policy_email_addresses
 }
 

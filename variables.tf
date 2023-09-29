@@ -92,12 +92,6 @@ variable "diagnostic_setting_enabled_log_categories" {
   default     = ["SQLSecurityAuditEvents"]
 }
 
-variable "security_alert_policy_email_account_admins" {
-  description = "Are alerts for this SQL server sent to subscription owners and administrators?"
-  type        = bool
-  default     = true
-}
-
 variable "security_alert_policy_email_addresses" {
   description = "A list of custom email addresses to which the alert for this SQL server is sent."
   type        = list(string)
