@@ -95,7 +95,7 @@ variable "diagnostic_setting_enabled_log_categories" {
 variable "security_alert_policy_email_account_admins" {
   description = "Are alerts for this SQL server sent to subscription owners and administrators?"
   type        = bool
-  default     = true
+  default     = false
 }
 
 variable "security_alert_policy_email_addresses" {
