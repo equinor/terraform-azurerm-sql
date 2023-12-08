@@ -8,6 +8,10 @@ Terraform module which creates Azure SQL resources:
 - Creates an Azure SQL server in the provided resource group.
 - Stores vulnerability assessments in the provided Storage account.
 
+## Usage
+
+See [examples](examples).
+
 ## Development
 
 1. Read [this document](https://code.visualstudio.com/docs/devcontainers/containers).
