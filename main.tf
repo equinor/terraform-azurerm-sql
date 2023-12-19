@@ -78,31 +78,16 @@ resource "azurerm_monitor_diagnostic_setting" "this" {
   metric {
     category = "Basic"
     enabled  = false
-
-    retention_policy {
-      enabled = false
-      days    = 0
-    }
   }
 
   metric {
     category = "InstanceAndAppAdvanced"
     enabled  = false
-
-    retention_policy {
-      enabled = false
-      days    = 0
-    }
   }
 
   metric {
     category = "WorkloadManagement"
     enabled  = false
-
-    retention_policy {
-      enabled = false
-      days    = 0
-    }
   }
 
   depends_on = [
