@@ -1,5 +1,12 @@
 # Changelog
 
+## [10.1.1](https://github.com/equinor/terraform-azurerm-sql/compare/v10.1.0...v10.1.1) (2023-12-20)
+
+
+### Bug Fixes
+
+* remove diagnostic setting retention policies ([#119](https://github.com/equinor/terraform-azurerm-sql/issues/119)) ([1d0c128](https://github.com/equinor/terraform-azurerm-sql/commit/1d0c128afc19ad69a8ceb4e255340f0903f687df))
+
 ## [10.1.0](https://github.com/equinor/terraform-azurerm-sql/compare/v10.0.0...v10.1.0) (2023-09-29)
 
 
