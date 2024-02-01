@@ -4,7 +4,7 @@ resource "azurerm_mssql_database" "this" {
   elastic_pool_id                = var.elastic_pool_id
   collation                      = var.collation
   enclave_type                   = var.enclave_type
-  maintenance_configuration_name = var.elastic_pool_id ? var.maintenance_configuration_name : null # Conflifcts with elastic pool
+  maintenance_configuration_name = var.elastic_pool_id == null ? var.maintenance_configuration_name : null # Conflifcts with elastic pool
   ledger_enabled                 = var.ledger_enabled
   license_type                   = var.license_type
   max_size_gb                    = var.max_size_gb
