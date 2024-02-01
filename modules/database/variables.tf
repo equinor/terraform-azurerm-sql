@@ -88,7 +88,7 @@ variable "threat_detection_policy" {
   type = object({
     state                      = optional(string, "Disabled")
     disabled_alerts            = optional(list(string), [])
-    email_account_admins       = optional(bool, true)
+    email_account_admins       = optional(string, "Enabled")
     email_addresses            = optional(list(string), [])
     retention_days             = optional(number, null)
     storage_account_access_key = optional(string, null)
