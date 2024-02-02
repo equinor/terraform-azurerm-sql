@@ -72,8 +72,4 @@ resource "azurerm_monitor_diagnostic_setting" "this" {
       category = metric.value
     }
   }
-
-  depends_on = [
-    azurerm_mssql_database.this
-  ]
 }
