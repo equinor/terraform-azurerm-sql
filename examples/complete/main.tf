@@ -63,8 +63,3 @@ module "sql" {
 
   tags = local.tags
 }
-
-resource "azurerm_mssql_database" "example" {
-  name      = "sqldb-${random_id.this.hex}"
-  server_id = module.sql.server_id
-}
