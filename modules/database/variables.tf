@@ -46,7 +46,7 @@ variable "ledger_enabled" {
 variable "license_type" {
   description = "Specifies the license type for this database"
   type        = string
-  default     = "LicenseIncluded"
+  default     = null
 }
 
 variable "max_size_gb" {
