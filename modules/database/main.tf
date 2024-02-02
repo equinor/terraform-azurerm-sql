@@ -11,6 +11,7 @@ resource "azurerm_mssql_database" "this" {
   sku_name                       = var.sku_name
   storage_account_type           = var.storage_account_type
 
+  tags = var.tags
   dynamic "long_term_retention_policy" {
     for_each = var.long_term_retention_policy != null ? [var.long_term_retention_policy] : []
     content {

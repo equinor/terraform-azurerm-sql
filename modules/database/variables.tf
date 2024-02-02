@@ -142,3 +142,9 @@ variable "diagnostic_setting_enabled_metric_categories" {
     "WorkloadManagement"
   ]
 }
+
+variable "tags" {
+  description = "A mapping of tags to assign to the resources."
+  type        = map(string)
+  default     = {}
+}
