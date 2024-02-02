@@ -41,11 +41,3 @@ module "sql" {
   azuread_administrator_login_username = "azureadadminlogin"
   azuread_administrator_object_id      = data.azurerm_client_config.current.object_id
 }
-
-module "database" {
-  source = "../../modules/database"
-
-  database_name              = "sqldb-${random_id.this.hex}"
-  server_id                  = module.sql.server_id
-  log_analytics_workspace_id = module.log_analytics.workspace_id
-}
