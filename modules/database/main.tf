@@ -8,7 +8,7 @@ resource "azurerm_mssql_database" "this" {
   ledger_enabled                 = var.ledger_enabled
   license_type                   = var.license_type
   max_size_gb                    = var.max_size_gb
-  sku_name                       = var.sku_name
+  sku_name                       = var.elastic_pool_id == null ? var.sku_name : "ElasticPool"
   storage_account_type           = var.storage_account_type
 
   tags = var.tags
