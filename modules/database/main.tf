@@ -12,6 +12,7 @@ resource "azurerm_mssql_database" "this" {
   storage_account_type           = var.storage_account_type
 
   tags = var.tags
+
   dynamic "long_term_retention_policy" {
     for_each = var.long_term_retention_policy != null ? [var.long_term_retention_policy] : []
     content {
@@ -21,6 +22,7 @@ resource "azurerm_mssql_database" "this" {
       week_of_year      = long_term_retention_policy.value.week_of_year
     }
   }
+
   threat_detection_policy {
     state                      = var.threat_detection_policy.state
     disabled_alerts            = var.threat_detection_policy.disabled_alerts
@@ -33,6 +35,7 @@ resource "azurerm_mssql_database" "this" {
 
   dynamic "identity" {
     for_each = length(var.identities) > 0 ? ["identity"] : []
+
     content {
       # UserAssigned identity is currently the only supported identity option
       type         = "UserAssigned"
