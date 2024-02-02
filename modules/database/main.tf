@@ -25,14 +25,14 @@ resource "azurerm_mssql_database" "this" {
     week_of_year      = var.long_term_retention_policy_week_of_year
   }
 
+  # Might be irrelevant when threat detection is configured at the server level.
+  # Might be relevant for serverless databases. If this is true, variables can be created.
   threat_detection_policy {
-    state                      = var.threat_detection_policy.state
-    disabled_alerts            = var.threat_detection_policy.disabled_alerts
-    email_account_admins       = var.threat_detection_policy.email_account_admins
-    email_addresses            = var.threat_detection_policy.email_addresses
-    retention_days             = var.threat_detection_policy.retention_days
-    storage_account_access_key = var.threat_detection_policy.storage_account_access_key
-    storage_endpoint           = var.threat_detection_policy.storage_endpoint
+    state                = "Disabled"
+    disabled_alerts      = []
+    email_account_admins = "Disabled"
+    email_addresses      = []
+    retention_days       = 0
   }
 
   dynamic "identity" {
