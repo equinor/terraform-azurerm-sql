@@ -133,6 +133,7 @@ variable "diagnostic_setting_name" {
 variable "diagnostic_setting_enabled_log_categories" {
   description = "A list of log categories to be enabled for this diagnostic setting."
   type        = list(string)
+
   default = [
     "AutomaticTuning",
     "Blocks",
@@ -147,13 +148,9 @@ variable "diagnostic_setting_enabled_log_categories" {
 }
 
 variable "diagnostic_setting_enabled_metric_categories" {
-  description = "A list of log categories to be enabled for this diagnostic setting."
+  description = "A list of metric categories to be enabled for this diagnostic setting."
   type        = list(string)
-  default = [
-    "Basic",
-    "InstanceAndAppAdvanced",
-    "WorkloadManagement"
-  ]
+  default     = []
 }
 
 variable "tags" {
