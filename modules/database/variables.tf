@@ -58,7 +58,7 @@ variable "max_size_gb" {
 variable "sku_name" {
   description = "Specifies the SKU to use for this database"
   type        = string
-  default     = null
+  default     = "Basic"
 }
 
 variable "storage_account_type" {
