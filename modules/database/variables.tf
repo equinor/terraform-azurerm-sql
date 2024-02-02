@@ -98,7 +98,7 @@ variable "threat_detection_policy" {
   default = {}
 }
 
-variable "identities" {
+variable "identity_ids" {
   description = "List of user assigned identities to be configured on this database"
   type        = list(string)
   default     = []
