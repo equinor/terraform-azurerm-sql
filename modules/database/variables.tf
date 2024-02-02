@@ -118,18 +118,11 @@ variable "diagnostic_setting_enabled_log_categories" {
     "Blocks",
     "DatabaseWaitStatistics",
     "Deadlocks",
-    "DevOpsOperationsAudit",
-    "DmsWorkers",
     "Errors",
-    "ExecRequests",
     "QueryStoreRuntimeStatistics",
     "QueryStoreWaitStatistics",
-    "RequestSteps",
     "SQLInsights",
-    "SqlRequests",
-    "SQLSecurityAuditEvents",
-    "Timeouts",
-    "Waits"
+    "Timeouts"
   ]
 }
 
