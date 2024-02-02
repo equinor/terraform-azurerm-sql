@@ -1,5 +1,12 @@
 # Changelog
 
+## [10.2.0](https://github.com/equinor/terraform-azurerm-sql/compare/v10.1.1...v10.2.0) (2024-02-02)
+
+
+### Features
+
+* add submodule `database` ([#121](https://github.com/equinor/terraform-azurerm-sql/issues/121)) ([5cfba0c](https://github.com/equinor/terraform-azurerm-sql/commit/5cfba0c5df3665a7ed34b70aae0f471753a71a80))
+
 ## [10.1.1](https://github.com/equinor/terraform-azurerm-sql/compare/v10.1.0...v10.1.1) (2023-12-20)
 
 
