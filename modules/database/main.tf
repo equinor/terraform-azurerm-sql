@@ -31,10 +31,13 @@ resource "azurerm_mssql_database" "this" {
     storage_endpoint           = var.threat_detection_policy.storage_endpoint
   }
 
-  identity {
-    # UserAssigned identity is currently the only supported identity option
-    type         = "UserAssigned"
-    identity_ids = var.identities
+  dynamic "identity" {
+    for_each = length(var.identities) > 0 ? ["identity"] : []
+    content {
+      # UserAssigned identity is currently the only supported identity option
+      type         = "UserAssigned"
+      identity_ids = var.identities
+    }
   }
 
   lifecycle {
