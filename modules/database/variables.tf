@@ -67,20 +67,28 @@ variable "storage_account_type" {
   default     = "Geo"
 }
 
-variable "long_term_retention_policy" {
-  description = "Sets the long term retention policy rules"
-  type = object({
-    weekly_retention  = optional(string, "P1M")
-    monthly_retention = optional(string, "PT0S")
-    yearly_retention  = optional(string, "PT0S")
-    week_of_year      = optional(number, 1)
-  })
-  default = {
-    weekly_retention  = "P1M"
-    monthly_retention = "PT0S"
-    yearly_retention  = "PT0S"
-    week_of_year      = "1"
-  }
+variable "long_term_retention_policy_weekly_retention" {
+  description = "The duration that weekly long-term backups should be retained. Value must be in an ISO 8601 duration format, e.g. `P1Y`, `P1M`, `P1W` or `P7D`."
+  type        = string
+  default     = "PT0S"
+}
+
+variable "long_term_retention_policy_monthly_retention" {
+  description = "The duration that monthly long-term backups should be retained. Value must be in an ISO 8601 duration format, e.g. `P1Y`, `P1M`, `P4W` or `P30D`."
+  type        = string
+  default     = "PT0S"
+}
+
+variable "long_term_retention_policy_yearly_retention" {
+  description = "The duration that yearly long-term backups should be retained. Value must be in an ISO 8601 duration format, e.g. `P1Y`, `P12M`, `P52W` or `P365D`"
+  type        = string
+  default     = "PT0S"
+}
+
+variable "long_term_retention_policy_week_of_year" {
+  description = "The week of year to take the yearly long-term backup. Value must be between `1` and `52`."
+  type        = number
+  default     = 1
 }
 
 variable "threat_detection_policy" {

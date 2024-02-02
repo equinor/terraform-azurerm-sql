@@ -13,14 +13,11 @@ resource "azurerm_mssql_database" "this" {
 
   tags = var.tags
 
-  dynamic "long_term_retention_policy" {
-    for_each = var.long_term_retention_policy != null ? [var.long_term_retention_policy] : []
-    content {
-      weekly_retention  = long_term_retention_policy.value.weekly_retention
-      monthly_retention = long_term_retention_policy.value.monthly_retention
-      yearly_retention  = long_term_retention_policy.value.yearly_retention
-      week_of_year      = long_term_retention_policy.value.week_of_year
-    }
+  long_term_retention_policy {
+    weekly_retention  = var.long_term_retention_policy_weekly_retention
+    monthly_retention = var.long_term_retention_policy_monthly_retention
+    yearly_retention  = var.long_term_retention_policy_yearly_retention
+    week_of_year      = var.long_term_retention_policy_week_of_year
   }
 
   threat_detection_policy {
