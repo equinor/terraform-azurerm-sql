@@ -41,8 +41,3 @@ module "sql" {
   azuread_administrator_login_username = "azureadadminlogin"
   azuread_administrator_object_id      = data.azurerm_client_config.current.object_id
 }
-
-resource "azurerm_mssql_database" "example" {
-  name      = "sqldb-${random_id.this.hex}"
-  server_id = module.sql.server_id
-}

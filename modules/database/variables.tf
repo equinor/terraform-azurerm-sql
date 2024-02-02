@@ -46,7 +46,7 @@ variable "ledger_enabled" {
 variable "license_type" {
   description = "Specifies the license type for this database"
   type        = string
-  default     = "LicenseIncluded"
+  default     = null
 }
 
 variable "max_size_gb" {
@@ -58,7 +58,7 @@ variable "max_size_gb" {
 variable "sku_name" {
   description = "Specifies the SKU to use for this database"
   type        = string
-  default     = null
+  default     = "Basic"
 }
 
 variable "storage_account_type" {
@@ -67,20 +67,40 @@ variable "storage_account_type" {
   default     = "Geo"
 }
 
-variable "long_term_retention_policy" {
-  description = "Sets the long term retention policy rules"
-  type = object({
-    weekly_retention  = optional(string, "P1M")
-    monthly_retention = optional(string, "PT0S")
-    yearly_retention  = optional(string, "PT0S")
-    week_of_year      = optional(number, 1)
-  })
-  default = {
-    weekly_retention  = "P1M"
-    monthly_retention = "PT0S"
-    yearly_retention  = "PT0S"
-    week_of_year      = "1"
-  }
+variable "short_term_retention_policy_retention_days" {
+  description = "The number of days that point-in-time restore backups should be retained. Value must be between `7` and `35`"
+  type        = number
+  default     = 7
+}
+
+variable "short_term_retention_policy_backup_interval_in_hours" {
+  description = "The hours between each differential backup. Value has to be 12 or 24, defaults to 12 hours."
+  type        = number
+  default     = 12
+}
+
+variable "long_term_retention_policy_weekly_retention" {
+  description = "The duration that weekly long-term backups should be retained. Value must be in an ISO 8601 duration format, e.g. `P1Y`, `P1M`, `P1W` or `P7D`."
+  type        = string
+  default     = "PT0S"
+}
+
+variable "long_term_retention_policy_monthly_retention" {
+  description = "The duration that monthly long-term backups should be retained. Value must be in an ISO 8601 duration format, e.g. `P1Y`, `P1M`, `P4W` or `P30D`."
+  type        = string
+  default     = "PT0S"
+}
+
+variable "long_term_retention_policy_yearly_retention" {
+  description = "The duration that yearly long-term backups should be retained. Value must be in an ISO 8601 duration format, e.g. `P1Y`, `P12M`, `P52W` or `P365D`"
+  type        = string
+  default     = "PT0S"
+}
+
+variable "long_term_retention_policy_week_of_year" {
+  description = "The week of year to take the yearly long-term backup. Value must be between `1` and `52`."
+  type        = number
+  default     = 1
 }
 
 variable "threat_detection_policy" {
@@ -98,7 +118,7 @@ variable "threat_detection_policy" {
   default = {}
 }
 
-variable "identities" {
+variable "identity_ids" {
   description = "List of user assigned identities to be configured on this database"
   type        = list(string)
   default     = []
@@ -107,12 +127,15 @@ variable "identities" {
 variable "diagnostic_setting_name" {
   description = "The name of this diagnostic setting."
   type        = string
-  default     = "audit-logs"
+  default     = "service-logs"
 }
 
 variable "diagnostic_setting_enabled_log_categories" {
   description = "A list of log categories to be enabled for this diagnostic setting."
   type        = list(string)
+
+  # Enable service logs by default.
+  # Ref: https://learn.microsoft.com/en-us/azure/azure-sql/database/metrics-diagnostic-telemetry-logging-streaming-export-configure?view=azuresql&tabs=azure-portal#databases-in-azure-sql-database
   default = [
     "AutomaticTuning",
     "Blocks",
@@ -127,13 +150,9 @@ variable "diagnostic_setting_enabled_log_categories" {
 }
 
 variable "diagnostic_setting_enabled_metric_categories" {
-  description = "A list of log categories to be enabled for this diagnostic setting."
+  description = "A list of metric categories to be enabled for this diagnostic setting."
   type        = list(string)
-  default = [
-    "Basic",
-    "InstanceAndAppAdvanced",
-    "WorkloadManagement"
-  ]
+  default     = []
 }
 
 variable "tags" {

@@ -4,23 +4,27 @@ resource "azurerm_mssql_database" "this" {
   elastic_pool_id                = var.elastic_pool_id
   collation                      = var.collation
   enclave_type                   = var.enclave_type
-  maintenance_configuration_name = var.elastic_pool_id == null ? var.maintenance_configuration_name : null # Conflifcts with elastic pool
+  maintenance_configuration_name = var.elastic_pool_id == null ? var.maintenance_configuration_name : null # Conflicts with elastic pool
   ledger_enabled                 = var.ledger_enabled
   license_type                   = var.license_type
   max_size_gb                    = var.max_size_gb
-  sku_name                       = var.sku_name
+  sku_name                       = var.elastic_pool_id == null ? var.sku_name : "ElasticPool"
   storage_account_type           = var.storage_account_type
 
   tags = var.tags
-  dynamic "long_term_retention_policy" {
-    for_each = var.long_term_retention_policy != null ? [var.long_term_retention_policy] : []
-    content {
-      weekly_retention  = long_term_retention_policy.value.weekly_retention
-      monthly_retention = long_term_retention_policy.value.monthly_retention
-      yearly_retention  = long_term_retention_policy.value.yearly_retention
-      week_of_year      = long_term_retention_policy.value.week_of_year
-    }
+
+  short_term_retention_policy {
+    retention_days           = var.short_term_retention_policy_retention_days
+    backup_interval_in_hours = var.short_term_retention_policy_backup_interval_in_hours
   }
+
+  long_term_retention_policy {
+    weekly_retention  = var.long_term_retention_policy_weekly_retention
+    monthly_retention = var.long_term_retention_policy_monthly_retention
+    yearly_retention  = var.long_term_retention_policy_yearly_retention
+    week_of_year      = var.long_term_retention_policy_week_of_year
+  }
+
   # Might be irrelevant when threat detection is configured at the server level.
   # Might be relevant for serverless databases. If this is true, variables can be created.
   threat_detection_policy {
@@ -32,11 +36,12 @@ resource "azurerm_mssql_database" "this" {
   }
 
   dynamic "identity" {
-    for_each = length(var.identities) > 0 ? ["identity"] : []
+    for_each = length(var.identity_ids) > 0 ? [0] : []
+
     content {
       # UserAssigned identity is currently the only supported identity option
       type         = "UserAssigned"
-      identity_ids = var.identities
+      identity_ids = var.identity_ids
     }
   }
 
@@ -67,8 +72,4 @@ resource "azurerm_monitor_diagnostic_setting" "this" {
       category = metric.value
     }
   }
-
-  depends_on = [
-    azurerm_mssql_database.this
-  ]
 }
