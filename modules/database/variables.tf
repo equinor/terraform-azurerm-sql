@@ -67,6 +67,18 @@ variable "storage_account_type" {
   default     = "Geo"
 }
 
+variable "short_term_retention_policy_retention_days" {
+  description = "The number of days that point-in-time restore backups should be retained. Value must be between `7` and `35`"
+  type        = number
+  default     = 7
+}
+
+variable "short_term_retention_policy_backup_interval_in_hours" {
+  description = "The hours between each differential backup. Value has to be 12 or 24, defaults to 12 hours."
+  type        = number
+  default     = 12
+}
+
 variable "long_term_retention_policy_weekly_retention" {
   description = "The duration that weekly long-term backups should be retained. Value must be in an ISO 8601 duration format, e.g. `P1Y`, `P1M`, `P1W` or `P7D`."
   type        = string

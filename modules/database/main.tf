@@ -13,6 +13,11 @@ resource "azurerm_mssql_database" "this" {
 
   tags = var.tags
 
+  short_term_retention_policy {
+    retention_days           = var.short_term_retention_policy_retention_days
+    backup_interval_in_hours = var.short_term_retention_policy_backup_interval_in_hours
+  }
+
   long_term_retention_policy {
     weekly_retention  = var.long_term_retention_policy_weekly_retention
     monthly_retention = var.long_term_retention_policy_monthly_retention
