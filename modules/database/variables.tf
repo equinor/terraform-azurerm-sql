@@ -134,6 +134,8 @@ variable "diagnostic_setting_enabled_log_categories" {
   description = "A list of log categories to be enabled for this diagnostic setting."
   type        = list(string)
 
+  # Enable service logs by default.
+  # Ref: https://learn.microsoft.com/en-us/azure/azure-sql/database/metrics-diagnostic-telemetry-logging-streaming-export-configure?view=azuresql&tabs=azure-portal#databases-in-azure-sql-database
   default = [
     "AutomaticTuning",
     "Blocks",
