@@ -103,21 +103,6 @@ variable "long_term_retention_policy_week_of_year" {
   default     = 1
 }
 
-variable "threat_detection_policy" {
-  description = "Set threat detection policy rules"
-  type = object({
-    state                      = optional(string, "Disabled")
-    disabled_alerts            = optional(list(string), [])
-    email_account_admins       = optional(string, "Enabled")
-    email_addresses            = optional(list(string), [])
-    retention_days             = optional(number, null)
-    storage_account_access_key = optional(string, null)
-    storage_endpoint           = optional(string, null)
-  })
-
-  default = {}
-}
-
 variable "identity_ids" {
   description = "List of user assigned identities to be configured on this database"
   type        = list(string)
