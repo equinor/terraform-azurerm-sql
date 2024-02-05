@@ -1,3 +1,7 @@
+locals {
+  diagnostic_setting_metric_categories = ["Basic", "InstanceAndAppAdvanced", "WorkloadManagement"]
+}
+
 resource "azurerm_mssql_database" "this" {
   name                           = var.database_name
   server_id                      = var.server_id
@@ -66,10 +70,19 @@ resource "azurerm_monitor_diagnostic_setting" "this" {
   }
 
   dynamic "metric" {
-    for_each = toset(var.diagnostic_setting_enabled_metric_categories)
+    for_each = toset(concat(local.diagnostic_setting_metric_categories, var.diagnostic_setting_enabled_metric_categories))
 
     content {
+      # Azure expects explicit configuration of both enabled and disabled metric categories.
       category = metric.value
+      enabled  = contains(var.diagnostic_setting_enabled_metric_categories, metric.value)
+
+      # The "retention_policy" block is deprecated, however while not configured by Terraform, it'll still be configured by Azure.
+      # Configure block to prevent conflict between Terraform and Azure until this issue has been resolved upstream in the Azure provider.
+      retention_policy {
+        enabled = false
+        days    = 0
+      }
     }
   }
 }
