@@ -75,6 +75,11 @@ resource "azurerm_monitor_diagnostic_setting" "this" {
     content {
       category = metric.value
       enabled  = contains(var.diagnostic_setting_enabled_metric_categories, metric.value)
+
+      retention_policy {
+        enabled = false
+        days    = 0
+      }
     }
   }
 }
