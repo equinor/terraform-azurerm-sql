@@ -1,5 +1,5 @@
 locals {
-  diagnostic_setting_metric_categories = ["Basic", "InstanceAppAdvanced", "WorkloadManagement"]
+  diagnostic_setting_metric_categories = ["Basic", "InstanceAndAppAdvanced", "WorkloadManagement"]
 }
 
 resource "azurerm_mssql_database" "this" {
