@@ -1,3 +1,7 @@
+locals {
+  diagnostic_setting_metric_categories = ["Basic", "InstanceAppAdvanced", "WorkloadManagement"]
+}
+
 resource "azurerm_mssql_database" "this" {
   name                           = var.database_name
   server_id                      = var.server_id
@@ -66,10 +70,11 @@ resource "azurerm_monitor_diagnostic_setting" "this" {
   }
 
   dynamic "metric" {
-    for_each = toset(var.diagnostic_setting_enabled_metric_categories)
+    for_each = toset(concat(local.diagnostic_setting_metric_categories, var.diagnostic_setting_enabled_metric_categories))
 
     content {
       category = metric.value
+      enabled  = contains(var.diagnostic_setting_enabled_metric_categories, metric.value)
     }
   }
 }
