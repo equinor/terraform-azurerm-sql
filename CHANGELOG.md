@@ -1,5 +1,12 @@
 # Changelog
 
+## [10.2.1](https://github.com/equinor/terraform-azurerm-sql/compare/v10.2.0...v10.2.1) (2024-02-05)
+
+
+### Bug Fixes
+
+* **database:** disabled metric categories not configured ([#124](https://github.com/equinor/terraform-azurerm-sql/issues/124)) ([07183eb](https://github.com/equinor/terraform-azurerm-sql/commit/07183ebc079f1965bfe625cce74534bdeb7f153f))
+
 ## [10.2.0](https://github.com/equinor/terraform-azurerm-sql/compare/v10.1.1...v10.2.0) (2024-02-02)
 
 
