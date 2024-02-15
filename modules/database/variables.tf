@@ -73,7 +73,7 @@ variable "str_policy_retention_days" {
   default     = 7
 }
 
-variable "str_policy_backup_interval_in_hours" {
+variable "str_policy_interval_hours" {
   description = "The hours between each differential backup. Value has to be 12 or 24, defaults to 12 hours."
   type        = number
   default     = 12
