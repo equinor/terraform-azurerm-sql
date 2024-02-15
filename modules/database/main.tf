@@ -18,15 +18,15 @@ resource "azurerm_mssql_database" "this" {
   tags = var.tags
 
   short_term_retention_policy {
-    retention_days           = var.short_term_retention_policy_retention_days
-    backup_interval_in_hours = var.short_term_retention_policy_backup_interval_in_hours
+    retention_days           = var.str_policy_retention_days
+    backup_interval_in_hours = var.str_policy_backup_interval_in_hours
   }
 
   long_term_retention_policy {
-    weekly_retention  = var.long_term_retention_policy_weekly_retention
-    monthly_retention = var.long_term_retention_policy_monthly_retention
-    yearly_retention  = var.long_term_retention_policy_yearly_retention
-    week_of_year      = var.long_term_retention_policy_week_of_year
+    weekly_retention  = var.ltr_policy_weekly_retention
+    monthly_retention = var.ltr_policy_monthly_retention
+    yearly_retention  = var.ltr_policy_yearly_retention
+    week_of_year      = var.ltr_policy_week_of_year
   }
 
   # Might be irrelevant when threat detection is configured at the server level.
