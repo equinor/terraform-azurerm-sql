@@ -1,7 +1,3 @@
-locals {
-  diagnostic_setting_metric_categories = ["Basic, InstanceAndAppAdvanced, WorkloadManagement"]
-}
-
 resource "random_password" "this" {
   length      = 128
   lower       = true
@@ -79,14 +75,21 @@ resource "azurerm_monitor_diagnostic_setting" "this" {
     }
   }
 
-  dynamic "metric" {
-    for_each = toset(concat(local.diagnostic_setting_metric_categories, var.diagnostic_setting_enabled_metric_categories))
+# The metrics will not be configured, because we don't want to allows users to set metric categories.
+# Since the metrics are not actually supported by this database, but we use it to route audit logs.
+  metric {
+    category = "Basic"
+    enabled  = false
+  }
 
-    content {
-      # Azure expects explicit configuration of both enabled and disabled metric categories.
-      category = metric.value
-      enabled  = contains(var.diagnostic_setting_enabled_metric_categories, metric.value)
-    }
+  metric {
+    category = "InstanceAndAppAdvanced"
+    enabled  = false
+  }
+
+  metric {
+    category = "WorkloadManagement"
+    enabled  = false
   }
 
   depends_on = [
