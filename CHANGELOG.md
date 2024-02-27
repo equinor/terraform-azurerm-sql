@@ -1,5 +1,12 @@
 # Changelog
 
+## [10.2.2](https://github.com/equinor/terraform-azurerm-sql/compare/v10.2.1...v10.2.2) (2024-02-27)
+
+
+### Bug Fixes
+
+* validate diagnostic setting log categories ([#131](https://github.com/equinor/terraform-azurerm-sql/issues/131)) ([6776866](https://github.com/equinor/terraform-azurerm-sql/commit/6776866bb63bceeaac10298527ee6ec7f92853c7))
+
 ## [10.2.1](https://github.com/equinor/terraform-azurerm-sql/compare/v10.2.0...v10.2.1) (2024-02-05)
 
 
