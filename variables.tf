@@ -90,6 +90,13 @@ variable "diagnostic_setting_enabled_log_categories" {
   description = "A list of log categories to be enabled for this diagnostic setting."
   type        = list(string)
   default     = ["SQLSecurityAuditEvents"]
+
+  # This diagnostic setting is created at the master database scope.
+  # The master database represents the server, thus not all database log categories are supported.
+  validation {
+    condition     = alltrue([for category in var.diagnostic_setting_enabled_log_categories : contains(["SQLSecurityAuditEvents", "DevOpsOperationsAudit"], category)])
+    error_message = "Supported log categories are \"SQLSecurityAuditEvents\" and \"DevOpsOperationsAudit\"."
+  }
 }
 
 variable "security_alert_policy_email_account_admins" {
