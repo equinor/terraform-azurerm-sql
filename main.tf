@@ -75,8 +75,7 @@ resource "azurerm_monitor_diagnostic_setting" "this" {
     }
   }
 
-# The metrics will not be configured, because we don't want to allows users to set metric categories.
-# Since the metrics are not actually supported by this database, but we use it to route audit logs.
+# Metrics are not supported at the master database scope.
   metric {
     category = "Basic"
     enabled  = false
