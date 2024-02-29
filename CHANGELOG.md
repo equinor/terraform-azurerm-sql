@@ -1,5 +1,12 @@
 # Changelog
 
+## [10.2.3](https://github.com/equinor/terraform-azurerm-sql/compare/v10.2.2...v10.2.3) (2024-02-29)
+
+
+### Bug Fixes
+
+* disallow null input value ([#133](https://github.com/equinor/terraform-azurerm-sql/issues/133)) ([09ae109](https://github.com/equinor/terraform-azurerm-sql/commit/09ae10920a1785fae2924724ef4c42e946a35f4f))
+
 ## [10.2.2](https://github.com/equinor/terraform-azurerm-sql/compare/v10.2.1...v10.2.2) (2024-02-27)
 
 
