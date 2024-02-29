@@ -37,11 +37,13 @@ variable "storage_container_name" {
 variable "azuread_administrator_login_username" {
   description = "The login username of the Azure AD administrator for this SQL server."
   type        = string
+  nullable    = false
 }
 
 variable "azuread_administrator_object_id" {
   description = "The object ID of the Azure AD administrator for this SQL server."
   type        = string
+  nullable    = false
 }
 
 variable "azuread_authentication_only" {
