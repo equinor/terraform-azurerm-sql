@@ -27,7 +27,7 @@ See [examples](examples).
 
 1. Open repository in dev container.
 
-## Testing
+## Testing with Go
 
 1. Change to the test directory:
 
@@ -51,6 +51,22 @@ See [examples](examples).
 
     ```console
     go test -timeout 60m
+    ```
+
+## Testing with Terraform test
+
+1. From module root:
+
+    ```console
+    terraform test -verbose
+    ```
+
+    > The `-verbose` flag will output the plan.
+
+1. To only run a specific test:
+
+    ```console
+    terraform test -filter='tests\basic-example.tftest.hcl' -verbose
     ```
 
 ## Contributing
