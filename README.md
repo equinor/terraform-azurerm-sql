@@ -14,59 +14,32 @@ See [examples](examples).
 
 ## Development
 
-1. Read [this document](https://code.visualstudio.com/docs/devcontainers/containers).
-
-1. Clone this repository.
-
-1. Configure Terraform variables in a file `.devcontainer/devcontainer.env`:
-
-    ```env
-    TF_VAR_resource_group_name=
-    TF_VAR_location=
-    ```
-
-1. Open repository in dev container.
-
-## Testing with Go
-
-1. Change to the test directory:
+1. Clone this repository:
 
     ```console
-    cd test
+    git clone https://github.com/equinor/terraform-azurerm-sql.git
     ```
 
-1. Login to Azure:
+1. Set environment variables:
 
     ```console
-    az login
+    export TF_VAR_resource_group_name=<RESOURCE_GROUP_NAME>
+    export TF_VAR_location=<LOCATION>
+    export ARM_SKIP_PROVIDER_REGISTRATION=true
     ```
 
-1. Set active subscription:
+## Testing
+
+1. Initialize working directory:
 
     ```console
-    az account set -s <SUBSCRIPTION_NAME_OR_ID>
+    terraform init
     ```
 
-1. Run tests:
+1. Execute tests:
 
     ```console
-    go test -timeout 60m
-    ```
-
-## Testing with Terraform test
-
-1. From module root:
-
-    ```console
-    terraform test -verbose
-    ```
-
-    > The `-verbose` flag will output the plan.
-
-1. To only run a specific test:
-
-    ```console
-    terraform test -filter='tests\basic-example.tftest.hcl' -verbose
+    terraform test
     ```
 
 ## Contributing
