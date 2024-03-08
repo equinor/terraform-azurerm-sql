@@ -58,6 +58,12 @@ variable "administrator_login" {
   default     = null
 }
 
+variable "system_assigned_identity_enabled" {
+  description = "Should the system-assigned identity be enabled for this SQL server?"
+  type        = bool
+  default     = false
+}
+
 variable "identity_ids" {
   description = "A list of user-assigned identity IDs to be assigned to this SQL server."
   type        = list(string)
