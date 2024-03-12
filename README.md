@@ -20,6 +20,18 @@ See [examples](examples).
     git clone https://github.com/equinor/terraform-azurerm-sql.git
     ```
 
+1. Login to Azure:
+
+    ```console
+    az login
+    ```
+
+1. Set active subscription:
+
+    ```console
+    az account set -s <SUBSCRIPTION_NAME_OR_ID>
+    ```
+
 1. Set environment variables:
 
     ```console
@@ -29,6 +41,12 @@ See [examples](examples).
     ```
 
 ## Testing
+
+Run [unit tests](./tests/unit.tftest.hcl) for usage examples.
+
+> These tests will only run `plan` in the background.
+>
+> To view the plan output, add `-verbose` to the `terraform test` command. This is recommended when executing specific tests, given the size of the output depending on the number of tests run.
 
 1. Initialize working directory:
 
@@ -41,6 +59,26 @@ See [examples](examples).
     ```console
     terraform test
     ```
+
+### Execute a specific test
+
+PowerShell:
+
+```console
+terraform test -filter='tests\<test_file>.tftest.hcl'
+```
+
+Windows:
+
+```console
+terraform test -filter=tests\<test_file>.tftest.hcl
+```
+
+Linux, Mac OS, and UNIX:
+
+```console
+terraform test -filter=tests/<test_file>.tftest.hcl
+```
 
 ## Contributing
 
