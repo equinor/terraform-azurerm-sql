@@ -1,11 +1,7 @@
 provider "azurerm" {
   storage_use_azuread = true
 
-  features {
-    resource_group {
-      prevent_deletion_if_contains_resources = false # The feature flag can be removed after clean-up.
-    }
-  }
+  features {}
 }
 
 data "azurerm_client_config" "current" {}
@@ -35,7 +31,7 @@ module "storage" {
 
 module "sql" {
   # source  = "equinor/sql/azurerm"
-  # version = "10.2.3"
+  # version = "0.0.0"
   source = "../.."
 
   server_name                = "sql-${random_id.this.hex}"
@@ -51,7 +47,7 @@ module "sql" {
 
 module "database" {
   # source  = "equinor/sql/azurerm//modules/database"
-  # version = "10.2.3"
+  # version = "0.0.0"
   source = "../../modules/database"
 
   database_name              = "sqldb-${random_id.this.hex}"
