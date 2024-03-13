@@ -42,8 +42,6 @@ See [examples](examples).
 
 ## Testing
 
-Run [unit tests](./tests/unit.tftest.hcl) for usage examples.
-
 1. Initialize working directory:
 
     ```console
