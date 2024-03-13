@@ -44,8 +44,6 @@ See [examples](examples).
 
 Run [unit tests](./tests/unit.tftest.hcl) for usage examples.
 
-> For more information on the `terraform test` command: [Terraform Docs - Command: test](https://developer.hashicorp.com/terraform/cli/commands/test)
-
 1. Initialize working directory:
 
     ```console
@@ -57,6 +55,8 @@ Run [unit tests](./tests/unit.tftest.hcl) for usage examples.
     ```console
     terraform test
     ```
+
+    See [`terraform test` command documentation](https://developer.hashicorp.com/terraform/cli/commands/test) for options.
 
 ## Contributing
 
