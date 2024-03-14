@@ -76,6 +76,7 @@ jobs:
             path=$(echo "$test_run" | jq -r .path)
             run=$(echo "$test_run" | jq -r .run)
             status=$(echo "$test_run" | jq -r .status)
+            error_message=$(echo "$test_run" | jq -r .error_message)
             status_emoji="heavy_minus_sign" # neutral/unknown by default
 
             if [[ "$status" == "pass" ]]; then
