@@ -75,7 +75,7 @@ resource "azurerm_monitor_diagnostic_setting" "this" {
     }
   }
 
-# Metrics are not supported at the master database scope.
+  # Metrics are not supported at the master database scope.
   metric {
     category = "Basic"
     enabled  = false
