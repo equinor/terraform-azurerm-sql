@@ -85,7 +85,7 @@ jobs:
             error_message=""
             if [[ "$status" == "fail" ]]; then
               status_emoji="x"
-              error_message=$(echo "$tftest_results" | jq -r '. | select(."@level"=="error") | .diagnostic.detail')
+              error_message=$(echo "$tftest_results" | jq -r '. | select(."@level"=="error") | .diagnostic.detail | tostring')
             fi
 
             table_rows+=("| \`$path\` | \`$run\` | :$status_emoji:**\`$status\`** | $error_message |")
