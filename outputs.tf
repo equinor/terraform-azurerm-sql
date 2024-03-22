@@ -20,11 +20,11 @@ output "administrator_password" {
 }
 
 output "server_security_alert_policy_id" {
-  description = "The ID of the server security alert policy."
+  description = "The ID of this SQL server security alert policy."
   value       = azurerm_mssql_server_security_alert_policy.this.id
 }
 
 output "server_vulnerability_assessment_id" {
-  description = "The ID of the server vulnerability assessment."
+  description = "The ID of this SQL server vulnerability assessment."
   value       = azurerm_mssql_server_vulnerability_assessment.this.id
 }
