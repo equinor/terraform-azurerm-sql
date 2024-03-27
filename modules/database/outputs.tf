@@ -1,11 +1,9 @@
 output "database_id" {
-  description = "Resource id of the database"
+  description = "The ID of this SQL database."
   value       = azurerm_mssql_database.this.id
 }
 
 output "database_name" {
-  description = "Name of the database"
+  description = "The name of this SQL database."
   value       = azurerm_mssql_database.this.name
 }
-
-
