@@ -19,41 +19,41 @@ variable "log_analytics_workspace_id" {
 }
 
 variable "storage_account_id" {
-  description = "The ID of the Storage account to use for this SQL server."
+  description = "The ID of the Storage account to use for SQL vulnerability assessment."
   type        = string
 }
 
 variable "storage_blob_endpoint" {
-  description = "The blob endpoint of the Storage account to use for this SQL server."
+  description = "The blob endpoint of the Storage account to use for SQL vulnerability assessment."
   type        = string
 }
 
 variable "storage_container_name" {
-  description = "The name of the Storage container to use for this SQL server."
+  description = "The name of the Storage container to use for SQL vulnerability assessment."
   type        = string
   default     = "vulnerability-assessment"
 }
 
 variable "azuread_administrator_login_username" {
-  description = "The login username of the Azure AD administrator for this SQL server."
+  description = "The login username of the Microsoft Entra administrator for this SQL server."
   type        = string
   nullable    = false
 }
 
 variable "azuread_administrator_object_id" {
-  description = "The object ID of the Azure AD administrator for this SQL server."
+  description = "The object ID of the Microsoft Entra administrator for this SQL server."
   type        = string
   nullable    = false
 }
 
 variable "azuread_authentication_only" {
-  description = "Should Azure AD authentication only be enabled for this SQL server?"
+  description = "Should Microsoft Entra authentication only be enabled for this SQL server?"
   type        = bool
   default     = true
 }
 
 variable "administrator_login" {
-  description = "The login username of the administrator of this SQL server."
+  description = "The login username of the administrator for this SQL server."
   type        = string
   default     = null
 }
@@ -65,7 +65,7 @@ variable "identity_ids" {
 }
 
 variable "firewall_rules" {
-  description = "A map of firewall rules for this SQL server."
+  description = "A map of firewall rules to be configured for this SQL server."
 
   type = map(object({
     name             = string
@@ -102,37 +102,37 @@ variable "diagnostic_setting_enabled_log_categories" {
 }
 
 variable "security_alert_policy_email_account_admins" {
-  description = "Are alerts for this SQL server sent to subscription owners and administrators?"
+  description = "Should security alerts for this SQL server be sent to subscription owners?"
   type        = bool
   default     = false
 }
 
 variable "security_alert_policy_email_addresses" {
-  description = "A list of custom email addresses to which the alert for this SQL server is sent."
+  description = "A list of email addresses to send security alerts for this SQL server to."
   type        = list(string)
   default     = []
 }
 
 variable "vulnerability_assessment_recurring_scans_enabled" {
-  description = "Specifies if recurring scans is enabled or disabled."
+  description = "Should SQL vulnerability assessment recurring scans be enabled?"
   type        = bool
   default     = true
 }
 
 variable "vulnerability_assessment_recurring_scans_email_subscription_admins" {
-  description = "Specifies if the schedule scan notification will be sent to the subscriptions administrators for this SQL server."
+  description = "Should notifications for SQL vulnerability assessment recurring scans be sent to subscription owners?"
   type        = bool
   default     = true
 }
 
 variable "vulnerability_assessment_recurring_scans_emails" {
-  description = "Specifies an array of email addresses to which the scan notification."
+  description = "A list of email addresses to send notifications for SQL vulnerability assessment recurring scans to."
   type        = list(string)
   default     = []
 }
 
 variable "tags" {
-  description = "A mapping of tags to assign to the resources."
+  description = "A map of tags to assign to the resources."
   type        = map(string)
   default     = {}
 }
