@@ -1,5 +1,12 @@
 # Changelog
 
+## [10.3.1](https://github.com/equinor/terraform-azurerm-sql/compare/v10.3.0...v10.3.1) (2024-03-27)
+
+
+### Miscellaneous Chores
+
+* update variable and output descriptions ([#139](https://github.com/equinor/terraform-azurerm-sql/issues/139)) ([d0c30c3](https://github.com/equinor/terraform-azurerm-sql/commit/d0c30c32dd334598c250b152f77d767effe38d51))
+
 ## [10.3.0](https://github.com/equinor/terraform-azurerm-sql/compare/v10.2.3...v10.3.0) (2024-03-22)
 
 
