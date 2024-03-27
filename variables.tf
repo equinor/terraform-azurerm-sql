@@ -29,7 +29,7 @@ variable "storage_blob_endpoint" {
 }
 
 variable "storage_container_name" {
-  description = "The name of the Storage container to use SQL vulnerability assessment."
+  description = "The name of the Storage container to use for SQL vulnerability assessment."
   type        = string
   default     = "vulnerability-assessment"
 }
@@ -132,7 +132,7 @@ variable "vulnerability_assessment_recurring_scans_emails" {
 }
 
 variable "tags" {
-  description = "A mapping of tags to assign to the resources."
+  description = "A map of tags to assign to the resources."
   type        = map(string)
   default     = {}
 }
