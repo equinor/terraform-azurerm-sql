@@ -55,4 +55,4 @@ See [examples](examples).
 
 ## Contributing
 
-See [Contributing guidelines](CONTRIBUTING.md).
+See [Contributing guidelines](https://github.com/equinor/terraform-baseline/blob/main/CONTRIBUTING.md).
