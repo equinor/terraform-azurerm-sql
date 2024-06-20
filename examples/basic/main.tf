@@ -11,7 +11,8 @@ resource "random_id" "this" {
 }
 
 module "log_analytics" {
-  source = "github.com/equinor/terraform-azurerm-log-analytics?ref=v1.5.0"
+  source  = "equinor/log-analytics/azurerm"
+  version = "2.2.0"
 
   workspace_name      = "log-${random_id.this.hex}"
   resource_group_name = var.resource_group_name
@@ -19,7 +20,8 @@ module "log_analytics" {
 }
 
 module "storage" {
-  source = "github.com/equinor/terraform-azurerm-storage?ref=v11.0.0"
+  source  = "equinor/storage/azurerm"
+  version = "12.3.0"
 
   account_name               = "st${random_id.this.hex}"
   resource_group_name        = var.resource_group_name
@@ -28,7 +30,8 @@ module "storage" {
 }
 
 module "sql" {
-  # source = "github.com/equinor/terraform-azurerm-sql?ref=v0.0.0"
+  # source  = "equinor/sql/azurerm"
+  # version = "0.0.0"
   source = "../.."
 
   server_name                = "sql-${random_id.this.hex}"
@@ -40,4 +43,14 @@ module "sql" {
 
   azuread_administrator_login_username = "azureadadminlogin"
   azuread_administrator_object_id      = data.azurerm_client_config.current.object_id
+}
+
+module "database" {
+  # source  = "equinor/sql/azurerm//modules/database"
+  # version = "0.0.0"
+  source = "../../modules/database"
+
+  database_name              = "sqldb-${random_id.this.hex}"
+  server_id                  = module.sql.server_id
+  log_analytics_workspace_id = module.log_analytics.workspace_id
 }
