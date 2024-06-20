@@ -1,5 +1,12 @@
 # Changelog
 
+## [10.3.2](https://github.com/equinor/terraform-azurerm-sql/compare/v10.3.1...v10.3.2) (2024-06-20)
+
+
+### Bug Fixes
+
+* **database:** remove deprecated argument `retention_policy` for resource `azurerm_monitor_diagnostic_setting` ([#145](https://github.com/equinor/terraform-azurerm-sql/issues/145)) ([9a8cb07](https://github.com/equinor/terraform-azurerm-sql/commit/9a8cb07d0a586600470781790261a000c9d6ac0c))
+
 ## [10.3.1](https://github.com/equinor/terraform-azurerm-sql/compare/v10.3.0...v10.3.1) (2024-03-27)
 
 
