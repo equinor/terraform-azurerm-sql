@@ -1,5 +1,12 @@
 # Changelog
 
+## [10.4.0](https://github.com/equinor/terraform-azurerm-sql/compare/v10.3.2...v10.4.0) (2024-07-22)
+
+
+### Features
+
+* output fully qualified domain name ([#148](https://github.com/equinor/terraform-azurerm-sql/issues/148)) ([bc3961d](https://github.com/equinor/terraform-azurerm-sql/commit/bc3961da68d4507fbddc868cb6d6a072e2cdf16f))
+
 ## [10.3.2](https://github.com/equinor/terraform-azurerm-sql/compare/v10.3.1...v10.3.2) (2024-06-20)
 
 
