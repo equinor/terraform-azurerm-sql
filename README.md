@@ -4,10 +4,19 @@
 [![Equinor Terraform Baseline](https://img.shields.io/badge/Equinor%20Terraform%20Baseline-1.0.0-blueviolet)](https://github.com/equinor/terraform-baseline)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 
-Terraform module which creates Azure SQL resources:
+Terraform module which creates Azure SQL resources.
 
-- Creates an Azure SQL server in the provided resource group.
-- Stores vulnerability assessments in the provided Storage account.
+## Features
+
+- Microsoft Entra administrator enforced.
+- Microsoft Entra-only authentication enabled by default.
+- Audit logs sent to given Log Analytics workspace by default.
+- Vulnerability assessments stored in given Storage account.
+
+## Prerequisites
+
+- Azure role `Contributor` at the resource group scope.
+- Azure role `Role Based Access Control Administrator` at the Storage account scope.
 
 ## Development
 
