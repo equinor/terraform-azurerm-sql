@@ -1,5 +1,12 @@
 # Changelog
 
+## [10.4.1](https://github.com/equinor/terraform-azurerm-sql/compare/v10.4.0...v10.4.1) (2024-08-26)
+
+
+### Documentation
+
+* add features section to README ([a1df9e3](https://github.com/equinor/terraform-azurerm-sql/commit/a1df9e39d2659c22356b913a03fbf97b40915cd6))
+
 ## [10.4.0](https://github.com/equinor/terraform-azurerm-sql/compare/v10.3.2...v10.4.0) (2024-07-22)
 
 
