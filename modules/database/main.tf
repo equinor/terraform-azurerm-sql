@@ -1,5 +1,33 @@
 locals {
+  resource_group_name = provider::azurerm::parse_resource_id(var.server_id).resource_group_name
+
   diagnostic_setting_metric_categories = ["Basic", "InstanceAndAppAdvanced", "WorkloadManagement"]
+
+  metric_alerts = {
+    "storage_percent" = {
+      name        = "High storage usage"
+      description = ""
+      metric_name = "storage_percent"
+      aggregation = "Maxium"
+      operator    = "GreaterThan"
+      threshold   = 80
+      frequency   = "PT1M"
+      window_size = "PT5M"
+      severity    = 2
+    }
+
+    "cpu_percent" = {
+      name        = "High CPU usage"
+      description = ""
+      metric_name = "cpu_percent"
+      aggregation = "Average"
+      operator    = "GreaterThan"
+      threshold   = 80
+      frequency   = "PT1M"
+      window_size = "PT5M"
+      severity    = 2
+    }
+  }
 }
 
 resource "azurerm_mssql_database" "this" {
@@ -78,4 +106,31 @@ resource "azurerm_monitor_diagnostic_setting" "this" {
       enabled  = contains(var.diagnostic_setting_enabled_metric_categories, metric.value)
     }
   }
+}
+
+resource "azurerm_monitor_metric_alert" "this" {
+  for_each = local.metric_alerts
+
+  name                = "${each.value.name} - ${azurerm_mssql_database.this.name}"
+  resource_group_name = local.resource_group_name
+  scopes              = [azurerm_mssql_database.this.id]
+  description         = each.value.description
+
+  criteria {
+    metric_namespace = "Microsoft.Sql/servers/databases"
+    metric_name      = each.value.metric_name
+    aggregation      = each.value.aggregation
+    operator         = each.value.operator
+    threshold        = each.value.threshold
+  }
+
+  frequency   = each.value.frequency
+  window_size = each.value.window_size
+  severity    = each.value.severity
+
+  action {
+    action_group_id = var.action_group_id
+  }
+
+  tags = var.tags
 }
