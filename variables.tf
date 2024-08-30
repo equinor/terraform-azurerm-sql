@@ -26,6 +26,8 @@ variable "storage_account_id" {
 variable "storage_blob_endpoint" {
   description = "The blob endpoint of the Storage account to use for SQL vulnerability assessment."
   type        = string
+  nullable    = true
+  default     = null
 }
 
 variable "storage_container_name" {
