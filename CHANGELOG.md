@@ -1,5 +1,12 @@
 # Changelog
 
+## [10.5.0](https://github.com/equinor/terraform-azurerm-sql/compare/v10.4.1...v10.5.0) (2024-08-30)
+
+
+### Features
+
+* configure default Storage blob endpoint ([#153](https://github.com/equinor/terraform-azurerm-sql/issues/153)) ([0f162ef](https://github.com/equinor/terraform-azurerm-sql/commit/0f162ef62fb8bf2cc8b513dbf2d26e58487156fc))
+
 ## [10.4.1](https://github.com/equinor/terraform-azurerm-sql/compare/v10.4.0...v10.4.1) (2024-08-26)
 
 
