@@ -13,6 +13,12 @@ variable "log_analytics_workspace_id" {
   type        = string
 }
 
+variable "action_group_id" {
+  description = "The ID of the action group to send alerts to."
+  type        = string
+  nullable    = false
+}
+
 variable "elastic_pool_id" {
   description = "The ID of an elastic pool to create this SQL database in."
   type        = string
