@@ -107,19 +107,10 @@ resource "azurerm_mssql_server_security_alert_policy" "this" {
   email_addresses      = var.security_alert_policy_email_addresses
 }
 
-data "azurerm_mssql_server" "this" {
-  name                = azurerm_mssql_server.this.name
-  resource_group_name = azurerm_mssql_server.this.resource_group_name
-}
-
 resource "azurerm_role_assignment" "this" {
   scope                = var.storage_account_id
   role_definition_name = "Storage Blob Data Contributor"
-  principal_id         = data.azurerm_mssql_server.this.identity[0].principal_id
-  # This resource sometimes throws the following error: The argument "principal_id" is required, but no definition was found.
-  # To fix this issue, get "principal_id" from a data source to read its value during the the apply phase instead of the plan phase.
-  # This ensures the SQL server system-assigned identity is always enabled before trying to read its principal ID.
-  # Ref: https://developer.hashicorp.com/terraform/language/data-sources#data-resource-behavior
+  principal_id         = azurerm_mssql_server.this.identity[0].principal_id
 }
 
 resource "azurerm_mssql_server_vulnerability_assessment" "this" {
