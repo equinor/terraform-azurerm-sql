@@ -1,5 +1,12 @@
 # Changelog
 
+## [10.5.1](https://github.com/equinor/terraform-azurerm-sql/compare/v10.5.0...v10.5.1) (2024-09-30)
+
+
+### Bug Fixes
+
+* prevent replacement of role assignment for any update to server ([#155](https://github.com/equinor/terraform-azurerm-sql/issues/155)) ([f5ca1f7](https://github.com/equinor/terraform-azurerm-sql/commit/f5ca1f7a9d07a70e032b34e353031ea421f962f4))
+
 ## [10.5.0](https://github.com/equinor/terraform-azurerm-sql/compare/v10.4.1...v10.5.0) (2024-08-30)
 
 
