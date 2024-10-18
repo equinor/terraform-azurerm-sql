@@ -41,7 +41,7 @@ resource "azurerm_mssql_server" "this" {
 }
 
 resource "azurerm_mssql_firewall_rule" "this" {
-  for_each = var.firewall_rules
+  for_each = merge(local.firewall_rules, var.firewall_rules)
 
   name             = each.value.name
   server_id        = azurerm_mssql_server.this.id
