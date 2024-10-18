@@ -75,13 +75,14 @@ variable "firewall_rules" {
     end_ip_address   = string
   }))
 
-  default = {
-    "azure" = {
-      name             = "AllowAllWindowsAzureIps"
-      start_ip_address = "0.0.0.0"
-      end_ip_address   = "0.0.0.0"
-    }
-  }
+  default = {}
+}
+
+variable "firewall_rules_allow_azure_services" {
+  description = "Should Azure services be allowed to bypass the firewall rules for this SQL server?"
+  type        = bool
+  default     = true
+  nullable    = false
 }
 
 variable "diagnostic_setting_name" {
