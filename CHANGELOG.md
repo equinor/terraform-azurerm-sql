@@ -1,5 +1,12 @@
 # Changelog
 
+## [10.6.0](https://github.com/equinor/terraform-azurerm-sql/compare/v10.5.1...v10.6.0) (2024-10-18)
+
+
+### Code Refactoring
+
+* simplify firewall rules exception configuration ([#157](https://github.com/equinor/terraform-azurerm-sql/issues/157)) ([5b7bf80](https://github.com/equinor/terraform-azurerm-sql/commit/5b7bf80dc6ec967baabc4f67f12dec632e614a6b))
+
 ## [10.5.1](https://github.com/equinor/terraform-azurerm-sql/compare/v10.5.0...v10.5.1) (2024-09-30)
 
 
