@@ -43,12 +43,6 @@ variable "ledger_enabled" {
   default     = false
 }
 
-variable "license_type" {
-  description = "Specifies a license type for this SQL database."
-  type        = string
-  default     = null
-}
-
 variable "max_size_gb" {
   description = "Sets a maximum possible size for this SQL database."
   type        = number

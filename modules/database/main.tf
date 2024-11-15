@@ -10,10 +10,12 @@ resource "azurerm_mssql_database" "this" {
   enclave_type                   = var.enclave_type
   maintenance_configuration_name = var.elastic_pool_id == null ? var.maintenance_configuration_name : null # Conflicts with elastic pool
   ledger_enabled                 = var.ledger_enabled
-  license_type                   = var.license_type
   max_size_gb                    = var.max_size_gb
   sku_name                       = var.elastic_pool_id == null ? var.sku_name : "ElasticPool"
   storage_account_type           = var.storage_account_type
+
+  # Should be managed by owner of existing license, usually platform team.
+  license_type = null
 
   tags = var.tags
 
@@ -52,8 +54,12 @@ resource "azurerm_mssql_database" "this" {
   lifecycle {
     # Protect database from accidental deletion
     prevent_destroy = true
-  }
 
+    ignore_changes = [
+      # Should be managed by owner of existing license, usually platform team.
+      license_type
+    ]
+  }
 }
 
 resource "azurerm_monitor_diagnostic_setting" "this" {
