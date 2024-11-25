@@ -1,5 +1,16 @@
 # Changelog
 
+## [11.0.0](https://github.com/equinor/terraform-azurerm-sql/compare/v10.6.0...v11.0.0) (2024-11-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* **database:** remove variable `license_type` for submodule `database`.
+
+### Bug Fixes
+
+* **database:** license type should be managed by owner of existing license ([#159](https://github.com/equinor/terraform-azurerm-sql/issues/159)) ([9d38300](https://github.com/equinor/terraform-azurerm-sql/commit/9d3830003147899a9bda63bc7928fe0748d3e879))
+
 ## [10.6.0](https://github.com/equinor/terraform-azurerm-sql/compare/v10.5.1...v10.6.0) (2024-10-18)
 
 
