@@ -104,6 +104,13 @@ variable "diagnostic_setting_enabled_log_categories" {
   }
 }
 
+variable "extended_auditing_policy_log_monitoring_enabled" {
+  description = "Should audit events for this SQL server be sent to the given Log Analytics workspace? If value is set to false, audit events are sent to the given Storage account instead."
+  type        = bool
+  default     = true
+  nullable    = false
+}
+
 variable "security_alert_policy_email_account_admins" {
   description = "Should security alerts for this SQL server be sent to subscription owners?"
   type        = bool

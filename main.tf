@@ -51,14 +51,16 @@ resource "azurerm_mssql_firewall_rule" "this" {
 
 resource "azurerm_mssql_server_extended_auditing_policy" "this" {
   server_id              = azurerm_mssql_server.this.id
-  log_monitoring_enabled = true
+  log_monitoring_enabled = var.extended_auditing_policy_log_monitoring_enabled
+  storage_endpoint       = !var.extended_auditing_policy_log_monitoring_enabled ? coalesce(var.storage_blob_endpoint, local.storage_blob_endpoint) : null
 
-  # The following arguments are irrelevant when log_monitoring_enabled = true:
-  storage_endpoint                        = null
+  # The following arguments are irrelevant when authenticating to the Storage account using Managed Identity:
   storage_account_access_key              = null
   storage_account_access_key_is_secondary = null
   storage_account_subscription_id         = null
   retention_in_days                       = null
+
+  depends_on = [azurerm_role_assignment.this]
 }
 
 # Create diagnostic setting for master database to enable server wide.
