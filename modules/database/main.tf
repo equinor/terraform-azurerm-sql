@@ -13,6 +13,7 @@ resource "azurerm_mssql_database" "this" {
   max_size_gb                    = var.max_size_gb
   sku_name                       = var.elastic_pool_id == null ? var.sku_name : "ElasticPool"
   storage_account_type           = var.storage_account_type
+  auto_pause_delay_in_minutes    = var.auto_pause_delay_in_minutes
 
   # Should be managed by owner of existing license, usually platform team.
   license_type = null
