@@ -140,7 +140,7 @@ variable "tags" {
   default     = {}
 }
 
-variable "min_capacity " {
+variable "min_capacity" {
   description = "Minimal capacity that database will always have allocated, if not paused. Only settable for Serverless databases."
   type        = number
   default     = 0
