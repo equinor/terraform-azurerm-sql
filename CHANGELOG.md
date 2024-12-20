@@ -1,5 +1,13 @@
 # Changelog
 
+## [11.1.0](https://github.com/equinor/terraform-azurerm-sql/compare/v11.0.0...v11.1.0) (2024-12-20)
+
+
+### Features
+
+* **database:** configure auto pause delay ([#162](https://github.com/equinor/terraform-azurerm-sql/issues/162)) ([a13b7a5](https://github.com/equinor/terraform-azurerm-sql/commit/a13b7a5b822b92649e35179161a44dbb2912f854))
+* **database:** configure minimal capacity ([#163](https://github.com/equinor/terraform-azurerm-sql/issues/163)) ([1e0a0c8](https://github.com/equinor/terraform-azurerm-sql/commit/1e0a0c813410b065a396dfd8dbe977bbd82023e3))
+
 ## [11.0.0](https://github.com/equinor/terraform-azurerm-sql/compare/v10.6.0...v11.0.0) (2024-11-15)
 
 
