@@ -141,7 +141,7 @@ variable "tags" {
 }
 
 variable "min_capacity" {
-  description = "Minimal capacity that database will always have allocated, if not paused. Only settable for Serverless databases."
+  description = "Minimal capacity that this SQL database will always have allocated if not paused. Value must be greater than 0 if using a SKU in the serverless compute tier."
   type        = number
   default     = 0
 }
