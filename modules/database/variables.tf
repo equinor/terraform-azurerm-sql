@@ -139,3 +139,9 @@ variable "tags" {
   type        = map(string)
   default     = {}
 }
+
+variable "auto_pause_delay_in_minutes" {
+  description = "Time in minutes after which this SQL database is automatically paused. Value must be greater than 0 if using a SKU in the serverless compute tier."
+  type        = number
+  default     = 0
+}
