@@ -144,4 +144,9 @@ variable "min_capacity" {
   description = "Minimal capacity that database will always have allocated, if not paused. Only settable for Serverless databases."
   type        = number
   default     = 0
+
+  validation {
+    condition     = contains(["GP_S_Gen5_1", "GP_S_Gen5_2", "GP_S_Gen5_4", "GP_S_Gen5_6", "GP_S_Gen5_8"], var.min_capacity)
+    error_message = "Must be a serverless SKU."
+  }
 }
