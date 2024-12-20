@@ -144,4 +144,9 @@ variable "auto_pause_delay_in_minutes" {
   description = "Time in minutes after which database is automatically paused. Only settable for Serverless databases."
   type        = number
   default     = 0
+
+  validation {
+    condition     = contains(["GP_S_Gen5_1", "GP_S_Gen5_2", "GP_S_Gen5_4", "GP_S_Gen5_6", "GP_S_Gen5_8"], var.auto_pause_delay_in_minutes)
+    error_message = "Must be a serverless SKU."
+  }
 }
