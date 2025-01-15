@@ -50,7 +50,7 @@ variable "max_size_gb" {
 }
 
 variable "sku_name" {
-  description = "The name of the SKU to use for this SQL database."
+  description = "The name of the SKU to use for this SQL database. Possible values include \"Basic\" (Basic service tier), \"S1\" (Standard service tier, 10 DTUs), \"GP_Gen5_2\" (General Purpose service tier, provisioned compute tier, 2 vCores) and \"GP_S_Gen5_1\" (General Purpose service tier, serverless compute tier, max 1 vCore)."
   type        = string
   default     = "Basic"
 }
