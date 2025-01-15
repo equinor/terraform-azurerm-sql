@@ -1,5 +1,12 @@
 # Changelog
 
+## [11.1.1](https://github.com/equinor/terraform-azurerm-sql/compare/v11.1.0...v11.1.1) (2025-01-15)
+
+
+### Bug Fixes
+
+* **database:** description for variable `sku_name` missing valid values ([#165](https://github.com/equinor/terraform-azurerm-sql/issues/165)) ([fa1a595](https://github.com/equinor/terraform-azurerm-sql/commit/fa1a595d0d8b2a2ab92408fd5b945b378b21d892))
+
 ## [11.1.0](https://github.com/equinor/terraform-azurerm-sql/compare/v11.0.0...v11.1.0) (2024-12-20)
 
 
