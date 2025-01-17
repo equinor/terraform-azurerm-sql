@@ -38,25 +38,10 @@ az sql server update -n <SERVER_NAME> -g <RESOURCE_GROUP_NAME> --identity-type S
 
 ## Development
 
-1. Read [this document](https://code.visualstudio.com/docs/devcontainers/containers).
-
-1. Clone this repository.
-
-1. Configure Terraform variables in a file `.devcontainer/devcontainer.env`:
-
-    ```env
-    TF_VAR_resource_group_name=
-    TF_VAR_location=
-    ```
-
-1. Open repository in dev container.
-
-## Testing
-
-1. Change to the test directory:
+1. Clone this repository:
 
     ```console
-    cd test
+    git clone https://github.com/equinor/terraform-azurerm-sql.git
     ```
 
 1. Login to Azure:
@@ -71,11 +56,29 @@ az sql server update -n <SERVER_NAME> -g <RESOURCE_GROUP_NAME> --identity-type S
     az account set -s <SUBSCRIPTION_NAME_OR_ID>
     ```
 
-1. Run tests:
+1. Set environment variables:
 
     ```console
-    go test -timeout 60m
+    export TF_VAR_resource_group_name=<RESOURCE_GROUP_NAME>
+    export TF_VAR_location=<LOCATION>
+    export ARM_SKIP_PROVIDER_REGISTRATION=true
     ```
+
+## Testing
+
+1. Initialize working directory:
+
+    ```console
+    terraform init
+    ```
+
+1. Execute tests:
+
+    ```console
+    terraform test
+    ```
+
+    See [`terraform test` command documentation](https://developer.hashicorp.com/terraform/cli/commands/test) for options.
 
 ## Contributing
 
