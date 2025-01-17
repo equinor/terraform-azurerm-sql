@@ -67,4 +67,4 @@ See [Contributing guidelines](https://github.com/equinor/terraform-baseline/blob
 
 ### Import
 
-- See [Import Documentation](https://github.com/equinor/terraform-azurerm-sql/blob/v11.1.1/docs/import.md).
+See [Import Documentation](https://github.com/equinor/terraform-azurerm-sql/blob/v11.1.1/docs/import.md).
