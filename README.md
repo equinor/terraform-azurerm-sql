@@ -25,7 +25,7 @@ Terraform module which creates Azure SQL resources.
 When importing an existing SQL server into state, you might encounter the following error:
 
 ```plaintext
-Error: Missing required argument. The argument "principal_id" is required, but no definition was found.
+Error: Missing required argument. The argument "principal_id" is required, but no definition was found
 ```
 
 To resolve this issue, the system-assigned identity **must** be enabled for the existing SQL server before importing. This is required for this module to configure Microsoft Entra authentication from the SQL server to the given Storage account.
