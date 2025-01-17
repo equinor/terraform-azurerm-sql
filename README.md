@@ -42,7 +42,7 @@ Terraform module which creates Azure SQL resources.
 
     module "log_analytics" {
       source  = "equinor/log-analytics/azurerm"
-      version = "~> 11.1"
+      version = "~> 2.0"
 
       workspace_name      = "example-workspace"
       resource_group_name = azurerm_resource_group.example.name
@@ -61,7 +61,7 @@ Terraform module which creates Azure SQL resources.
 
     module "sql" {
       source  = "equinor/sql/azurerm"
-      version = "~> 11.0"
+      version = "11.1.3"
 
       server_name                = "example-sql"
       resource_group_name        = azurerm_resource_group.example.name
@@ -75,7 +75,7 @@ Terraform module which creates Azure SQL resources.
 
     module "database" {
       source  = "equinor/sql/azurerm//modules/database"
-      version = "~> 11.0"
+      version = "11.1.3"
 
       database_name              = "example-sqldb"
       server_id                  = module.sql.server_id
