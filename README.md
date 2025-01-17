@@ -60,7 +60,7 @@ Terraform module which creates Azure SQL resources.
     }
 
     module "sql" {
-      source  = "equinor/storage/azurerm"
+      source  = "equinor/sql/azurerm"
       version = "~> 11.0"
 
       server_name                = "example-sql"
@@ -74,7 +74,7 @@ Terraform module which creates Azure SQL resources.
     }
 
     module "database" {
-      source  = "equinor/storage/azurerm//modules/database"
+      source  = "equinor/sql/azurerm//modules/database"
       version = "~> 11.0"
 
       database_name              = "example-sqldb"
