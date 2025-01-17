@@ -18,6 +18,83 @@ Terraform module which creates Azure SQL resources.
 - Azure role `Contributor` at the resource group scope.
 - Azure role `Role Based Access Control Administrator` at the Storage account scope.
 
+## Usage
+
+1. Login to Azure:
+
+    ```console
+    az login
+    ```
+
+1. Create a Terraform configuration file `main.tf` and add the following example configuration:
+
+    ```terraform
+    provider "azurerm" {
+      storage_use_azuread = true
+
+      features {}
+    }
+
+    resource "azurerm_resource_group" "example" {
+      name     = "example-resources"
+      location = "westeurope"
+    }
+
+    module "log_analytics" {
+      source  = "equinor/log-analytics/azurerm"
+      version = "~> 2.0"
+
+      workspace_name      = "example-workspace"
+      resource_group_name = azurerm_resource_group.example.name
+      location            = azurerm_resource_group.example.location
+    }
+
+    module "storage" {
+      source  = "equinor/storage/azurerm"
+      version = "~> 12.0"
+
+      account_name               = "sqlstorage"
+      resource_group_name        = azurerm_resource_group.example.name
+      location                   = azurerm_resource_group.example.location
+      log_analytics_workspace_id = module.log_analytics.workspace_id
+    }
+
+    module "sql" {
+      source  = "equinor/storage/azurerm"
+      version = "~> 11.0"
+
+      server_name                = "example-sql"
+      resource_group_name        = azurerm_resource_group.example.name
+      location                   = azurerm_resource_group.example.location
+      log_analytics_workspace_id = module.log_analytics.workspace_id
+      storage_account_id         = module.storage.account_id
+
+      azuread_administrator_login_username = "EntraAdmin"
+      azuread_administrator_object_id      = "8954d564-505c-4cf8-a254-69e3b0facff2"
+    }
+
+    module "database" {
+      source  = "equinor/storage/azurerm//modules/database"
+      version = "~> 11.0"
+
+      database_name              = "example-sqldb"
+      server_id                  = module.sql.server_id
+      log_analytics_workspace_id = module.log_analytics.workspace_id
+    }
+    ```
+
+1. Install required provider plugins and modules:
+
+    ```console
+    terraform init
+    ```
+
+1. Apply the Terraform configuration:
+
+    ```console
+    terraform apply
+    ```
+
 ## Known Issues
 
 ### Error when importing existing SQL server
