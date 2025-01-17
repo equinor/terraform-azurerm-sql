@@ -63,6 +63,8 @@ Terraform module which creates Azure SQL resources.
 
 See [Contributing guidelines](https://github.com/equinor/terraform-baseline/blob/main/CONTRIBUTING.md).
 
-## Known Issues
+## Notes
 
-- When importing a SQL Server into state an error saying `Error: Missing required argument. The argument "principal_id" is required, but no definition was found.` might show. To fix this error `System assigned managed identity` needs to be turned `On` under `Identity` tab.
+### Import
+
+- [Import Documentation](https://github.com/equinor/terraform-azurerm-sql/blob/v11.1.1/docs/import.md)

@@ -11,3 +11,7 @@ Enable the system-assigned identity for the existing SQL server by running the f
 ```console
 az sql server update -n <SERVER_NAME> -g <RESOURCE_GROUP_NAME> --identity-type SystemAssigned
 ```
+
+## Known Issues
+
+- When importing a SQL Server into state an error saying `Error: Missing required argument. The argument "principal_id" is required, but no definition was found.` might show. To fix this error `System assigned managed identity` needs to be turned `On` under `Identity` tab.
