@@ -1,5 +1,12 @@
 # Changelog
 
+## [11.1.2](https://github.com/equinor/terraform-azurerm-sql/compare/v11.1.1...v11.1.2) (2025-01-17)
+
+
+### Documentation
+
+* add usage section ([#169](https://github.com/equinor/terraform-azurerm-sql/issues/169)) ([d6a1bc8](https://github.com/equinor/terraform-azurerm-sql/commit/d6a1bc8e8cd35290350872f99335921daad12630))
+
 ## [11.1.1](https://github.com/equinor/terraform-azurerm-sql/compare/v11.1.0...v11.1.1) (2025-01-15)
 
 
