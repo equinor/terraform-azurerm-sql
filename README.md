@@ -13,6 +13,12 @@ Terraform module which creates Azure SQL resources.
 - Audit logs sent to given Log Analytics workspace by default.
 - Vulnerability assessments stored in given Storage account.
 
+## Notes
+
+### Import
+
+See [Import Documentation](https://github.com/equinor/terraform-azurerm-sql/blob/v11.1.1/docs/import.md).
+
 ## Prerequisites
 
 - Azure role `Contributor` at the resource group scope.
@@ -62,9 +68,3 @@ Terraform module which creates Azure SQL resources.
 ## Contributing
 
 See [Contributing guidelines](https://github.com/equinor/terraform-baseline/blob/main/CONTRIBUTING.md).
-
-## Notes
-
-### Import
-
-See [Import Documentation](https://github.com/equinor/terraform-azurerm-sql/blob/v11.1.1/docs/import.md).
