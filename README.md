@@ -9,6 +9,7 @@ Terraform module which creates Azure SQL resources.
 
 ## Features
 
+- SQL server created in given resource group.
 - Microsoft Entra administrator enforced.
 - Microsoft Entra-only authentication enabled by default.
 - Audit logs sent to given Log Analytics workspace by default.
