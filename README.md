@@ -1,4 +1,4 @@
-# Azure SQL Terraform Module
+# Terraform module for Azure SQL
 
 [![SCM Compliance](https://scm-compliance-api.radix.equinor.com/repos/equinor/terraform-azurerm-sql/badge)](https://scm-compliance-api.radix.equinor.com/repos/equinor/terraform-azurerm-sql/badge)
 [![Equinor Terraform Baseline](https://img.shields.io/badge/Equinor%20Terraform%20Baseline-1.0.0-blueviolet)](https://github.com/equinor/terraform-baseline)
