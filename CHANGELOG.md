@@ -1,5 +1,12 @@
 # Changelog
 
+## [11.1.4](https://github.com/equinor/terraform-azurerm-sql/compare/v11.1.3...v11.1.4) (2025-02-10)
+
+
+### Documentation
+
+* update readme ([#173](https://github.com/equinor/terraform-azurerm-sql/issues/173)) ([1490622](https://github.com/equinor/terraform-azurerm-sql/commit/1490622314cd42542b0b2f6f9703a611436d8c56))
+
 ## [11.1.3](https://github.com/equinor/terraform-azurerm-sql/compare/v11.1.2...v11.1.3) (2025-01-17)
 
 
