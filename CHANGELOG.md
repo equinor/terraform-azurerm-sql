@@ -1,5 +1,12 @@
 # Changelog
 
+## [11.1.5](https://github.com/equinor/terraform-azurerm-sql/compare/v11.1.4...v11.1.5) (2025-03-24)
+
+
+### Bug Fixes
+
+* **database:** incorrect default value for variables `min_capacity` and `auto_pause_delay_in_minutes` ([#175](https://github.com/equinor/terraform-azurerm-sql/issues/175)) ([1da5748](https://github.com/equinor/terraform-azurerm-sql/commit/1da574835f7082e5a764fd8e026f216d513f894f))
+
 ## [11.1.4](https://github.com/equinor/terraform-azurerm-sql/compare/v11.1.3...v11.1.4) (2025-02-10)
 
 
