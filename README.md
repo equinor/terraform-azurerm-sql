@@ -17,77 +17,57 @@ Terraform module which creates Azure SQL resources.
 
 ## Prerequisites
 
-- Azure role `SQL Server Contributor` at the resource group scope.
+- Azure role `Contributor` at the resource group scope.
 - Azure role `Log Analytics Contributor` at the Log Analytics workspace scope.
 - Azure role `Role Based Access Control Administrator` at the Storage account scope.
 
 ## Usage
 
-1. Login to Azure:
+```terraform
+provider "azurerm" {
+  storage_use_azuread = true
 
-    ```console
-    az login
-    ```
+  features {}
+}
 
-1. Create a Terraform configuration file `main.tf` and add the following example configuration:
+module "sql" {
+  source  = "equinor/sql/azurerm"
+  version = "~> 11.1"
 
-    ```terraform
-    provider "azurerm" {
-      storage_use_azuread = true
+  server_name                = "example-sql"
+  resource_group_name        = azurerm_resource_group.example.name
+  location                   = azurerm_resource_group.example.location
+  log_analytics_workspace_id = module.log_analytics.workspace_id
+  storage_account_id         = module.storage.account_id
 
-      features {}
-    }
+  azuread_administrator_login_username = "EntraAdmin"
+  azuread_administrator_object_id      = "8954d564-505c-4cf8-a254-69e3b0facff2"
+}
 
-    module "sql" {
-      source  = "equinor/sql/azurerm"
-      version = "~> 11.1"
+resource "azurerm_resource_group" "example" {
+  name     = "example-resources"
+  location = "westeurope"
+}
 
-      server_name                = "example-sql"
-      resource_group_name        = azurerm_resource_group.example.name
-      location                   = azurerm_resource_group.example.location
-      log_analytics_workspace_id = module.log_analytics.workspace_id
-      storage_account_id         = module.storage.account_id
+module "log_analytics" {
+  source  = "equinor/log-analytics/azurerm"
+  version = "~> 2.0"
 
-      azuread_administrator_login_username = "EntraAdmin"
-      azuread_administrator_object_id      = "8954d564-505c-4cf8-a254-69e3b0facff2"
-    }
+  workspace_name      = "example-workspace"
+  resource_group_name = azurerm_resource_group.example.name
+  location            = azurerm_resource_group.example.location
+}
 
-    resource "azurerm_resource_group" "example" {
-      name     = "example-resources"
-      location = "westeurope"
-    }
+module "storage" {
+  source  = "equinor/storage/azurerm"
+  version = "~> 12.0"
 
-    module "log_analytics" {
-      source  = "equinor/log-analytics/azurerm"
-      version = "~> 2.0"
-
-      workspace_name      = "example-workspace"
-      resource_group_name = azurerm_resource_group.example.name
-      location            = azurerm_resource_group.example.location
-    }
-
-    module "storage" {
-      source  = "equinor/storage/azurerm"
-      version = "~> 12.0"
-
-      account_name               = "sqlstorage"
-      resource_group_name        = azurerm_resource_group.example.name
-      location                   = azurerm_resource_group.example.location
-      log_analytics_workspace_id = module.log_analytics.workspace_id
-    }
-    ```
-
-1. Install required provider plugins and modules:
-
-    ```console
-    terraform init
-    ```
-
-1. Apply the Terraform configuration:
-
-    ```console
-    terraform apply
-    ```
+  account_name               = "sqlstorage"
+  resource_group_name        = azurerm_resource_group.example.name
+  location                   = azurerm_resource_group.example.location
+  log_analytics_workspace_id = module.log_analytics.workspace_id
+}
+```
 
 ## Known Issues
 
@@ -106,48 +86,6 @@ Enable the system-assigned identity for the existing SQL server by running the f
 ```console
 az sql server update -n <SERVER_NAME> -g <RESOURCE_GROUP_NAME> --identity-type SystemAssigned
 ```
-
-## Development
-
-1. Login to Azure:
-
-    ```bash
-    az login
-    ```
-
-1. Set environment variables:
-
-    ```bash
-    export ARM_SUBSCRIPTION_ID="<SUBSCRIPTION_ID>"
-    export TF_VAR_resource_group_name="<RESOURCE_GROUP_NAME>"
-    export TF_VAR_location="<LOCATION>"
-    ```
-
-## Testing
-
-1. Change to the test directory:
-
-    ```console
-    cd test
-    ```
-
-1. Login to Azure:
-
-    ```console
-    az login
-    ```
-
-1. Set active subscription:
-
-    ```console
-    az account set -s <SUBSCRIPTION_NAME_OR_ID>
-    ```
-
-1. Run tests:
-
-    ```console
-    go test -timeout 60m
-    ```
 
 ## Contributing
 
