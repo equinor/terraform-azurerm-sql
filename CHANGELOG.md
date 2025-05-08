@@ -1,5 +1,12 @@
 # Changelog
 
+## [11.1.7](https://github.com/equinor/terraform-azurerm-sql/compare/v11.1.6...v11.1.7) (2025-05-08)
+
+
+### Bug Fixes
+
+* identical names for separate `azurerm_monitor_diagnostic_setting` resources ([#178](https://github.com/equinor/terraform-azurerm-sql/issues/178)) ([a22ff9a](https://github.com/equinor/terraform-azurerm-sql/commit/a22ff9a8e858b5b6b881faff96428ce7809e7284))
+
 ## [11.1.6](https://github.com/equinor/terraform-azurerm-sql/compare/v11.1.5...v11.1.6) (2025-04-22)
 
 
