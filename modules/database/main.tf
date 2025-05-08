@@ -64,7 +64,7 @@ resource "azurerm_mssql_database" "this" {
   }
 }
 
-resource "azurerm_monitor_diagnostic_setting" "this" {
+resource "azurerm_monitor_diagnostic_setting" "database" {
   name                       = var.diagnostic_setting_name
   target_resource_id         = azurerm_mssql_database.this.id
   log_analytics_workspace_id = var.log_analytics_workspace_id
