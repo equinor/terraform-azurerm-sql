@@ -62,7 +62,7 @@ resource "azurerm_mssql_server_extended_auditing_policy" "this" {
 }
 
 # Create diagnostic setting for master database to enable server wide.
-resource "azurerm_monitor_diagnostic_setting" "this" {
+resource "azurerm_monitor_diagnostic_setting" "server" {
   name                       = var.diagnostic_setting_name
   target_resource_id         = "${azurerm_mssql_server.this.id}/databases/master"
   log_analytics_workspace_id = var.log_analytics_workspace_id
