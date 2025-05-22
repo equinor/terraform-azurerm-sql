@@ -127,7 +127,7 @@ resource "azurerm_mssql_server_vulnerability_assessment" "this" {
 }
 
 # Create SQL vulnerability assessment rule baselines for the master database.
-# Ref: https://docs.azure.cn/en-us/defender-for-cloud/sql-azure-vulnerability-assessment-rules
+# Ref: https://learn.microsoft.com/en-us/azure/defender-for-cloud/sql-azure-vulnerability-assessment-rules
 
 resource "azurerm_mssql_database_vulnerability_assessment_rule_baseline" "va2065" {
   server_vulnerability_assessment_id = azurerm_mssql_server_vulnerability_assessment.this.id
