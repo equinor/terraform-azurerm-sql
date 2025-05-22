@@ -125,3 +125,24 @@ resource "azurerm_mssql_server_vulnerability_assessment" "this" {
 
   depends_on = [azurerm_role_assignment.this]
 }
+
+# Create SQL vulnerability assessment rule baselines for the master database.
+# Ref: https://docs.azure.cn/en-us/defender-for-cloud/sql-azure-vulnerability-assessment-rules
+
+resource "azurerm_mssql_database_vulnerability_assessment_rule_baseline" "va2065" {
+  server_vulnerability_assessment_id = azurerm_mssql_server_vulnerability_assessment.this.id
+  database_name                      = "master"
+  rule_id                            = "VA2065" # Server-level firewall rules should be tracked and maintained at a strict minimum
+
+  dynamic "baseline_result" {
+    for_each = azurerm_mssql_firewall_rule.this
+
+    content {
+      result = [
+        baseline_result.value.name,
+        baseline_result.value.start_ip_address,
+        baseline_result.value.end_ip_address
+      ]
+    }
+  }
+}
