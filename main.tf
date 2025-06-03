@@ -116,6 +116,8 @@ resource "azurerm_role_assignment" "this" {
 resource "azurerm_mssql_server_vulnerability_assessment" "this" {
   server_security_alert_policy_id = azurerm_mssql_server_security_alert_policy.this.id
   storage_container_path          = "${coalesce(var.storage_blob_endpoint, local.storage_blob_endpoint)}${var.storage_container_name}/"
+  storage_account_access_key      = var.storage_access_key
+  storage_container_sas_key       = var.storage_container_sas_key
 
   recurring_scans {
     enabled                   = var.vulnerability_assessment_recurring_scans_enabled

@@ -36,6 +36,18 @@ variable "storage_container_name" {
   default     = "vulnerability-assessment"
 }
 
+variable "storage_access_key" {
+  description = "The primary access key of the blob storage endpoint."
+  type        = string
+  default     = null
+}
+
+variable "storage_container_sas_key" {
+  description = "Specifies the shared access signature (SAS Key) that has write access to the blob container specified in storage_container_path property."
+  type        = string
+  default     = null
+}
+
 variable "azuread_administrator_login_username" {
   description = "The login username of the Microsoft Entra administrator for this SQL server."
   type        = string
