@@ -1,3 +1,5 @@
+# Generate random password based on Azure SQL password policy.
+# Ref: https://learn.microsoft.com/en-us/sql/relational-databases/security/password-policy
 resource "random_password" "this" {
   length      = 128
   lower       = true
