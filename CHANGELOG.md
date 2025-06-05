@@ -1,5 +1,12 @@
 # Changelog
 
+## [11.1.8](https://github.com/equinor/terraform-azurerm-sql/compare/v11.1.7...v11.1.8) (2025-06-05)
+
+
+### Bug Fixes
+
+* exclude broken Azure provider version v4.31 ([#183](https://github.com/equinor/terraform-azurerm-sql/issues/183)) ([49935e9](https://github.com/equinor/terraform-azurerm-sql/commit/49935e9a0cd2f568ecc1f3a6dbf85096ac01d82f))
+
 ## [11.1.7](https://github.com/equinor/terraform-azurerm-sql/compare/v11.1.6...v11.1.7) (2025-05-08)
 
 
