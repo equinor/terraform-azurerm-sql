@@ -78,20 +78,6 @@ resource "azurerm_monitor_diagnostic_setting" "server" {
   }
 
   # Metrics are not supported at the master database scope.
-  metric {
-    category = "Basic"
-    enabled  = false
-  }
-
-  metric {
-    category = "InstanceAndAppAdvanced"
-    enabled  = false
-  }
-
-  metric {
-    category = "WorkloadManagement"
-    enabled  = false
-  }
 
   depends_on = [
     # Wait for server extended auditing policy to be created.
