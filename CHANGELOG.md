@@ -1,5 +1,12 @@
 # Changelog
 
+## [11.1.9](https://github.com/equinor/terraform-azurerm-sql/compare/v11.1.8...v11.1.9) (2025-07-28)
+
+
+### Bug Fixes
+
+* argument `metric` for resource `azurerm_monitor_diagnostic_setting` has been deprecated ([#187](https://github.com/equinor/terraform-azurerm-sql/issues/187)) ([bf4252b](https://github.com/equinor/terraform-azurerm-sql/commit/bf4252b269419108c12bcf2fe0155210f40bb989))
+
 ## [11.1.8](https://github.com/equinor/terraform-azurerm-sql/compare/v11.1.7...v11.1.8) (2025-06-05)
 
 
