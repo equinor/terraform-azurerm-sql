@@ -1,5 +1,12 @@
 # Changelog
 
+## [11.1.10](https://github.com/equinor/terraform-azurerm-sql/compare/v11.1.9...v11.1.10) (2025-09-01)
+
+
+### Bug Fixes
+
+* **database:** reference to dynamic block iterator `metric` should be `enabled_metric` ([#189](https://github.com/equinor/terraform-azurerm-sql/issues/189)) ([2260ef9](https://github.com/equinor/terraform-azurerm-sql/commit/2260ef9cf9872cf37058537bc0f2ded3c1423286))
+
 ## [11.1.9](https://github.com/equinor/terraform-azurerm-sql/compare/v11.1.8...v11.1.9) (2025-07-28)
 
 
