@@ -1,5 +1,12 @@
 # Changelog
 
+## [11.1.11](https://github.com/equinor/terraform-azurerm-sql/compare/v11.1.10...v11.1.11) (2025-09-24)
+
+
+### Documentation
+
+* update badges ([4762c1f](https://github.com/equinor/terraform-azurerm-sql/commit/4762c1f1b2b82fb8ff05496943645c1ab31eaa9d))
+
 ## [11.1.10](https://github.com/equinor/terraform-azurerm-sql/compare/v11.1.9...v11.1.10) (2025-09-01)
 
 
