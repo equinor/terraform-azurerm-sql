@@ -35,7 +35,6 @@ module "sql" {
   resource_group_name        = var.resource_group_name
   location                   = var.location
   log_analytics_workspace_id = module.log_analytics.workspace_id
-  storage_account_id         = module.storage.account_id
 
   azuread_administrator_login_username = "azureadadminlogin"
   azuread_administrator_object_id      = data.azurerm_client_config.current.object_id
