@@ -17,7 +17,8 @@ resource "random_id" "this" {
 }
 
 module "log_analytics" {
-  source = "github.com/equinor/terraform-azurerm-log-analytics?ref=v1.5.0"
+  source  = "equinor/log-analytics/azurerm"
+  version = "2.4.3"
 
   workspace_name      = "log-${random_id.this.hex}"
   resource_group_name = var.resource_group_name
@@ -25,7 +26,8 @@ module "log_analytics" {
 }
 
 module "storage" {
-  source = "github.com/equinor/terraform-azurerm-storage?ref=v10.3.0"
+  source  = "equinor/storage/azurerm"
+  version = "12.13.3"
 
   account_name               = "st${random_id.this.hex}"
   resource_group_name        = var.resource_group_name
@@ -34,7 +36,8 @@ module "storage" {
 }
 
 module "sql" {
-  # source = "github.com/equinor/terraform-azurerm-sql?ref=v0.0.0"
+  # source  = "equinor/sql/azurerm"
+  # version = "0.0.0"
   source = "../.."
 
   server_name                = "sql-${random_id.this.hex}"
