@@ -18,24 +18,6 @@ variable "log_analytics_workspace_id" {
   type        = string
 }
 
-variable "storage_account_id" {
-  description = "The ID of the Storage account to use for SQL vulnerability assessment."
-  type        = string
-}
-
-variable "storage_blob_endpoint" {
-  description = "The blob endpoint of the Storage account to use for SQL vulnerability assessment."
-  type        = string
-  nullable    = true
-  default     = null
-}
-
-variable "storage_container_name" {
-  description = "The name of the Storage container to use for SQL vulnerability assessment."
-  type        = string
-  default     = "vulnerability-assessment"
-}
-
 variable "azuread_administrator_login_username" {
   description = "The login username of the Microsoft Entra administrator for this SQL server."
   type        = string
@@ -102,36 +84,6 @@ variable "diagnostic_setting_enabled_log_categories" {
     condition     = alltrue([for category in var.diagnostic_setting_enabled_log_categories : contains(["SQLSecurityAuditEvents", "DevOpsOperationsAudit"], category)])
     error_message = "Supported log categories are \"SQLSecurityAuditEvents\" and \"DevOpsOperationsAudit\"."
   }
-}
-
-variable "security_alert_policy_email_account_admins" {
-  description = "Should security alerts for this SQL server be sent to subscription owners?"
-  type        = bool
-  default     = false
-}
-
-variable "security_alert_policy_email_addresses" {
-  description = "A list of email addresses to send security alerts for this SQL server to."
-  type        = list(string)
-  default     = []
-}
-
-variable "vulnerability_assessment_recurring_scans_enabled" {
-  description = "Should SQL vulnerability assessment recurring scans be enabled?"
-  type        = bool
-  default     = true
-}
-
-variable "vulnerability_assessment_recurring_scans_email_subscription_admins" {
-  description = "Should notifications for SQL vulnerability assessment recurring scans be sent to subscription owners?"
-  type        = bool
-  default     = true
-}
-
-variable "vulnerability_assessment_recurring_scans_emails" {
-  description = "A list of email addresses to send notifications for SQL vulnerability assessment recurring scans to."
-  type        = list(string)
-  default     = []
 }
 
 variable "tags" {
