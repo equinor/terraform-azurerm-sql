@@ -1,12 +1,5 @@
 # Terraform module for Azure SQL
 
-[![GitHub Release](https://img.shields.io/github/v/release/equinor/terraform-azurerm-sql)](https://github.com/equinor/terraform-azurerm-sql/releases/latest)
-[![Terraform Module Downloads](https://img.shields.io/terraform/module/dt/equinor/sql/azurerm)](https://registry.terraform.io/modules/equinor/sql/azurerm/latest)
-[![GitHub contributors](https://img.shields.io/github/contributors/equinor/terraform-azurerm-sql)](https://github.com/equinor/terraform-azurerm-sql/graphs/contributors)
-[![GitHub Issues](https://img.shields.io/github/issues/equinor/terraform-azurerm-sql)](https://github.com/equinor/terraform-azurerm-sql/issues)
-[![GitHub Pull requests](https://img.shields.io/github/issues-pr/equinor/terraform-azurerm-sql)](https://github.com/equinor/terraform-azurerm-sql/pulls)
-[![GitHub License](https://img.shields.io/github/license/equinor/terraform-azurerm-sql)](https://github.com/equinor/terraform-azurerm-sql/blob/main/LICENSE)
-
 Terraform module which creates Azure SQL resources.
 
 ## Features
