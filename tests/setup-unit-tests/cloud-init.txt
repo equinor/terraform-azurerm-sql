@@ -1,0 +1,4 @@
+#cloud-config
+
+bootcmd:
+  - echo "Hello, world"! > hello.txt

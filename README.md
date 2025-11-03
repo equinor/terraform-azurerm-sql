@@ -33,7 +33,6 @@ module "sql" {
   resource_group_name        = azurerm_resource_group.example.name
   location                   = azurerm_resource_group.example.location
   log_analytics_workspace_id = module.log_analytics.workspace_id
-  storage_account_id         = module.storage.account_id
 
   azuread_administrator_login_username = "EntraAdmin"
   azuread_administrator_object_id      = "8954d564-505c-4cf8-a254-69e3b0facff2"
@@ -53,15 +52,6 @@ module "log_analytics" {
   location            = azurerm_resource_group.example.location
 }
 
-module "storage" {
-  source  = "equinor/storage/azurerm"
-  version = "~> 12.0"
-
-  account_name               = "sqlstorage"
-  resource_group_name        = azurerm_resource_group.example.name
-  location                   = azurerm_resource_group.example.location
-  log_analytics_workspace_id = module.log_analytics.workspace_id
-}
 ```
 
 ## Known Issues
