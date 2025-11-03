@@ -8,7 +8,7 @@ Terraform module which creates Azure SQL resources.
 - Microsoft Entra administrator enforced.
 - Microsoft Entra-only authentication enabled by default.
 - Audit logs sent to given Log Analytics workspace by default.
-- Vulnerability assessment scan results stored in given Storage account.
+- Vulnerability assessment scan express configuration enabled.
 
 ## Prerequisites
 
