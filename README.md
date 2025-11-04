@@ -14,13 +14,11 @@ Terraform module which creates Azure SQL resources.
 
 - Azure role `Contributor` at the resource group scope.
 - Azure role `Log Analytics Contributor` at the Log Analytics workspace scope.
-- Azure role `Role Based Access Control Administrator` at the Storage account scope.
 
 ## Usage
 
 ```terraform
 provider "azurerm" {
-  storage_use_azuread = true
 
   features {}
 }
@@ -64,7 +62,7 @@ When importing an existing SQL server into state, you might encounter the follow
 Error: Missing required argument. The argument "principal_id" is required, but no definition was found.
 ```
 
-To resolve this issue, the system-assigned identity **must** be enabled for the existing SQL server before importing. This is required for this module to configure Microsoft Entra authentication from the SQL server to the given Storage account.
+To resolve this issue, the system-assigned identity **must** be enabled for the existing SQL server before importing, as this module includes a system-assigned identity.
 
 Enable the system-assigned identity for the existing SQL server by running the following Azure CLI command:
 
