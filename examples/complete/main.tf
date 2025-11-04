@@ -25,16 +25,6 @@ module "log_analytics" {
   location            = var.location
 }
 
-module "storage" {
-  source  = "equinor/storage/azurerm"
-  version = "12.13.3"
-
-  account_name               = "st${random_id.this.hex}"
-  resource_group_name        = var.resource_group_name
-  location                   = var.location
-  log_analytics_workspace_id = module.log_analytics.workspace_id
-}
-
 module "sql" {
   # source  = "equinor/sql/azurerm"
   # version = "0.0.0"
