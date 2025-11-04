@@ -54,7 +54,21 @@ module "log_analytics" {
 
 ## Known Issues
 
-None, at the moment.
+### Error when importing existing SQL server
+
+When importing an existing SQL server into state, you might encounter the following error:
+
+```plaintext
+Error: Missing required argument. The argument "principal_id" is required, but no definition was found.
+```
+
+To resolve this issue, the system-assigned identity **must** be enabled for the existing SQL server before importing, as this module includes a system-assigned identity.
+
+Enable the system-assigned identity for the existing SQL server by running the following Azure CLI command:
+
+```console
+az sql server update -n <SERVER_NAME> -g <RESOURCE_GROUP_NAME> --identity-type SystemAssigned
+```
 
 ## Contributing
 
