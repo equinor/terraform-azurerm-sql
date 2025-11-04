@@ -13,13 +13,14 @@ resource "random_password" "this" {
 }
 
 resource "azurerm_mssql_server" "this" {
-  name                         = var.server_name
-  location                     = var.location
-  resource_group_name          = var.resource_group_name
-  version                      = "12.0"
-  administrator_login          = var.azuread_authentication_only ? null : var.administrator_login
-  administrator_login_password = var.azuread_authentication_only ? null : random_password.this.result
-  minimum_tls_version          = "1.2"
+  name                                     = var.server_name
+  location                                 = var.location
+  resource_group_name                      = var.resource_group_name
+  version                                  = "12.0"
+  administrator_login                      = var.azuread_authentication_only ? null : var.administrator_login
+  administrator_login_password             = var.azuread_authentication_only ? null : random_password.this.result
+  minimum_tls_version                      = "1.2"
+  express_vulnerability_assessment_enabled = true
 
   tags = var.tags
 
@@ -84,37 +85,4 @@ resource "azurerm_monitor_diagnostic_setting" "server" {
     # This ensures the master database exists before trying to create a diagnostic setting for it.
     azurerm_mssql_server_extended_auditing_policy.this
   ]
-}
-
-resource "azurerm_mssql_server_security_alert_policy" "this" {
-  resource_group_name  = azurerm_mssql_server.this.resource_group_name
-  server_name          = azurerm_mssql_server.this.name
-  state                = "Enabled"
-  disabled_alerts      = []
-  email_account_admins = var.security_alert_policy_email_account_admins
-  email_addresses      = var.security_alert_policy_email_addresses
-}
-
-resource "azurerm_role_assignment" "this" {
-  scope                = var.storage_account_id
-  role_definition_name = "Storage Blob Data Contributor"
-  principal_id         = azurerm_mssql_server.this.identity[0].principal_id
-}
-
-resource "azurerm_mssql_server_vulnerability_assessment" "this" {
-  server_security_alert_policy_id = azurerm_mssql_server_security_alert_policy.this.id
-  storage_container_path          = "${coalesce(var.storage_blob_endpoint, local.storage_blob_endpoint)}${var.storage_container_name}/"
-
-  # The following arguments are irrelevant when creating resource "azurerm_role_assignment.this".
-  # This role assignment allows the SQL server to use its system-assigned identity to authenticate to the Storage account using Microsoft Entra ID, which is more secure than using an access key or shared access signature (SAS).
-  storage_account_access_key = null
-  storage_container_sas_key  = null
-
-  recurring_scans {
-    enabled                   = var.vulnerability_assessment_recurring_scans_enabled
-    email_subscription_admins = var.vulnerability_assessment_recurring_scans_email_subscription_admins
-    emails                    = var.vulnerability_assessment_recurring_scans_emails
-  }
-
-  depends_on = [azurerm_role_assignment.this]
 }
