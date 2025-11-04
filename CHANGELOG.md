@@ -6,6 +6,15 @@
 ### ⚠ BREAKING CHANGES
 
 * remove variable `storage_account_id`. To migrate your project, remove any references to this variable.
+* remove variable `storage_blob_endpoint`. To migrate your project, remove any references to this variable.
+* remove variable `storage_container_name`. To migrate your project, remove any references to this variable.
+* remove variable `security_alert_policy_email_account_admins`. To migrate your project, remove any references to this variable.
+* remove variable `security_alert_policy_email_addresses`. To migrate your project, remove any references to this variable.
+* remove variable `vulnerability_assessment_recurring_scans_enabled`. To migrate your project, remove any references to this variable.
+* remove variable `vulnerability_assessment_recurring_scans_email_subscription_admins`. To migrate your project, remove any references to this variable.
+* remove variable `vulnerability_assessment_recurring_scans_emails`. To migrate your project, remove any references to this variable.
+* remove output `server_security_alert_policy_id`. To migrate your project, remove any references to this output.
+* remove output `server_vulnerability_assessment_id`. To migrate your project, remove any references to this output.
 
 ### Features
 
