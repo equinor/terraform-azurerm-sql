@@ -1,5 +1,16 @@
 # Changelog
 
+## [12.0.0](https://github.com/equinor/terraform-azurerm-sql/compare/v11.1.11...v12.0.0) (2025-11-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* remove variable `storage_account_id`. To migrate your project, remove any references to this variable.
+
+### Features
+
+* migrate to express vulnerability configuration ([#192](https://github.com/equinor/terraform-azurerm-sql/issues/192)) ([784fc08](https://github.com/equinor/terraform-azurerm-sql/commit/784fc08fe0751e5bfcfe0c079dea90dcd8ba4f5a))
+
 ## [11.1.11](https://github.com/equinor/terraform-azurerm-sql/compare/v11.1.10...v11.1.11) (2025-09-24)
 
 
