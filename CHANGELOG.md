@@ -1,5 +1,25 @@
 # Changelog
 
+## [12.0.0](https://github.com/equinor/terraform-azurerm-sql/compare/v11.1.11...v12.0.0) (2025-11-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* remove variable `storage_account_id`. To migrate your project, remove any references to this variable.
+* remove variable `storage_blob_endpoint`. To migrate your project, remove any references to this variable.
+* remove variable `storage_container_name`. To migrate your project, remove any references to this variable.
+* remove variable `security_alert_policy_email_account_admins`. To migrate your project, remove any references to this variable.
+* remove variable `security_alert_policy_email_addresses`. To migrate your project, remove any references to this variable.
+* remove variable `vulnerability_assessment_recurring_scans_enabled`. To migrate your project, remove any references to this variable.
+* remove variable `vulnerability_assessment_recurring_scans_email_subscription_admins`. To migrate your project, remove any references to this variable.
+* remove variable `vulnerability_assessment_recurring_scans_emails`. To migrate your project, remove any references to this variable.
+* remove output `server_security_alert_policy_id`. To migrate your project, remove any references to this output.
+* remove output `server_vulnerability_assessment_id`. To migrate your project, remove any references to this output.
+
+### Features
+
+* migrate to express vulnerability configuration ([#192](https://github.com/equinor/terraform-azurerm-sql/issues/192)) ([784fc08](https://github.com/equinor/terraform-azurerm-sql/commit/784fc08fe0751e5bfcfe0c079dea90dcd8ba4f5a))
+
 ## [11.1.11](https://github.com/equinor/terraform-azurerm-sql/compare/v11.1.10...v11.1.11) (2025-09-24)
 
 

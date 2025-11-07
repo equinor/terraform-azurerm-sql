@@ -25,7 +25,7 @@ provider "azurerm" {
 
 module "sql" {
   source  = "equinor/sql/azurerm"
-  version = "~> 11.1"
+  version = "~> 12.0"
 
   server_name                = "example-sql"
   resource_group_name        = azurerm_resource_group.example.name
