@@ -1,5 +1,12 @@
 # Changelog
 
+## [12.0.1](https://github.com/equinor/terraform-azurerm-sql/compare/v12.0.0...v12.0.1) (2025-11-12)
+
+
+### Bug Fixes
+
+* incorrect required Azure provider version ([#195](https://github.com/equinor/terraform-azurerm-sql/issues/195)) ([fecae90](https://github.com/equinor/terraform-azurerm-sql/commit/fecae901aab597b6891175a0daee4b39a89f34dc))
+
 ## [12.0.0](https://github.com/equinor/terraform-azurerm-sql/compare/v11.1.11...v12.0.0) (2025-11-04)
 
 
