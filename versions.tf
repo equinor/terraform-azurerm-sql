@@ -5,7 +5,7 @@ terraform {
     azurerm = {
       source = "hashicorp/azurerm"
       # Version 4.26.0 is required to use the "express_vulnerability_assessment_enabled" argument for the "azurerm_mssql_server" resource.
-      # Ref: https://github.com/hashicorp/terraform-provider-azurerm/releases/tag/v4.26.0
+      # Ref: https://github.com/hashicorp/terraform-provider-azurerm/releases/tag/v12.0.1
       version = ">= 4.26.0"
     }
 
