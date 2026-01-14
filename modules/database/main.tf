@@ -23,10 +23,11 @@ resource "azurerm_mssql_database" "this" {
   }
 
   long_term_retention_policy {
-    weekly_retention  = var.long_term_retention_policy_weekly_retention
-    monthly_retention = var.long_term_retention_policy_monthly_retention
-    yearly_retention  = var.long_term_retention_policy_yearly_retention
-    week_of_year      = var.long_term_retention_policy_week_of_year
+    weekly_retention          = var.long_term_retention_policy_weekly_retention
+    monthly_retention         = var.long_term_retention_policy_monthly_retention
+    yearly_retention          = var.long_term_retention_policy_yearly_retention
+    week_of_year              = var.long_term_retention_policy_week_of_year
+    immutable_backups_enabled = var.long_term_retention_policy_immutable_backups_enabled
   }
 
   # Might be irrelevant when threat detection is configured at the server level.

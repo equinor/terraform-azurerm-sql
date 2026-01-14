@@ -97,6 +97,12 @@ variable "long_term_retention_policy_week_of_year" {
   default     = 1
 }
 
+variable "long_term_retention_policy_immutable_backups_enabled" {
+  description = "Whether immutable backups are enabled for long-term retention policy."
+  type        = bool
+  default     = false
+}
+
 variable "identity_ids" {
   description = "A list of user assigned identities to be assigned to this SQL database."
   type        = list(string)
