@@ -65,10 +65,11 @@ resource "azapi_update_resource" "long_term_retention_policy" {
   parent_id = azurerm_mssql_database.this.id
   name      = "default"
 
-  body = jsonencode({
+  body = {
     properties = {
-    timeBasedImmutability = var.long_term_retention_policy_immutable_backups_enabled ? "Enabled" : "Disabled" }
-  })
+      timeBasedImmutability = var.long_term_retention_policy_immutable_backups_enabled ? "Enabled" : "Disabled"
+    }
+  }
 
   depends_on = [azurerm_mssql_database.this]
 }
