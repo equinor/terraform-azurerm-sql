@@ -73,8 +73,6 @@ resource "azapi_update_resource" "long_term_retention_policy" {
       timeBasedImmutabilityMode = var.long_term_retention_policy_time_based_immutability_mode
     }
   }
-
-  depends_on = [azurerm_mssql_database.this]
 }
 
 resource "azurerm_monitor_diagnostic_setting" "database" {
