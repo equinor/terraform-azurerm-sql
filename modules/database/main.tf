@@ -23,11 +23,10 @@ resource "azurerm_mssql_database" "this" {
   }
 
   long_term_retention_policy {
-    weekly_retention          = var.long_term_retention_policy_weekly_retention
-    monthly_retention         = var.long_term_retention_policy_monthly_retention
-    yearly_retention          = var.long_term_retention_policy_yearly_retention
-    week_of_year              = var.long_term_retention_policy_week_of_year
-    immutable_backups_enabled = var.long_term_retention_policy_immutable_backups_enabled
+    weekly_retention  = var.long_term_retention_policy_weekly_retention
+    monthly_retention = var.long_term_retention_policy_monthly_retention
+    yearly_retention  = var.long_term_retention_policy_yearly_retention
+    week_of_year      = var.long_term_retention_policy_week_of_year
   }
 
   # Might be irrelevant when threat detection is configured at the server level.
@@ -59,6 +58,19 @@ resource "azurerm_mssql_database" "this" {
       license_type
     ]
   }
+}
+
+resource "azapi_update_resource" "long_term_retention_policy" {
+  type      = "Microsoft.Sql/servers/databases/backupLongTermRetentionPolicies@2024-11-01-preview"
+  parent_id = azurerm_mssql_database.this.id
+  name      = "default"
+
+  body = jsonencode({
+    properties = {
+    timeBasedImmutability = var.long_term_retention_policy_immutable_backups_enabled ? "Enabled" : "Disabled" }
+  })
+
+  depends_on = [azurerm_mssql_database.this]
 }
 
 resource "azurerm_monitor_diagnostic_setting" "database" {
