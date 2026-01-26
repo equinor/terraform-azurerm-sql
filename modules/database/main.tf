@@ -61,13 +61,16 @@ resource "azurerm_mssql_database" "this" {
 }
 
 resource "azapi_update_resource" "long_term_retention_policy" {
+  count = var.long_term_retention_policy_time_based_immutability_mode == "Enabled" ? 1 : 0
+
   type      = "Microsoft.Sql/servers/databases/backupLongTermRetentionPolicies@2024-11-01-preview"
   parent_id = azurerm_mssql_database.this.id
   name      = "default"
 
   body = {
     properties = {
-      timeBasedImmutability = var.long_term_retention_policy_immutable_backups_enabled ? "Enabled" : "Disabled"
+      timeBasedImmutability     = var.long_term_retention_policy_time_based_immutability
+      timeBasedImmutabilityMode = var.long_term_retention_policy_time_based_immutability_mode
     }
   }
 

@@ -97,10 +97,24 @@ variable "long_term_retention_policy_week_of_year" {
   default     = 1
 }
 
-variable "long_term_retention_policy_immutable_backups_enabled" {
-  description = "Whether immutable backups are enabled for long-term retention policy."
-  type        = bool
-  default     = false
+variable "long_term_retention_policy_time_based_immutability" {
+  description = "Whether time based immutability backups are enabled for long-term retention policy. Value must be either 'Enabled' or 'Disabled'."
+  type        = string
+  default     = "Disabled"
+  validation {
+    condition     = long_term_retention_policy_time_based_immutability == "Enabled" || long_term_retention_policy_time_based_immutability == "Disabled"
+    error_message = "The value must be either 'Enabled' or 'Disabled'."
+  }
+}
+
+variable "long_term_retention_policy_time_based_immutability_mode" {
+  description = "The mode of time based immutability for long-term retention policy. Value must be either 'Locked' or 'Unlocked'. Only effective if long_term_retention_policy_time_based_immutability is enabled"
+  type        = string
+  default     = "Unlocked"
+  validation {
+    condition     = long_term_retention_policy_time_based_immutability_mode == "Locked" || long_term_retention_policy_time_based_immutability_mode == "Unlocked"
+    error_message = "The value must be either 'Locked' or 'Unlocked'."
+  }
 }
 
 variable "identity_ids" {
