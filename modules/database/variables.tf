@@ -102,7 +102,7 @@ variable "long_term_retention_policy_time_based_immutability" {
   type        = string
   default     = "Disabled"
   validation {
-    condition     = long_term_retention_policy_time_based_immutability == "Enabled" || long_term_retention_policy_time_based_immutability == "Disabled"
+    condition     = var.long_term_retention_policy_time_based_immutability == "Enabled" || var.long_term_retention_policy_time_based_immutability == "Disabled"
     error_message = "The value must be either 'Enabled' or 'Disabled'."
   }
 }
@@ -112,7 +112,7 @@ variable "long_term_retention_policy_time_based_immutability_mode" {
   type        = string
   default     = "Unlocked"
   validation {
-    condition     = long_term_retention_policy_time_based_immutability_mode == "Locked" || long_term_retention_policy_time_based_immutability_mode == "Unlocked"
+    condition     = var.long_term_retention_policy_time_based_immutability_mode == "Locked" || var.long_term_retention_policy_time_based_immutability_mode == "Unlocked"
     error_message = "The value must be either 'Locked' or 'Unlocked'."
   }
 }
