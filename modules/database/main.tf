@@ -60,6 +60,21 @@ resource "azurerm_mssql_database" "this" {
   }
 }
 
+resource "azapi_update_resource" "long_term_retention_policy" {
+  count = var.long_term_retention_policy_time_based_immutability == "Enabled" ? 1 : 0
+
+  type      = "Microsoft.Sql/servers/databases/backupLongTermRetentionPolicies@2024-11-01-preview"
+  parent_id = azurerm_mssql_database.this.id
+  name      = "default"
+
+  body = {
+    properties = {
+      timeBasedImmutability     = var.long_term_retention_policy_time_based_immutability
+      timeBasedImmutabilityMode = var.long_term_retention_policy_time_based_immutability_mode
+    }
+  }
+}
+
 resource "azurerm_monitor_diagnostic_setting" "database" {
   name                       = var.diagnostic_setting_name
   target_resource_id         = azurerm_mssql_database.this.id
