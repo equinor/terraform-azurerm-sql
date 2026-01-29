@@ -34,6 +34,20 @@ module "sql" {
 
   azuread_administrator_login_username = "EntraAdmin"
   azuread_administrator_object_id      = "8954d564-505c-4cf8-a254-69e3b0facff2"
+
+  firewall_rules = {
+    "test_net_3" = {
+      name             = "TEST-NET-3"
+      start_ip_address = "203.0.113.0"
+      end_ip_address   = "203.0.113.255"
+    }
+  }
+
+  vulnerability_assessment_baselines = {
+    "VA2130" = [
+      ["dbo"]
+    ]
+  }
 }
 
 resource "azurerm_resource_group" "example" {
@@ -49,7 +63,6 @@ module "log_analytics" {
   resource_group_name = azurerm_resource_group.example.name
   location            = azurerm_resource_group.example.location
 }
-
 ```
 
 ## Known Issues
