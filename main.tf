@@ -87,6 +87,14 @@ resource "azurerm_monitor_diagnostic_setting" "server" {
   ]
 }
 
+# Ref: https://learn.microsoft.com/en-us/rest/api/sql/database-sql-vulnerability-assessment-execute-scan/execute?view=rest-sql-2024-05-01-preview&tabs=HTTP
+resource "azapi_resource_action" "vulnerability_assessment_initiate_scan" {
+  type        = "Microsoft.Sql/servers/databases/sqlVulnerabilityAssessments@2024-11-01-preview"
+  resource_id = "${azurerm_mssql_server.this.id}/databases/master/sqlVulnerabilityAssessments/default"
+  action      = "initiateScan"
+  method      = "POST"
+}
+
 # Ref: https://learn.microsoft.com/en-us/azure/defender-for-cloud/configure-vulnerability-findings-express#azure-resource-manager-templates
 resource "azapi_resource" "vulnerability_assessment_baselines" {
   type      = "Microsoft.Sql/servers/databases/sqlVulnerabilityAssessments/baselines@2024-11-01-preview"
@@ -98,4 +106,9 @@ resource "azapi_resource" "vulnerability_assessment_baselines" {
       results    = merge(local.vulnerability_assessment_baselines, var.vulnerability_assessment_baselines)
     }
   }
+
+  depends_on = [
+    # Wait for initial scan to complete
+    azapi_resource_action.vulnerability_assessment_initiate_scan
+  ]
 }
