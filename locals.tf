@@ -8,4 +8,14 @@ locals {
       end_ip_address   = "0.0.0.0"
     }
   } : {}
+
+  vulnerability_assessment_baselines = {
+    "VA2065" = [
+      for _, firewall_rule in azurerm_mssql_firewall_rule.this : [
+        firewall_rule.name,
+        firewall_rule.start_ip_address,
+        firewall_rule.end_ip_address
+      ]
+    ]
+  }
 }

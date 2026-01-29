@@ -72,15 +72,7 @@ resource "azapi_resource" "vulnerability_assessment_baselines" {
   body = {
     properties = {
       latestScan = false
-      results = {
-        "VA2065" = [
-          for _, firewall_rule in azurerm_mssql_firewall_rule.this : [
-            firewall_rule.name,
-            firewall_rule.start_ip_address,
-            firewall_rule.end_ip_address
-          ]
-        ]
-      }
+      results    = merge(local.vulnerability_assessment_baselines, var.vulnerability_assessment_baselines)
     }
   }
 }

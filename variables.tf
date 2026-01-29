@@ -67,6 +67,13 @@ variable "firewall_rules_allow_azure_services" {
   nullable    = false
 }
 
+variable "vulnerability_assessment_baselines" {
+  description = "A map of vulnerability assessment baselines to configure for this SQL server."
+  type        = map(list(list(string)))
+  nullable    = false
+  default     = {}
+}
+
 variable "diagnostic_setting_name" {
   description = "The name of this diagnostic setting."
   type        = string
