@@ -64,6 +64,27 @@ resource "azurerm_mssql_server_extended_auditing_policy" "this" {
   retention_in_days                       = null
 }
 
+# Ref: https://learn.microsoft.com/en-us/azure/defender-for-cloud/configure-vulnerability-findings-express#azure-resource-manager-templates
+resource "azapi_resource" "vulnerability_assessment_baselines" {
+  type      = "Microsoft.Sql/servers/databases/sqlVulnerabilityAssessments/baselines@2024-11-01-preview"
+  name      = "default"
+  parent_id = "${azurerm_mssql_server.this.id}/databases/master/sqlVulnerabilityAssessments/default"
+  body = {
+    properties = {
+      latestScan = false
+      results = {
+        "VA2065" = [
+          for _, firewall_rule in azurerm_mssql_firewall_rule.this : [
+            firewall_rule.name,
+            firewall_rule.start_ip_address,
+            firewall_rule.end_ip_address
+          ]
+        ]
+      }
+    }
+  }
+}
+
 # Create diagnostic setting for master database to enable server wide.
 resource "azurerm_monitor_diagnostic_setting" "server" {
   name                       = var.diagnostic_setting_name
