@@ -64,19 +64,6 @@ resource "azurerm_mssql_server_extended_auditing_policy" "this" {
   retention_in_days                       = null
 }
 
-# Ref: https://learn.microsoft.com/en-us/azure/defender-for-cloud/configure-vulnerability-findings-express#azure-resource-manager-templates
-resource "azapi_resource" "vulnerability_assessment_baselines" {
-  type      = "Microsoft.Sql/servers/databases/sqlVulnerabilityAssessments/baselines@2024-11-01-preview"
-  name      = "default"
-  parent_id = "${azurerm_mssql_server.this.id}/databases/master/sqlVulnerabilityAssessments/default"
-  body = {
-    properties = {
-      latestScan = false
-      results    = merge(local.vulnerability_assessment_baselines, var.vulnerability_assessment_baselines)
-    }
-  }
-}
-
 # Create diagnostic setting for master database to enable server wide.
 resource "azurerm_monitor_diagnostic_setting" "server" {
   name                       = var.diagnostic_setting_name
@@ -98,4 +85,17 @@ resource "azurerm_monitor_diagnostic_setting" "server" {
     # This ensures the master database exists before trying to create a diagnostic setting for it.
     azurerm_mssql_server_extended_auditing_policy.this
   ]
+}
+
+# Ref: https://learn.microsoft.com/en-us/azure/defender-for-cloud/configure-vulnerability-findings-express#azure-resource-manager-templates
+resource "azapi_resource" "vulnerability_assessment_baselines" {
+  type      = "Microsoft.Sql/servers/databases/sqlVulnerabilityAssessments/baselines@2024-11-01-preview"
+  name      = "default"
+  parent_id = "${azurerm_mssql_server.this.id}/databases/master/sqlVulnerabilityAssessments/default"
+  body = {
+    properties = {
+      latestScan = false
+      results    = merge(local.vulnerability_assessment_baselines, var.vulnerability_assessment_baselines)
+    }
+  }
 }
