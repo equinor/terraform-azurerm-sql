@@ -1,5 +1,12 @@
 # Changelog
 
+## [12.1.0](https://github.com/equinor/terraform-azurerm-sql/compare/v12.0.1...v12.1.0) (2026-01-27)
+
+
+### Features
+
+* **database:** add new `long_term_retention_policy_time_based_immutability` and `long_term_retention_policy_time_based_immutability_mode` variables ([#197](https://github.com/equinor/terraform-azurerm-sql/issues/197)) ([5ebe019](https://github.com/equinor/terraform-azurerm-sql/commit/5ebe019547b8f701ebcae17714f883cea63d3fc5))
+
 ## [12.0.1](https://github.com/equinor/terraform-azurerm-sql/compare/v12.0.0...v12.0.1) (2025-11-12)
 
 
