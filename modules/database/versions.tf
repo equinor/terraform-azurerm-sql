@@ -4,8 +4,8 @@ terraform {
   required_providers {
     azurerm = {
       source = "hashicorp/azurerm"
-      # Version 4.31.0 is required to use the "enabled_metric" argument for the "azurerm_monitor_diagnostic_setting" resource.
-      version = ">= 4.31.0"
+      # Version 5.0.0 is required to use the "threat_detection_policy.email_account_admins_enabled" argument for the "azurerm_mssql_database" resource.
+      version = ">= 5.0.0"
     }
 
     azapi = {
