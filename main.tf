@@ -57,7 +57,7 @@ resource "azurerm_mssql_server_extended_auditing_policy" "this" {
   log_monitoring_enabled = true
 
   # The following arguments are irrelevant when log_monitoring_enabled = true:
-  storage_endpoint                        = null
+  blob_storage_endpoint                   = null
   storage_account_access_key              = null
   storage_account_access_key_is_secondary = null
   storage_account_subscription_id         = null

@@ -4,9 +4,8 @@ terraform {
   required_providers {
     azurerm = {
       source = "hashicorp/azurerm"
-      # Version 4.26.0 is required to use the "express_vulnerability_assessment_enabled" argument for the "azurerm_mssql_server" resource.
-      # Ref: https://github.com/hashicorp/terraform-provider-azurerm/releases/tag/v12.1.0
-      version = ">= 4.26.0"
+      # Version 5.0.0 is required to use the "blob_storage_endpoint" argument for the "azurerm_mssql_server_extended_auditing_policy" resource.
+      version = ">= 5.0.0"
     }
 
     random = {

@@ -32,11 +32,11 @@ resource "azurerm_mssql_database" "this" {
   # Might be irrelevant when threat detection is configured at the server level.
   # Might be relevant for serverless databases. If this is true, variables can be created.
   threat_detection_policy {
-    state                = "Disabled"
-    disabled_alerts      = []
-    email_account_admins = "Disabled"
-    email_addresses      = []
-    retention_days       = 0
+    state                        = "Disabled"
+    disabled_alerts              = []
+    email_account_admins_enabled = false
+    email_addresses              = []
+    retention_days               = 0
   }
 
   dynamic "identity" {
