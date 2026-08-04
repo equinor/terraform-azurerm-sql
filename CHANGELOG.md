@@ -1,5 +1,12 @@
 # Changelog
 
+## [12.1.1](https://github.com/equinor/terraform-azurerm-sql/compare/v12.1.0...v12.1.1) (2026-08-04)
+
+
+### Code Refactoring
+
+* rename properties according to Azure provider 5.0 upgrade guide ([#200](https://github.com/equinor/terraform-azurerm-sql/issues/200)) ([0e50696](https://github.com/equinor/terraform-azurerm-sql/commit/0e506962bd86bf25e6eb45c6f19dd308b38d0c66))
+
 ## [12.1.0](https://github.com/equinor/terraform-azurerm-sql/compare/v12.0.1...v12.1.0) (2026-01-27)
 
 
